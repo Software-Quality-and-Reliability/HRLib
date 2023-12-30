@@ -42,7 +42,7 @@ namespace HRLib
          *  [11] Οι χαρακτήρες πριν τον χαρακτήρα κενό ' ' να είναι λιγότεροι ή ίσοι από 24
          *  [12] Οι χαρακτήρες μετά τον χαρακτήρα κενό ' ' να είναι λιγότεροι ή ίσοι από 24
          */
-        public bool ValidName(string Name)
+        public bool ValidName(string Name) /* TIGER */
         {
             char[] nameArray = Name.ToCharArray();  // Μετατρέπω το string σε πίνακα χαρακτήρων
             int countSpace = 0;                     // Αρχικοποίηση της τιμής υπολογισμού των χαρακτήρων κενό ' ' 
@@ -157,29 +157,29 @@ namespace HRLib
                 return false; /* ΑΚΥΡΟ ΟΝΟΜΑΤΕΠΩΝΥΜΟ - Παραβίαση της προδιαγραφής [12] */
 
             return true; /* ΕΓΚΥΡΟ ΟΝΟΜΑΤΕΠΩΝΥΜΟ - Το όνομα τηρεί και τις 12 προδιαγραφές */
-        }
+        } 
 
-        public bool ValidPassword(string Password)
+        public bool ValidPassword(string Password) /* THEO */
         {
             return true;
         }
 
-        public string EncryptPassword(string Password, ref string EncryptedPW)
+        public void EncryptPassword(string Password, ref string EncryptedPW) /* OMAR */
         {
-            return "";
+            
         }
 
-        public string CheckPhone(string Phone, ref int TypePhone, ref string InfoPhone)
+        public void CheckPhone(string Phone, ref int TypePhone, ref string InfoPhone) /* TIGER */
         {
-            return "";
+            
         }
 
-        public string InfoEmployee(Employee EmplX, ref int Age, ref int YearsOfExperience)
+        public void InfoEmployee(Employee EmplX, ref int Age, ref int YearsOfExperience) /* THEO */
         {
-            return "";
+            
         }
 
-        public int LiveinAthens(Employee[] Empls)
+        public int LiveinAthens(Employee[] Empls) /* OMAR */
         {
             return 0;
         }

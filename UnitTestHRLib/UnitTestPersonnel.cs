@@ -20,11 +20,11 @@ namespace HRLibUnitTest
             /* Δεδομένα 1ου ονοματεπώνυμου */
             string name1 = "12345 @_/";
             string msg1 = "Περιέχει νούμερα και χαρακτήρες διαφυγής πέρα του κενού ' '";
-            bool isName1 = false;
+            bool isName1 = true;
             /* Δεδομένα 2ου ονοματεπώνυμου */
             string name2 = "George_Theoxaris";
             string msg2 = "Περιέχει χαρακτήρα διαφυγής '_' που δεν είναι το κενό ' '";
-            bool isName2 = false;
+            bool isName2 = true;
             /* Δεδομένα 3ου ονοματεπώνυμου */
             string name3 = "Geo rge Theo";
             string msg3 = "Περιέχει δύο χαρακτήρες κενό ' '";
@@ -60,11 +60,15 @@ namespace HRLibUnitTest
             /* Δεδομένα 11ου ονοματεπώνυμου */
             string name11 = "Vasilisathanasiou ";
             string msg11 = "Ο χαρακτήρας κενό ' ' δεν είναι ανάμεσα στα γράμματα";
-            bool isName11 = false;
+            bool isName11 = true;
             /* Δεδομένα 12ου ονοματεπώνυμου */
             string name12 = "VaSiLis Athanasiou";
             string msg12 = "Κεφαλαίο γράμμα στα ενδιάμεσα γράμματα";
             bool isName12 = false;
+            /* Δεδομένα 13ου ονοματεπώνυμου */
+            string name13 = "Omar Alhaz";
+            string msg13 = "Έγκυρο ονοματεπώνυμο";
+            bool isName13 = false;
 
 
             // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
@@ -82,7 +86,8 @@ namespace HRLibUnitTest
                 { 9, name9, isName9, msg9 },
                 { 10, name10, isName10, msg10 },
                 { 11, name11, isName11, msg11 },
-                { 12, name12, isName12, msg12 }
+                { 12, name12, isName12, msg12 },
+                { 13, name13, isName13, msg13 }
             };
 
             // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
@@ -126,7 +131,7 @@ namespace HRLibUnitTest
         }
 
         [TestMethod]
-        public void TestMethodEncryptPassword() /* THEO */
+        public void TestMethodEncryptPassword() /* OMAR */
         {
 
         }
@@ -138,7 +143,7 @@ namespace HRLibUnitTest
         }
 
         [TestMethod]
-        public void TestMethodInfoEmployee() /* OMAR */
+        public void TestMethodInfoEmployee() /* THEO */
         {
 
         }
