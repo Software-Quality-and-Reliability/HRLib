@@ -143,6 +143,11 @@ namespace HRLib
             {
                 return false;
             }
+            if (passwordArray.Length > 24)
+
+            {
+                return false;
+            }
             // Έλεγχος για κεφαλαία γράμματα
             if (!Password.Any(char.IsUpper))
             {
@@ -159,24 +164,30 @@ namespace HRLib
                 return false;
             }
             // Έλεγχος για σύμβολα
-            // if (!Password.Any(IsSymbol))
-            //{
-            //   return false;
-            // }
-            // Έλεγχος ότι τα γράμματα είναι λατινικά
-            if (!Password.All(char.IsLatin))
+            if (!Password.Any(char.IsWhiteSpace))
+            {
+              return false;
+            }
+           
+            for (int i = 0; i <passwordArray.Length; i++)
+            {
+               
+                bool isLatin = (passwordArray[i] >= 'A' && passwordArray[i] <= 'Z') || (passwordArray[i] >= 'a' && passwordArray[i] <= 'z'); // isLatin = Ο χαρακτήρας i βρίσκεται στο σύνολο [Α,Ζ] Ή στο σύνολο [a,z]
+                if (!isLatin)                         /* !isLatin = Ο χαρακτήρας i δεν βρίσκεται στο σύνολο [Α,Ζ] Ή στο σύνολο [a,z] */
+                    return false;
+            }
+            
+            
+            // Έλεγχος ότι ξεκινάει από κεφαλαίο και τελειώνει με αριθμό
+            if (!(char.IsUpper(Password[0]) || char.IsDigit(Password[Password.Length - 1])))
             {
                 return false;
             }
-            // Έλεγχος ότι ξεκινάει από κεφαλαίο και τελειώνει με αριθμό
-           // if (!(char.IsUpper(Password[0]) && char.IsDigit(Password[Password.Length - 1])))
-            //{
-              //  return false;
-            //}
-
-
             return true;
         }
+            
+            
+           
 
 
         public void EncryptPassword(string Password, ref string EncryptedPW) /* OMAR */
