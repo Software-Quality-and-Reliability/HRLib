@@ -126,11 +126,58 @@ namespace HRLib
 
             return true;                                  // Έγκυρο Ονοματεπώνυμο - Το όνομα τηρεί και τις 12 προδιαγραφές 
         } 
-
+        /*
+         * προδιαγραφες κωδικου(password)
+         * [1] Τουλάχιστον 12 χαρακτήρες
+         * [2] Συνδυασμός χαρακτηριών
+         * [3] Τα γράμματα να είναι λατινικοί χαρακτήρες
+         * [4] Να ξεκινάει από κεφαλαίο γράμμα και να τελειώνει με αριθμό
+         */
         public bool ValidPassword(string Password) /* THEO */
+
         {
+            char[] passwordArray = Password.ToCharArray();
+            // Έλεγχος για μήκος τουλάχιστον 12 χαρακτήρες
+            if (passwordArray.Length < 12)
+
+            {
+                return false;
+            }
+            // Έλεγχος για κεφαλαία γράμματα
+            if (!Password.Any(char.IsUpper))
+            {
+                return false;
+            }
+            // Έλεγχος για πεζά γράμματα
+            if (!Password.Any(char.IsLower))
+            {
+                return false;
+            }
+            // Έλεγχος για αριθμούς
+            if (!Password.Any(char.IsDigit))
+            {
+                return false;
+            }
+            // Έλεγχος για σύμβολα
+            // if (!Password.Any(IsSymbol))
+            //{
+            //   return false;
+            // }
+            // Έλεγχος ότι τα γράμματα είναι λατινικά
+            if (!Password.All(char.IsLatin))
+            {
+                return false;
+            }
+            // Έλεγχος ότι ξεκινάει από κεφαλαίο και τελειώνει με αριθμό
+           // if (!(char.IsUpper(Password[0]) && char.IsDigit(Password[Password.Length - 1])))
+            //{
+              //  return false;
+            //}
+
+
             return true;
         }
+
 
         public void EncryptPassword(string Password, ref string EncryptedPW) /* OMAR */
         {

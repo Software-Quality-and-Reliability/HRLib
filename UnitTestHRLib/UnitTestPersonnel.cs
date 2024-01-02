@@ -76,7 +76,14 @@ namespace HRLibUnitTest
         [TestMethod]
         public void TestMethodValidPassword() /* THEO */
         {
+            // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
+            HRLib.Personnel per = new HRLib.Personnel();
 
+            object[,] testcases =
+            
+            // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
+            int i = 0;
+            bool failed = false;
         }
 
         [TestMethod]
