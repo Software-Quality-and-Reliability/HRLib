@@ -129,7 +129,8 @@ namespace HRLib
 
         public bool ValidPassword(string Password) /* THEO */
         {
-            return true;
+            Console.WriteLine("Password Tiger");
+            return true; 
         }
 
         public void EncryptPassword(string Password, ref string EncryptedPW) /* OMAR */
