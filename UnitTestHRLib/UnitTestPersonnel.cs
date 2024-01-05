@@ -76,14 +76,70 @@ namespace HRLibUnitTest
         [TestMethod]
         public void TestMethodValidPassword() /* THEO */
         {
-            // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
-            HRLib.Personnel per = new HRLib.Personnel();
-
-            object[,] testcases =
             
-            // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
-            int i = 0;
-            bool failed = false;
+            
+                // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
+                HRLib.Personnel per = new HRLib.Personnel();
+            /*  Γράψ'τε σε μία κενή γραμμή per. (π.χ. την 18) και θα σας εμφανίσει τις μεθόδους...
+             *  Έχει και άλλες 4 που είναι μέθοδοι της κλάσης object που κληρονομούν ΌΛΕΣ οι κλάσεις που φτιάχνουμε
+             */
+
+            // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
+            object[,] testcases =
+            {
+            /*  { id testcase,  
+             *    ημερομηνία,
+             *    τιμή που περιμένω να επιστρέψει η μέθοδος ValidPassword(),
+             *    μήνυμα που αιτιολογεί τις πληροφορίες που περιμένω
+             *  }
+             */
+         /*[1] Τουλάχιστον 12 χαρακτήρες
+         * [2] Συνδυασμός χαρακτηριών
+         * [3] Τα γράμματα να είναι λατινικοί χαρακτήρες
+         * [4] Να ξεκινάει από κεφαλαίο γράμμα και να τελειώνει με αριθμό
+         */
+                { 1, "Ako2", false, "περιεχει λιγοτερα απο 12 χαρακτηρες" },
+                { 2, "Akkakanhfhfhrbfhbyrbtybytbh4#$fhbrvhvb1",false,"περιεχει παραπανω 24 χαρακτηρες" },
+                { 3, "Vasilisathan8#6" ,true,"περιεχει πανω απο 12 χαρακτηρεσ ξεκινα απο κεφαλαιο ,εχει συμβολα  και τελειωνει σε αριθμο"},
+                { 4, "γιωργοςπαδα2024",false,"δεν περιεχει λατινικους χαρακτηρες"},
+                { 5, "omaraAlhaz2001",false,"ξεκινα με μικρο γραμμα"},
+                { 6, "Koaos^klpoplkjg",false,"δεν τελειωνει σε αριθμο" },
+                { 7, "Georgetheo@#$9",true,"περιεχει πανω απο 12 χαρακτηρεσ ξεκινα απο κεφαλαιο ,εχει συμβολα  και τελειωνει σε αριθμο" },
+            };
+            
+
+                // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
+                int i = 0;
+                bool failed = false;
+
+                // Προσπέλαση και εκτέλεση περιπτώσεων ελέγχου
+                for (i = 0; i < testcases.GetLength(0); i++)
+                // Για κάθε περίπτωση ελέγχου (Test Case), δηλαδή για κάθε γραμμή i του πίνακα testcases
+                {
+                    try
+                    {
+                        // Καλούμε την Assert.AreEqual δίνοντας ως παραμέτρους τα στοιχεία της περίπτωσης ελέγχου,
+                        // δηλαδή τα αντίστοιχα στοιχεία της γραμμής i του πίνακα testcases
+                        string Password = (string)testcases[i, 1];
+                        bool expectedValue = (bool)testcases[i, 2]; // Η τιμή που περιμένω να επιστρέψει η μέθοδος ValidPassword() για την ημερομηνία i
+                        bool actualValue = per.ValidPassword(Password); // Η τιμή που επιστρέφει η μέθοδος ValidPassword() για την ημερομηνία i
+                        Assert.AreEqual(expectedValue, actualValue);
+                    }
+                    catch (Exception e)
+                    {
+                        // Απέτυχε το Test Case
+                        failed = true;
+                        // Καταγράφουμε το Test Case που απέτυχε
+                        Console.WriteLine("Failed Test Case: {0} \n \t Hint: {1} \n \t Reason: {2} ",
+                            (int)testcases[i, 0], (string)testcases[i, 3], e.Message);
+                        //  id, μήνυμα που αιτιολογεί τις πληροφορίες που περιμένω, μήνυμα του exception 
+                    }
+                }
+
+                // Στην περίπτωση που κάποιο Test Case απέτυχε, πέταξε exception.
+                if (failed)
+                    Assert.Fail();
+            
         }
 
         [TestMethod]

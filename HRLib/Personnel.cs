@@ -138,7 +138,7 @@ namespace HRLib
         {
             char[] passwordArray = Password.ToCharArray();
             // Έλεγχος για μήκος τουλάχιστον 12 χαρακτήρες
-            if (passwordArray.Length < 12)
+            if (passwordArray.Length <= 12)
 
             {
                 return false;
