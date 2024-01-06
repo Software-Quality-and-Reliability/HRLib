@@ -29,102 +29,75 @@ namespace HRLib
         /* 
          *  Προδιαγραφές ονοματεπώνυμου (Name):
          *  
-         *  [1] Να περιέχει γράμματα
-         *  [2] Να μην περιέχει οτιδήποτε δεν είναι γράμμα και ο χαρακτήρας ' ' 
-         *  [3] Να υπάρχει ο χαρακτήρας διαφυγής κενό ' '
-         *  [4] Ο χαρακτήρας κενό ' ' να είναι ανάμεσα στο 1ο και στο τελευταίο γράμμα
-         *  [5] Να υπάρχει ο χαρακτήρας κενό ' ' ΑΚΡΙΒΩΣ 1 φορά
-         *  [6] Να περιέχει μόνο λατινικά γράμματα
-         *  [7] Το πρώτο γράμμα να είναι κεφαλαίο
-         *  [8] Το αμέσως επόμενο γράμμα μετά τον χαρακτήρα κενό ' ' να είναι κεφαλαίο
-         *  [9] Τα γράμματα από τον 2ο χαρακτήρα μέχρι τον αμέσως προηγούμενο από τον χαρακτήρα κενό ' ', να είναι μικρά
-         *  [10] Τα γράμματα από τον αμέσως επόμενο χαρακτήρα από τον χαρακτήρα κενό ' ' μέχρι τον τελευταίο, να είναι μικρά
-         *  [11] Οι χαρακτήρες πριν τον χαρακτήρα κενό ' ' να είναι λιγότεροι ή ίσοι από 24
-         *  [12] Οι χαρακτήρες μετά τον χαρακτήρα κενό ' ' να είναι λιγότεροι ή ίσοι από 24
+         *  [1] Να υπάρχει ο χαρακτήρας κενό ' ' ακριβώς μία φορά
+         *  [2] Ξεχωρίζουμε το όνομα από το επώνυμο με βάση τον χαρακτήρα κενό ' ', όπου ισχύουν οι ίδιες προδιαγραφές και για τα δύο
+         *      [2.1] Το πλήθος των χαρακτήρων πρέπει να είναι τουλάχιστον 3
+         *      [2.2] Το πλήθος των χαρακτήρων πρέπει να είναι το πολύ 15
+         *      [2.3] Πρέπει να περιέχει μόνο γράμματα
+         *      [2.4] Το 1ο γράμμα πρέπει να είναι κεφαλαίο
+         *      [2.5] Τα γράμματα εκτός από το 1ο, πρέπει να είναι πεζά
+         *      [2.6] Τα γράμματα πρέπει να είναι όλα λατινικά
          */
         public bool ValidName(string Name) /* TIGER */
         {
-            int countSpace;                               // Μεταβλητή για τον υπολογισμό των χαρακτήρων κενό ' ' 
-            int indexSpace;                               // Η υποτιθέμενη θέση του χαρακτήρα ' '
-            bool isLatin;                                 // Μεταβλητή που χρησιμοποιείται για τον έλεγχο "αν το γράμμα είναι λατινικό"
-            char[] nameArray = Name.ToCharArray();        // Μετατρέπω το string σε πίνακα χαρακτήρων
+            // [1] Να υπάρχει ο χαρακτήρας κενό ' ' ακριβώς μία φορά
+            string[] subNames = Name.Split(' ');
+            if (subNames.Length != 2)
+                return false;
 
-            countSpace = 0;                               // Αρχικοποίηση της τιμής υπολογισμού των χαρακτήρων κενό ' '
-            indexSpace = -1;                              // Αρχικοποίηση της υποτιθέμενης θέσης του χαρακτήρα κενό ' ' με θέση που είναι εκτός των ορίων του πίνακα 
+            // [2] Ξεχωρίζουμε το όνομα από το επώνυμο με βάση τον χαρακτήρα κενό ' ', όπου ισχύουν οι ίδιες προδιαγραφές και για τα δύο
+            string firstName = subNames[0];
+            string lastName = subNames[1];
 
-            for (int i = 0; i < nameArray.Length; i++)    
+            // [2.1] Το πλήθος των χαρακτήρων πρέπει να είναι τουλάχιστον 3
+            if (firstName.Length < 3)
+                return false;
+            if (lastName.Length < 3)
+                return false;
+
+            // [2.2] Το πλήθος των χαρακτήρων πρέπει να είναι το πολύ 15
+            if (firstName.Length > 15)
+                return false;
+            if (lastName.Length > 15)
+                return false;
+
+            // [2.3] Πρέπει να περιέχει μόνο γράμματα
+            if (!firstName.All(char.IsLetter))
+                return false;
+            if (!lastName.All(char.IsLetter))
+                return false;
+
+            // [2.4] Το 1ο γράμμα πρέπει να είναι κεφαλαίο
+            char[] firstNameArray = firstName.ToCharArray();
+            char[] lastNameArray = lastName.ToCharArray();
+            if (!char.IsUpper(firstNameArray[0]))
+                return false;
+            if (!char.IsUpper(lastNameArray[0]))
+                return false;
+
+            // [2.5] Τα γράμματα εκτός από το 1ο, πρέπει να είναι πεζά
+            if (!firstName.Substring(1).All(char.IsLower))
+                return false;
+            if (!lastName.Substring(1).All(char.IsLower))
+                return false;
+
+            // [2.6] Τα γράμματα πρέπει να είναι όλα λατινικά
+            bool isLatinLetter = true;
+            for (int i = 0; i < firstNameArray.Length; i++)
             {
-                if (!char.IsLetter(nameArray[i]))         /* Ο χαρακτήρας i δεν είναι γράμμα */
-                {
-                    if (nameArray[i] != ' ')              /* Ο χαρακτήρας i δεν είναι γράμμα ΚΑΙ δεν είναι ο χαρακτήρας διαφυγής κενό ' ' */
-                    {
-                        return false;                     // Άκυρο Ονοματεπώνυμο - Παραβίαση της προδιαγραφής [2]
-                    }
-                    else                                  /* Ο χαρακτήρας i δεν είναι γράμμα ΚΑΙ είναι ο χαρακτήρας διαφυγής κενό ' ' */
-                    {
-                        if (i != 0 && i != nameArray.Length - 1)   /* Ο χαρακτήρας i δεν είναι γράμμα ΚΑΙ (ο χαρακτήρας i δεν είναι στην 1η θέση του πίνακα ΚΑΙ δεν είναι στην τελευταία) */
-                        {
-                            countSpace++;                 // Ένδειξη ότι εντοπίστηκε ο χαρακτήρας κενό ' ' που να τηρεί την προδιαγραφή [4]
-                            indexSpace = i;               // Αποθήκευση της θέσης του χαρακτήρα κενό ' ' στον πίνακα
-
-                            if (countSpace > 1)           /* Το πλήθος των χαρακτήρων διαφυγής κενό ' ' είναι περισσότερο από 1 */
-                                return false;             // Άκυρο Ονοματεπώνυμο - Παραβίαση της προδιαγραφής [5] 
-                        }
-                        else                              /* Ο χαρακτήρας i δεν είναι γράμμα ΚΑΙ (ο χαρακτήρας i είναι στην 1η θέση του πίνακα Ή είναι στην τελευταία) */
-                        {
-                            return false;                 // Άκυρο Ονοματεπώνυμο - Παραβίαση της προδιαγραφής [4] 
-                        }
-                    }
-                }
-                else                                      /* Ο χαρακτήρας i είναι γράμμα */
-                {
-                    isLatin = (nameArray[i] >= 'A' && nameArray[i] <= 'Z') || (nameArray[i] >= 'a' && nameArray[i] <= 'z'); // isLatin = Ο χαρακτήρας i βρίσκεται στο σύνολο [Α,Ζ] Ή στο σύνολο [a,z]
-                    if (!isLatin)                         /* !isLatin = Ο χαρακτήρας i δεν βρίσκεται στο σύνολο [Α,Ζ] Ή στο σύνολο [a,z] */
-                        return false;                     // Άκυρο Ονοματεπώνυμο - Παραβίαση της προδιαγραφής [6] 
-
-                    if (indexSpace != -1)                 /* Η θέση του χαρακτήρα διαφυγής κενό ' ' στον πίνακα έχει βρεθεί */
-                    {
-                        if (i < indexSpace)               /* Ελέγχουμε τους χαρακτήρες από τον 2ο χαρακτήρα μέχρι τον αμέσως προηγούμενο από το χαρακτήρα κενό ' ' */
-                        {
-                            if (!char.IsLower(nameArray[i])) /* Ο χαρακτήρας i δεν είναι μικρό */
-                                return false;             // Άκυρο Ονοματεπώνυμο - Παραβίαση της προδιαγραφής [9] 
-                        }
-                        if (i > indexSpace + 1)           /* Ελέγχουμε τους χαρακτήρες από τον αμέσως επόμενο χαρακτήρα από τον χαρακτήρα κενό ' ', μέχρι τον τελευταίο */
-                        {
-                            if (!char.IsLower(nameArray[i])) /* Ο χαρακτήρας i δεν είναι μικρό */
-                                return false;             // Άκυρο Ονοματεπώνυμο - Παραβίαση της προδιαγραφής [10] 
-                        }
-                    }
-                    else                                  /* Η θέση του χαρακτήρα διαφυγής κενό ' ' στον πίνακα δεν έχει βρεθεί */
-                    {
-                        if (i > 0)                        /* Ελέγχουμε τους χαρακτήρες από την αρχή */
-                        {
-                            if (!char.IsLower(nameArray[i])) /* Ο χαρακτήρας i δεν είναι μικρό */
-                                return false;             // Άκυρο Ονοματεπώνυμο - Παραβίαση της προδιαγραφής [9]
-                        }
-                    }
-                }
+                isLatinLetter = (firstNameArray[i] >= 'A' && firstNameArray[i] <= 'Z') || (firstNameArray[i] >= 'a' && firstNameArray[i] <= 'z');
+                if (!isLatinLetter)
+                    return false;
+            }
+            for (int j = 0; j < lastNameArray.Length; j++)
+            {
+                isLatinLetter = (lastNameArray[j] >= 'A' && lastNameArray[j] <= 'Z') || (lastNameArray[j] >= 'a' && lastNameArray[j] <= 'z');
+                if (!isLatinLetter)
+                    return false;
             }
 
-            if (indexSpace == -1)                         /* Ένδειξη ότι δεν βρέθηκε ο χαρακτήρας κενό ' ' */
-                return false;                             // Άκυρο Ονοματεπώνυμο - Παραβίαση της προδιαγραφής [3] 
-
-            if (!char.IsUpper(nameArray[0]))              // Το πρώτο γράμμα δεν είναι κεφαλαίο
-                return false;                             // Άκυρο Ονοματεπώνυμο - Παραβίαση της προδιαγραφής [7] */
-
-            if (!char.IsUpper(nameArray[indexSpace + 1])) /* Το αμέσως επόμενο γράμμα μετά τον χαρακτήρα κενό ' ' δεν είναι κεφαλαίο */
-                return false;                             // Άκυρο Ονοματεπώνυμο - Παραβίαση της προδιαγραφής [8] 
-
-            int charsBeforeSpace = (indexSpace - 1) - 0 + 1;                     // Υπολογισμός χαρακτήρων πριν τον χαρακτήρα κενό ' ' (ο τύπος είναι : τελευταία θέση στοιχείου - πρώτη θέση στοιχείου + 1)
-            int charsAfterSpace = (nameArray.Length - 1) - (indexSpace - 1) + 1; // Υπολογισμός χαρακτήρων μετά τον χαρακτήρα κενό ' ' (ο τύπος είναι : τελευταία θέση στοιχείου - πρώτη θέση στοιχείου + 1)
-
-            if (charsBeforeSpace >= 24)                   /* Οι χαρακτήρες πριν τον χαρακτήρα κενό ' ' είναι περισσότεροι ή ίσοι από 24 */
-                return false;                             // Άκυρο Ονοματεπώνυμο - Παραβίαση της προδιαγραφής [11] 
-
-            if (charsAfterSpace >= 24)                    /* Οι χαρακτήρες μετά τον χαρακτήρα κενό ' ' είναι περισσότεροι ή ίσοι από 24 */
-                return false;                             // Άκυρο Ονοματεπώνυμο - Παραβίαση της προδιαγραφής [12] 
-
-            return true;                                  // Έγκυρο Ονοματεπώνυμο - Το όνομα τηρεί και τις 12 προδιαγραφές 
+            // Έγκυρο ονοματεπώνυμο
+            return true;                              
         } 
 
         public bool ValidPassword(string Password) /* THEO */
@@ -140,123 +113,102 @@ namespace HRLib
         /* 
          *  Προδιαγραφές τηλεφώνου (Phone):
          *  
-         *  [1] Να περιέχει αριθμούς
-         *  [2] Να μην περιέχει γράμματα ή χαρακτήρες διαφυγής
-         *  [3] Οι αριθμοί να είναι το πολύ 10
-         *  [4] Να ξεκινάει σε 2 αν πρόκειται για σταθερό
-         *  [5] Να ξεκινάει σε 69 αν πρόκειται για κινητό
+         *  [1] Να περιέχει μόνο αριθμούς
+         *  [2] Οι αριθμοί να είναι ακριβώς 10
+         *  [3] Να ξεκινάει σε 2 αν πρόκειται για σταθερό
+         *  [4] Να ξεκινάει σε 69 αν πρόκειται για κινητό
          */
         public void CheckPhone(string Phone, ref int TypePhone, ref string InfoPhone) /* TIGER */
         {
-            bool isHomePhone;                           // Μεταβλητή ελέγχου αν το τηλέφωνο είναι σταθερό
-            bool isMobilePhone;                         // Μεταβλητή ελέγχου αν το τηλέφωνο είναι κινητό 
-            bool nonDigitPhone;                         // Μεταβλητή ελέγχου αν πρόκειται για τηλέφωνο που δεν περιέχει ψηφία
-            bool digitsGreaterThan10;                   // Μεταβλητή ελέγχου αν πρόκειται για τηλέφωνο που περιέχει περισσότερα απο 10 ψηφία
-            int zone;                                   // Ζώνη που ανήκει το σταθερό τηλέφωνο
-            int mobileNumber;                           // Το ψηφίο του κινητού τηλεφώνου που καθορίζει την εταιρία κινητής τηλεφωνίας
-            char[] phoneArray = Phone.ToCharArray();    // Μετατρέπω το τηλέφωνο που έχει δοθεί ως string σε πίνακα χαρακτήρων
-
-            nonDigitPhone = false;                      // Αρχικοποίηση της μεταβλητής ελέγχου αν πρόκειται για τηλέφωνο που δεν περιέχει ψηφία
-            digitsGreaterThan10 = false;                // Αρχικοποίηση της μεταβλητής ελέγχου αν πρόκειται για τηλέφωνο που περιέχει περισσότερα από 10 ψηφία
-
-            for (int i = 0; i < phoneArray.Length; i++)
+            // [1] Να περιέχει μόνο αριθμούς
+            if (!Phone.All(char.IsDigit))
             {
-                if (!char.IsDigit(phoneArray[i]))       /* Ο χαρακτήρας i δεν είναι ψηφίο */
-                {
-                    nonDigitPhone = true;               // Το τηλέφωνο δεν περιέχει μόνο ψηφία
-                    break;
-                }
+                TypePhone = -1;
+                InfoPhone = null;
             }
-
-            if (phoneArray.Length > 10)                 /* Οι χαρακτήρες του τηλεφώνου είναι περισσότεροι από 10 */
+            else
             {
-                digitsGreaterThan10 = true;             // Το τηλέφωνο περιέχει περισσότερα από 10 ψηφία
-            }
-
-            isHomePhone = Phone.StartsWith("2");        // Αρχικοποίηση της μεταβλητής ελέγχου αν πρόκειται για τηλέφωνο που είναι σταθερό
-            isMobilePhone = Phone.StartsWith("69");     // Αρχικοποίηση της μεταβλητής ελέγχου αν πρόκειται για τηλέφωνο που είναι κινητό
-
-            if (!nonDigitPhone && !digitsGreaterThan10 && isHomePhone) /* 
-                                                                        * [1] Να περιέχει αριθμούς 
-                                                                        * [2] Να μην περιέχει γράμματα ή χαρακτήρες διαφυγής 
-                                                                        * [3] Οι αριθμοί να είναι το πολύ 10 
-                                                                        * [4] Να ξεκινάει σε 2 αν πρόκειται για σταθερό 
-                                                                        */
-            {
-                TypePhone = 0;                                  // Κωδικός έγκυρου σταθερού τηλεφώνου
-                zone = Int32.Parse(Phone.Substring(1, 1));      // Μετατροπή της ζώνης που ανήκει το σταθερό τηλέφωνο σε ακέραιο
-                switch (zone)                                   // Έλεγχος της ζώνης που ανήκει το τηλέφωνο για την ανανέωση της πληροφορίας InfoPhone
+                // [2] Οι αριθμοί να είναι τουλάχιστον 10
+                if (Phone.Length != 10)
                 {
-                    case 1:
-                        InfoPhone = "Metropolitan Area of Athens - Piraeus";
-                        break;
-                    case 2:
-                        InfoPhone = "Eastern Central Greece, Attica, Aegean Islands";
-                        break;
-                    case 3:
-                        InfoPhone = "Central Macedonia";
-                        break;
-                    case 4:
-                        InfoPhone = "Thessaly, Western Macedonia";
-                        break;
-                    case 5:
-                        InfoPhone = "Thrace, Eastern Macedonia";
-                        break;
-                    case 6:
-                        InfoPhone = "Epirus, Western Central Greece, Western Peloponnese, Ionian Islands";
-                        break;
-                    case 7:
-                        InfoPhone = "Eastern Peloponnese, Kythera";
-                        break;
-                    case 8:
-                        InfoPhone = "Crete";
-                        break;
-                    default:
-                        InfoPhone = null;
-                        break;
+                    TypePhone = -1;
+                    InfoPhone = null;
                 }
-            } 
-            else                                                             // Μία ή περισσότερες προϋποθέσεις παραβιάζονται [1], [2], [3], [4]
-            {
-                if (!nonDigitPhone && !digitsGreaterThan10 && isMobilePhone) /* 
-                                                                              * [1] Να περιέχει αριθμούς 
-                                                                              * [2] Να μην περιέχει γράμματα ή χαρακτήρες διαφυγής 
-                                                                              * [3] Οι αριθμοί να είναι το πολύ 10 
-                                                                              * [5] Να ξεκινάει σε 69 αν πρόκειται για κινητό 
-                                                                              */
+                else
                 {
-                    TypePhone = 1;                                            // Κωδικός έγκυρου κινητού τηλεφώνου
-                    mobileNumber = Int32.Parse(Phone.Substring(2, 1));        // Μετατροπή του ψηφίου του κινητού τηλεφώνου που μαρτυρά την εταιρία κινητής τηλεφωνίας σε ακέραιο
-                    switch (mobileNumber)                                     // Έλεγχος του ψηφίου του κινητού τηλεφώνου που μαρτυρά την εταιρία κινητής τηλεφωνίας για την ανανέωση της πληροφορίας InfoPhone
+                    // [3] Να ξεκινάει σε 2 αν πρόκειται για σταθερό
+                    if (Phone.StartsWith("2"))
                     {
-                        case 0:
-                        case 3:
-                        case 9:
-                            InfoPhone = "Nova";
-                            break;
-                        case 4:
-                        case 5:
-                            InfoPhone = "Vodafone";
-                            break;
-                        case 7:
-                        case 8:
-                            InfoPhone = "Cosmote";
-                            break;
-                        default:
-                            InfoPhone = null;
-                            break;
+                        TypePhone = 0;
+                        switch (Int32.Parse(Phone.Substring(1, 1))) // Έλεγχος της ζώνης που ανήκει το σταθερό τηλέφωνο                                 
+                        {
+                            case 1:
+                                InfoPhone = "Metropolitan Area of Athens - Piraeus";
+                                break;
+                            case 2:
+                                InfoPhone = "Eastern Central Greece, Attica, Aegean Islands";
+                                break;
+                            case 3:
+                                InfoPhone = "Central Macedonia";
+                                break;
+                            case 4:
+                                InfoPhone = "Thessaly, Western Macedonia";
+                                break;
+                            case 5:
+                                InfoPhone = "Thrace, Eastern Macedonia";
+                                break;
+                            case 6:
+                                InfoPhone = "Epirus, Western Central Greece, Western Peloponnese, Ionian Islands";
+                                break;
+                            case 7:
+                                InfoPhone = "Eastern Peloponnese, Kythera";
+                                break;
+                            case 8:
+                                InfoPhone = "Crete";
+                                break;
+                            default:
+                                InfoPhone = "";
+                                break;
+                        }
                     }
-                }
-                else                        // Μία ή περισσότερες προϋποθέσεις παραβιάζονται [1], [2], [3], [5]
-                {
-                    TypePhone = -1;         // Κωδικός άκυρου τηλεφώνου
-                    InfoPhone = null;       // Πληροφορίες άκυρου τηλεφώνου
+                    else
+                    {
+                        // [4] Να ξεκινάει σε 69 αν πρόκειται για κινητό
+                        if (Phone.StartsWith("69"))
+                        {
+                            TypePhone = 1;
+                            switch (Int32.Parse(Phone.Substring(2, 1))) // Έλεγχος της εταιρίας κινητής τηλεφωνίας που ανήκει το κινητό τηλέφωνο
+                            {
+                                case 0:
+                                case 3:
+                                case 9:
+                                    InfoPhone = "Nova";
+                                    break;
+                                case 4:
+                                case 5:
+                                    InfoPhone = "Vodafone";
+                                    break;
+                                case 7:
+                                case 8:
+                                    InfoPhone = "Cosmote";
+                                    break;
+                                default:
+                                    InfoPhone = "";
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            TypePhone = -1;
+                            InfoPhone = null; 
+                        }
+                    }
                 }
             }
         }
 
         public void InfoEmployee(Employee EmplX, ref int Age, ref int YearsOfExperience) /* THEO */
-                {
+        {
             
         }
 
