@@ -154,7 +154,7 @@ namespace HRLibUnitTest
                     failed = true;
                     // Καταγράφουμε το Test Case που απέτυχε
                     Console.WriteLine("Failed Test Case: {0} \n \t Hint: {1} \n \t Reason: {2} ",
-                        (int)testcases[i, 0], (string)testcases[i, 3], e.Message);
+                        (int)testcases[i, 0], (string)testcases[i, 4], e.Message);
                     //  id, μήνυμα που αιτιολογεί τις πληροφορίες που περιμένω, μήνυμα του exception 
                 }
             }
