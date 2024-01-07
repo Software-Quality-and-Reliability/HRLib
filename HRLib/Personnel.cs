@@ -116,7 +116,9 @@ namespace HRLib
          *  [1] Να περιέχει μόνο αριθμούς
          *  [2] Οι αριθμοί να είναι ακριβώς 10
          *  [3] Να ξεκινάει σε 2 αν πρόκειται για σταθερό
+         *      [3.1] Να ανήκει σε ζώνη
          *  [4] Να ξεκινάει σε 69 αν πρόκειται για κινητό
+         *      [4.1] Να ανήκει σε εταιρία κινητής τηλεφωνίας
          */
         public void CheckPhone(string Phone, ref int TypePhone, ref string InfoPhone) /* TIGER */
         {
@@ -139,8 +141,9 @@ namespace HRLib
                     // [3] Να ξεκινάει σε 2 αν πρόκειται για σταθερό
                     if (Phone.StartsWith("2"))
                     {
+                        // [3.1] Να ανήκει σε ζώνη
                         TypePhone = 0;
-                        switch (Int32.Parse(Phone.Substring(1, 1))) // Έλεγχος της ζώνης που ανήκει το σταθερό τηλέφωνο                                 
+                        switch (Int32.Parse(Phone.Substring(1, 1)))                                  
                         {
                             case 1:
                                 InfoPhone = "Metropolitan Area of Athens - Piraeus";
@@ -167,7 +170,8 @@ namespace HRLib
                                 InfoPhone = "Crete";
                                 break;
                             default:
-                                InfoPhone = "";
+                                TypePhone = -1;
+                                InfoPhone = null;
                                 break;
                         }
                     }
@@ -176,6 +180,7 @@ namespace HRLib
                         // [4] Να ξεκινάει σε 69 αν πρόκειται για κινητό
                         if (Phone.StartsWith("69"))
                         {
+                            // [4.1] Να ανήκει σε εταιρία κινητής τηλεφωνίας
                             TypePhone = 1;
                             switch (Int32.Parse(Phone.Substring(2, 1))) // Έλεγχος της εταιρίας κινητής τηλεφωνίας που ανήκει το κινητό τηλέφωνο
                             {
@@ -193,7 +198,8 @@ namespace HRLib
                                     InfoPhone = "Cosmote";
                                     break;
                                 default:
-                                    InfoPhone = "";
+                                    TypePhone = -1;
+                                    InfoPhone = null;
                                     break;
                             }
                         }
