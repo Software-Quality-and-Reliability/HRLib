@@ -105,14 +105,14 @@ namespace HRLibUnitTest
          * [5] Τα γράμματα να είναι λατινικοί χαρακτήρες
          * [6] Να ξεκινάει από κεφαλαίο γράμμα και να τελειώνει με αριθμό
          */
-                { 1, "Ako2", false, "    [1] Τουλάχιστον 12 χαρακτήρες" },
-                { 2, "Akkakanhfhfhrbfhbyrbtybytbh4#$fhbrvhvb1",false,"[2] Tο πολυ 24 χαρακτηρες" },
-                { 3, "Vasilisathanο#6" ,true," εγκυρος κωδκος "},
-                { 4, "γιωργοςπαδα2024",false,"[5] Τα γράμματα να είναι λατινικοί χαρακτήρες"},
-                { 5, "omaraAlhaz2001",false," [6]  Να ξεκινάει από κεφαλαίο γράμμα και να τελειώνει με αριθμό"},
-                { 6, "Koaos^klpoplkjg",false,"[6] Να ξεκινάει από κεφαλαίο γράμμα και να τελειώνει με αριθμό" },
-                { 7, "Georgetheo@#$9",true,"εγκυρος κωδικος " },
-                { 8,"!@#$%^&**&^%$#@!",false,"[3] Συνδυασμός χαρακτηριών" },
+                { 1, "Ako2", 0, "    [1] Τουλάχιστον 12 χαρακτήρες" },
+                { 2, "Akkakanhfhfhrbfhbyrbtybytbh4#$fhbrvhvb1",1,"[2] Tο πολυ 24 χαρακτηρες" },
+                { 3, "Vasilisathano#6" ,10," εγκυρος κωδκος "},
+                { 4, "Γιωργοςπαδα@2024",7,"[5] Τα γράμματα να είναι λατινικοί χαρακτήρες"},
+                { 5, "omara#Alhaz2001",8," [6]  Να ξεκινάει από κεφαλαίο γράμμα και να τελειώνει με αριθμό"},
+                { 6, "Koaos1^klpoplkjg",8,"[6] Να ξεκινάει από κεφαλαίο γράμμα και να τελειώνει με αριθμό" },
+                { 7, "Georgetheo@#$9",10,"εγκυρος κωδικος " },
+                { 8,"!@#$%^&**&^%$#@!",2,"[3] Συνδυασμός χαρακτηριών" },
 
             };
 
@@ -130,8 +130,8 @@ namespace HRLibUnitTest
                     // Καλούμε την Assert.AreEqual δίνοντας ως παραμέτρους τα στοιχεία της περίπτωσης ελέγχου,
                     // δηλαδή τα αντίστοιχα στοιχεία της γραμμής i του πίνακα testcases
                     string Password = (string)testcases[i, 1];
-                    bool expectedValue = (bool)testcases[i, 2]; // Η τιμή που περιμένω να επιστρέψει η μέθοδος ValidPassword() για την ημερομηνία i
-                    bool actualValue = per.ValidPassword(Password); // Η τιμή που επιστρέφει η μέθοδος ValidPassword() για την ημερομηνία i
+                    int expectedValue = (int)testcases[i, 2]; // Η τιμή που περιμένω να επιστρέψει η μέθοδος ValidPassword() για την ημερομηνία i
+                    int actualValue = per.ValidPassword(Password); // Η τιμή που επιστρέφει η μέθοδος ValidPassword() για την ημερομηνία i
                     Assert.AreEqual(expectedValue, actualValue);
                 }
                 catch (Exception e)

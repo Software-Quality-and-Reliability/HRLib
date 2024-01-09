@@ -151,7 +151,7 @@ namespace HRLib
                 return 5;
             }
             // [4] Έλεγχος για χαρακτηρες διαφυγης
-            if (!Password.Any(char.IsWhiteSpace))
+            if (Password.Any(char.IsWhiteSpace))
             {
                 return 6;
             }
@@ -161,19 +161,22 @@ namespace HRLib
             bool isLatinLetter = true;
             for (int i = 0; i < passwordArray.Length; i++)
             {
-                isLatinLetter = (passwordArray[i] >= 'A' && passwordArray[i] <= 'Z') || (passwordArray[i] >= 'a' && passwordArray[i] <= 'z');
-                if (!isLatinLetter)
-                    return 7;
+                if (char.IsLetter(passwordArray[i]))
+                {
+                    isLatinLetter = (passwordArray[i] >= 'A' && passwordArray[i] <= 'Z') || (passwordArray[i] >= 'a' && passwordArray[i] <= 'z');
+                    if (!isLatinLetter)
+                        return 7;
+                }
             }
             
                
 
-
             //[6] Έλεγχος ότι ξεκινάει από κεφαλαίο και τελειώνει με αριθμό
-            if (!(char.IsUpper(Password[0]) || char.IsDigit(Password[Password.Length - 1])))
+            if (!(char.IsUpper(Password[0]) && char.IsDigit(Password[Password.Length - 1])))
             {
                 return 8;
             }
+
             return 10;
         }
             
