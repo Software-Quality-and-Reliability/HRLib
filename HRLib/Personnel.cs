@@ -115,45 +115,45 @@ namespace HRLib
          * 
          * 
          */
-         public int ValidPassword(string Password) /* THEO */
+         public bool ValidPassword(string Password) /* THEO */
 
         {
             char[] passwordArray = Password.ToCharArray();
             // [1] Έλεγχος για μήκος τουλάχιστον 12 χαρακτήρες
             if (Password.Length < 12)
             {
-                return 0;
+                return false;
             }
             // [2] Tο πολυ 24 χαρακτηρες
             if (Password.Length > 24)
             {
-                return 1;
+                return false;
             }
             //[3.1] Έλεγχος για κεφαλαία γράμματα
             if (!Password.Any(char.IsUpper))
             {
-                return 2;
+                return false;
             }
             //[3.2] Έλεγχος για πεζά γράμματα
             if (!Password.Any(char.IsLower))
             {
-                return 3;
+                return false;
             }
             // [3.3] Έλεγχος για αριθμούς
             if (!Password.Any(char.IsDigit))
             {
-                return 4;
+                return false;
             }
             
             // [3.4] τουλαχιαοτν 1 ειδικο συμβολo
             if (!Password.Any(symbol => "!@#$%^&*()_+-=[]{}|;:'\",.<>/?".Contains(symbol)))
             {
-                return 5;
+                return false;
             }
             // [4] Έλεγχος για χαρακτηρες διαφυγης
             if (Password.Any(char.IsWhiteSpace))
             {
-                return 6;
+                return false;
             }
 
 
@@ -165,7 +165,7 @@ namespace HRLib
                 {
                     isLatinLetter = (passwordArray[i] >= 'A' && passwordArray[i] <= 'Z') || (passwordArray[i] >= 'a' && passwordArray[i] <= 'z');
                     if (!isLatinLetter)
-                        return 7;
+                        return false;
                 }
             }
             
@@ -174,10 +174,10 @@ namespace HRLib
             //[6] Έλεγχος ότι ξεκινάει από κεφαλαίο και τελειώνει με αριθμό
             if (!(char.IsUpper(Password[0]) && char.IsDigit(Password[Password.Length - 1])))
             {
-                return 8;
+                return false;
             }
 
-            return 10;
+            return true;
         }
             
 
