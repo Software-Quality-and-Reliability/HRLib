@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using HRLib;
-using static HRLib.Personnel.Employee;
+using static HRLib.Personnel;
 
 namespace HRLibUnitTest
 {
@@ -13,7 +12,7 @@ namespace HRLibUnitTest
         {
             // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
             HRLib.Personnel per = new HRLib.Personnel();
-
+ 
             // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
             object[,] testcases =
             {
@@ -235,8 +234,14 @@ namespace HRLibUnitTest
         {
             // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
             HRLib.Personnel per = new HRLib.Personnel();
+        
+            Employee[] emps = new Employee[] 
+            {
+                new Employee("George", "2102322751", "6998843565", new DateTime(2001, 03, 01), new DateTime(2023, 01, 02)),
+                // new Employee(...)
+            };
 
-            Employee Emp1 = new Employee("George", "2102322751", "6998843565", new DateTime(2001, 03, 01), new DateTime(2023, 01, 02));
+            bool validName = per.ValidName(emps[0].Name);
             
 
 
@@ -245,7 +250,7 @@ namespace HRLibUnitTest
             {
              // { id,    "Υπάλληλος",         εκτιμώμενη τιμή επιστροφής,          εκτιμώμενη τιμή επιστροφής,                     "Προδιαγραφή της InfoEmployee() που παραβιάζεται ή έγκυρης ηλικίας υπαλλήλου ή έγκυρα χρόνια υπηρεσίας"}
              //                                της InfoEmployee() στην Age     της InfoEmployee() στην YearsOfExperience              
-                { 1,        Emp1,                        22,                                   1,                                  "Ο υπάλληλος είναι 22 χρονών και έχει 1 χρόνο υπηρεσίας" },
+                { 1,        emps[0],                        22,                                   1,                                  "Ο υπάλληλος είναι 22 χρονών και έχει 1 χρόνο υπηρεσίας" },
             };
 
             // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)

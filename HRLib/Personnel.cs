@@ -333,7 +333,7 @@ namespace HRLib
             DateTime firstHiringDate = EmplX.Birthday.AddYears(18); // new DateTime(EmplX.Birthday.Year + 18, EmplX.Birthday.Month, EmplX.Birthday.Day); // Η 1η έγκυρη ημερομήνια πρόσληψης
             DateTime lastHiringDate = DateTime.Today; //new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day); // Η τελευταία ημερομηνία πρόσληψης
 
-            if (firstBirthDate >= EmplX.Birthday && EmplX.Birthday <= lastBirthDate) // firstDate <= EmpIx.Birthdate <= lastDate
+            if (EmplX.Birthday >= firstBirthDate && EmplX.Birthday <= lastBirthDate) // firstDate <= EmpIx.Birthdate <= lastDate
             {          
                 int ageYear = currentYear - birthYear;
                 int ageMonth = currentMonth - birthMonth;
@@ -348,7 +348,7 @@ namespace HRLib
                 Age = -1;
             }
 
-            if (firstHiringDate >= EmplX.HiringDate && EmplX.HiringDate <= lastHiringDate) // firstHiringDate <= EmpIx.HiringDate <= lastHiringDate
+            if (EmplX.HiringDate >= firstHiringDate && EmplX.HiringDate <= lastHiringDate) // firstHiringDate <= EmpIx.HiringDate <= lastHiringDate
             {
                 int xpYear = currentYear - hiringYear;
                 int xpMonth = currentMonth - hiringMonth;
