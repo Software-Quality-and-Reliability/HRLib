@@ -291,10 +291,43 @@ namespace HRLib
 
         public void InfoEmployee(Employee EmplX, ref int Age, ref int YearsOfExperience) /* THEO */
         {
-            
+           // Υπολογισμός ηλικίας(π.χ., με βάση την ημερομηνία γέννησης)
+        Age = CalculateAge(EmplX.Birthday);
+
+            // Υπολογισμός χρόνων προϋπηρεσίας (π.χ., με βάση την ημερομηνία πρόσληψης)
+            YearsOfExperience = CalculateExperience(EmplX.HiringDate);
         }
 
-        public int LiveinAthens(Employee[] Empls) /* OMAR */
+        // Μέθοδος για υπολογισμό ηλικίας
+        private int CalculateAge(DateTime birthdate)
+        {
+            DateTime currentDate = DateTime.Now;
+            int age = currentDate.Year - birthdate.Year;
+
+            // Έλεγχος αν το άτομο έχει γεννηθεί φέτος, αλλά δεν έχει ακόμη γίνει το γενέθλιό του
+            if (birthdate.Date > currentDate.AddYears(-age))
+            {
+                age--;
+            }
+
+            return age;
+        }
+
+        // Μέθοδος για υπολογισμό χρόνων προϋπηρεσίας
+        private int CalculateExperience(DateTime hiringDate)
+        {
+            DateTime currentDate = DateTime.Now;
+            int experience = currentDate.Year - hiringDate.Year;
+
+            // Έλεγχος αν ο υπάλληλος προσλήφθηκε φέτος, αλλά δεν έχει ακόμη κυκλοφορήσει ένα έτος
+            if (hiringDate.Date > currentDate.AddYears(-experience))
+            {
+                experience--;
+            }
+
+            return experience;
+
+            public int LiveinAthens(Employee[] Empls) /* OMAR */
         {
             return 0;
         }
