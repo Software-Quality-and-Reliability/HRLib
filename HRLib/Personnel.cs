@@ -318,44 +318,53 @@ namespace HRLib
          * 
          */
         public void InfoEmployee(Employee EmplX, ref int Age, ref int YearsOfExperience) /* THEO */
-        {
-           // Υπολογισμός ηλικίας(π.χ., με βάση την ημερομηνία γέννησης)
-        Age = CalculateAge(EmplX.Birthday);
+        {  
+            int birthDay = EmplX.Birthday.Day;
+            int birthMonth = EmplX.Birthday.Month;
+            int birthYear = EmplX.Birthday.Year;
+            int hiringDay = EmplX.HiringDate.Day;
+            int hiringMonth = EmplX.HiringDate.Month;
+            int hiringYear = EmplX.HiringDate.Year;
+            int currentDay = DateTime.Today.Day;
+            int currentMonth = DateTime.Today.Month;
+            int currentYear = DateTime.Today.Year;
+            DateTime firstBirthDate = new DateTime(1958, 01, 01); // Η 1η έγκυρη ημερομηνία γέννησης
+            DateTime lastBirthDate = new DateTime(2006, 12, 31); // Η τελευταία έγκυρη ημερομηνία γέννησης
+            DateTime firstHiringDate = EmplX.Birthday.AddYears(18); // new DateTime(EmplX.Birthday.Year + 18, EmplX.Birthday.Month, EmplX.Birthday.Day); // Η 1η έγκυρη ημερομήνια πρόσληψης
+            DateTime lastHiringDate = DateTime.Today; //new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day); // Η τελευταία ημερομηνία πρόσληψης
 
-            // Υπολογισμός χρόνων προϋπηρεσίας (π.χ., με βάση την ημερομηνία πρόσληψης)
-            YearsOfExperience = CalculateExperience(EmplX.HiringDate);
-        }
-
-        // Μέθοδος για υπολογισμό ηλικίας
-        private int CalculateAge(DateTime birthdate)
-        {
-            DateTime currentDate = DateTime.Now;
-            int age = currentDate.Year - birthdate.Year;
-
-            // Έλεγχος αν το άτομο έχει γεννηθεί φέτος, αλλά δεν έχει ακόμη γίνει το γενέθλιό του
-            if (birthdate.Date > currentDate.AddYears(-age))
+            if (firstBirthDate >= EmplX.Birthday && EmplX.Birthday <= lastBirthDate) // firstDate <= EmpIx.Birthdate <= lastDate
+            {          
+                int ageYear = currentYear - birthYear;
+                int ageMonth = currentMonth - birthMonth;
+                int ageDay = currentDay - birthDay;
+                if (ageMonth < 0 || ageDay < 0) // 2004-01-30 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-30 = -14 (Ο φίλος είναι 20-1=19 χρονών παρά 14!! ημερών)
+                    Age = ageYear - 1;  
+                else                            // 2004-01-02 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-02 = 14 (Ο φίλος είναι 20 χρονών και 14!! ημερών)
+                    Age = ageYear;
+            } 
+            else
             {
-                age--;
+                Age = -1;
             }
 
-            return age;
+            if (firstHiringDate >= EmplX.HiringDate && EmplX.HiringDate <= lastHiringDate) // firstHiringDate <= EmpIx.HiringDate <= lastHiringDate
+            {
+                int xpYear = currentYear - hiringYear;
+                int xpMonth = currentMonth - hiringMonth;
+                int xpDay = currentDay - hiringDay;
+                if (xpMonth < 0 || xpDay < 0) // 2004-01-30 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-30 = -14 (Ο φίλος έχει 20-1=19 χρόνια παρά 14!! ημέρες υπηρεσία)
+                    YearsOfExperience = xpYear - 1;
+                else                            // 2004-01-02 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-02 = 14 (Ο φίλος έχει 20 χρόνια και 14 ημέρες υπηρεσίας)
+                    YearsOfExperience = xpYear;
+            }
+            else
+            {
+                YearsOfExperience = -1;
+            }
         }
 
-        // Μέθοδος για υπολογισμό χρόνων προϋπηρεσίας
-        private int CalculateExperience(DateTime hiringDate)
-        {
-            DateTime currentDate = DateTime.Now;
-            int experience = currentDate.Year - hiringDate.Year;
-
-            // Έλεγχος αν ο υπάλληλος προσλήφθηκε φέτος, αλλά δεν έχει ακόμη κυκλοφορήσει ένα έτος
-            if (hiringDate.Date > currentDate.AddYears(-experience))
-            {
-                experience--;
-            }
-
-            return experience;
-
-            public int LiveinAthens(Employee[] Empls) /* OMAR */
+        public int LiveinAthens(Employee[] Empls) /* OMAR */
         {
             return 0;
         }
