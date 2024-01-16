@@ -98,10 +98,86 @@ namespace HRLib
 
             // Έγκυρο ονοματεπώνυμο
             return true;                              
-        } 
+        }
 
+
+        /*
+         * προδιαγραφες κωδικου(password)
+         * [1] Τουλάχιστον 12 χαρακτήρες
+         * [2] Tο πολυ 24 χαρακτηρες
+         * [3] Συνδυασμός χαρακτηριών
+         * [3.1] τουλαχιστον 1 κεφαλαιο 
+         * [3.2] τουλαχιστον ενα πεζο
+         * [3.3] τουλαχισοτν 1 νουμερο
+         * [3.4] τουλαχιαοτν 1 ειδικο συμβολο
+         * [4] χαρακτηρες διαφυγης 
+         * [5] Τα γράμματα να είναι λατινικοί χαρακτήρες
+         * [6] Να ξεκινάει από κεφαλαίο γράμμα και να τελειώνει με αριθμό
+         * 
+         * 
+         */
         public bool ValidPassword(string Password) /* THEO */
+
         {
+            char[] passwordArray = Password.ToCharArray();
+            // [1] Έλεγχος για μήκος τουλάχιστον 12 χαρακτήρες
+            if (Password.Length < 12)
+            {
+                return false;
+            }
+            // [2] Tο πολυ 24 χαρακτηρες
+            if (Password.Length > 24)
+            {
+                return false;
+            }
+            //[3.1] Έλεγχος για κεφαλαία γράμματα
+            if (!Password.Any(char.IsUpper))
+            {
+                return false;
+            }
+            //[3.2] Έλεγχος για πεζά γράμματα
+            if (!Password.Any(char.IsLower))
+            {
+                return false;
+            }
+            // [3.3] Έλεγχος για αριθμούς
+            if (!Password.Any(char.IsDigit))
+            {
+                return false;
+            }
+
+            // [3.4] τουλαχιαοτν 1 ειδικο συμβολo
+            if (!Password.Any(symbol => "!@#$%^&*()_+-=[]{}|;:'\",.<>/?".Contains(symbol)))
+            {
+                return false;
+            }
+            // [4] Έλεγχος για χαρακτηρες διαφυγης
+            if (Password.Any(char.IsWhiteSpace))
+            {
+                return false;
+            }
+
+
+            // [5] Τα γράμματα πρέπει να είναι όλα λατινικά
+            bool isLatinLetter = true;
+            for (int i = 0; i < passwordArray.Length; i++)
+            {
+                if (char.IsLetter(passwordArray[i]))
+                {
+                    isLatinLetter = (passwordArray[i] >= 'A' && passwordArray[i] <= 'Z') || (passwordArray[i] >= 'a' && passwordArray[i] <= 'z');
+                    if (!isLatinLetter)
+                        return false;
+                }
+            }
+
+
+
+            //[6] Έλεγχος ότι ξεκινάει από κεφαλαίο και τελειώνει με αριθμό
+            if (!(char.IsUpper(Password[0]) && char.IsDigit(Password[Password.Length - 1])))
+            {
+                return false;
+            }
+
             return true;
         }
 
