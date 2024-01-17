@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using HRLib;
+using static HRLib.Personnel;
 
 namespace HRLibUnitTest
 {
@@ -235,6 +235,66 @@ namespace HRLibUnitTest
         [TestMethod]
         public void TestMethodInfoEmployee() 
         {
+            // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
+            HRLib.Personnel per = new HRLib.Personnel();
+
+            Employee[] emps = new Employee[]
+            {
+                new Employee("George", "2102322751", "6998843565", new DateTime(2001, 03, 01), new DateTime(2023, 01, 02)),
+                // new Employee(...)
+            };
+
+            /*
+             *  Πρέπει να ελέγχει και το όνομα (ValidName) και τα τηλέφωνα (CheckPhone)?
+             */
+
+            // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
+            object[,] testcases =
+            {
+             // { id,    "Υπάλληλος",            εκτιμώμενη τιμή επιστροφής,          εκτιμώμενη τιμή επιστροφής,                      "Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου"}
+             //                                  της InfoEmployee() στην Age     της InfoEmployee() στην YearsOfExperience              
+                { 1,        emps[0],                        21,                                    1,                                  "Ο υπάλληλος είναι 22 χρονών και έχει 1 χρόνο υπηρεσίας" },
+            };
+
+            // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
+            int i = 0;
+            bool failed = false;
+
+            // Προσπέλαση και εκτέλεση περιπτώσεων ελέγχου
+            for (i = 0; i < testcases.GetLength(0); i++)
+            // Για κάθε περίπτωση ελέγχου (Test Case), δηλαδή για κάθε γραμμή i του πίνακα testcases
+            {
+                try
+                {
+                    Employee TestcaseEmployee = (Employee)testcases[i, 1];       // Ο υπάλληλος του testcase i 
+                    int ExpectedAge = (int)testcases[i, 2];                      // Η ηλικία του υπαλλήλου του testcase i που περιμένω να επιστρέψει η InfoEmployee() 
+                    int ExpectedYearsOfExperience = (int)testcases[i, 3];        // Τα χρόνια υπηρεσίας του υπαλλήλου του testcase i που περιμένω να επιστρέψει η InfoEmployee()
+
+                    // Δήλωση και αρχικοποίηση ref μεταβλητών μεθόδου
+                    int ActualAge = 0;
+                    int ActualYearsOfExperience = 100;
+
+                    per.InfoEmployee(TestcaseEmployee, ref ActualAge, ref ActualYearsOfExperience);
+
+                    // Καλούμε την Assert.AreEqual δίνοντας ως παραμέτρους τα στοιχεία της περίπτωσης ελέγχου,
+                    // δηλαδή τα αντίστοιχα στοιχεία της γραμμής i του πίνακα testcases
+                    Assert.AreEqual(ExpectedAge, ActualAge);
+                    Assert.AreEqual(ExpectedYearsOfExperience, ActualYearsOfExperience);
+                }
+                catch (Exception e)
+                {
+                    // Απέτυχε το Test Case
+                    failed = true;
+                    // Καταγράφουμε το Test Case που απέτυχε
+                    Console.WriteLine("Αποτυχημένο Test Case: {0} \n \t Παραδοχή: {1} \n \t Εξαίρεση: {2} ",
+                                             (int)testcases[i, 0], (string)testcases[i, 4], e.Message);
+                    //                       id,                   Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου,         Μήνυμα του exception 
+                }
+            }
+
+            // Στην περίπτωση που κάποιο Test Case απέτυχε, πέταξε exception.
+            if (failed)
+                Assert.Fail();
 
         }
 
