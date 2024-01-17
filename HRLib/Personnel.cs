@@ -337,6 +337,7 @@ namespace HRLib
             }
         }
 
+
         /*   void InfoEmployee(Employee EmpIX, ref int Age, ref int YearsOfExperience)
          *  
          *   Είσοδος[1] --> [EmpIX]    
@@ -344,23 +345,72 @@ namespace HRLib
          *   Έξοδος[1]  --> [Age]
          *   Έξοδος[1]  --> [YearsOfExperience]
          *  
-         *   Παραδοχές υλοποίησης:
          *  
+         *  Παραδοχές υλοποίησης:
+         *    
+         *   [1] Η ημερομηνία πρέπει να είναι έγκυρη
+         *       [1.1] Η ημερομηνία πρέπει να περιλαμβάνει τον χαρακτήρα '-' ακριβώς 3 φορές
+         *       [1.2] Η ημερομηνία πρέπει να περιλαμβάνει μόνο ψηφία
+         *       [1.3] Το μορφότυπο της ημερομηνίας πρέπει να είναι "ΧΧΧΧ-ΜΜ-ΗΗ"
+         *       [1.4] Η ημερομηνία γέννησης θα πρέπει να είναι έγκυρη ως προς την αντιστοιχία ημερών και μήνα
+         *       [1.4.1] Με εισαγωγή 04 στο πεδίο "ΜΜ", οι έγκυρες εισαγωγές στο πεδίο "ΗΗ" είναι από 1 εώς 30, καθώς ο μήνας Απρίλιος διαρκεί 30 μέρες
+         *       [1.4.2] Με εισαγωγή 2003 στο πεδίο "ΧΧΧΧ" και 02 στο πεδίο "ΜΜ", οι έγκυρες εισαγωγές στο πεδίο "ΗΗ" είναι από 1 εώς 28, 
+         *               καθώς ο Φεβρουάριος διαρκεί 28 μέρες στα μη-δίσεκτα έτη
+         *   [2] Η ημερομηνία γέννησης πρέπει να είναι από 1958-01-01 εώς 2006-12-31
+         *   [3] Η ημερομηνία πρόσληψης πρέπει να είναι από την ημερομηνία γέννησης μεταγενέστερα κατά 18 χρόνια εώς την τρέχουσα ημερομηνία 
+         * 
          */
         public void InfoEmployee(Employee EmplX, ref int Age, ref int YearsOfExperience) 
         {
+            int ageYear, ageMonth, ageDay;
+            int xpYear, xpMonth, xpDay;
             
+            DateTime firstBirthDate = new DateTime(1958, 01, 01);   // Η 1η έγκυρη ημερομηνία γέννησης
+            DateTime lastBirthDate = new DateTime(2006, 12, 31);    // Η τελευταία έγκυρη ημερομηνία γέννησης
+            DateTime firstHiringDate = EmplX.Birthday.AddYears(18); // Η 1η έγκυρη ημερομήνια πρόσληψης  // new DateTime(EmplX.Birthday.Year + 18, EmplX.Birthday.Month, EmplX.Birthday.Day); 
+            DateTime lastHiringDate = DateTime.Today;               // Η τελευταία ημερομηνία πρόσληψης  //new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
+
+            if (EmplX.Birthday >= firstBirthDate && EmplX.Birthday <= lastBirthDate) 
+            {
+                ageYear = DateTime.Today.Year - EmplX.Birthday.Year;
+                ageMonth = DateTime.Today.Month - EmplX.Birthday.Month;
+                ageDay = DateTime.Today.Day - EmplX.Birthday.Day;
+                if (ageMonth < 0 || ageDay < 0)     // 2004-01-30 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-30 = -14 (Ο φίλος είναι 20-1=19 χρονών παρά 14!! ημερών)
+                    Age = ageYear - 1;
+                else                                // 2004-01-02 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-02 = 14 (Ο φίλος είναι 20 χρονών και 14!! ημερών)
+                    Age = ageYear;
+            }
+            else
+            {
+                Age = -1;
+            }
+
+            if (EmplX.HiringDate >= firstHiringDate && EmplX.HiringDate <= lastHiringDate) 
+            {
+                xpYear = DateTime.Today.Year - EmplX.HiringDate.Year;
+                xpMonth = DateTime.Today.Month - EmplX.HiringDate.Month;
+                xpDay = DateTime.Today.Day - EmplX.HiringDate.Day;
+                if (xpMonth < 0 || xpDay < 0)           // 2004-01-30 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-30 = -14 (Ο φίλος έχει 20-1=19 χρόνια παρά 14!! ημέρες υπηρεσία)
+                    YearsOfExperience = xpYear - 1;
+                else                                    // 2004-01-02 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-02 = 14 (Ο φίλος έχει 20 χρόνια και 14 ημέρες υπηρεσίας)
+                    YearsOfExperience = xpYear;
+            }
+            else
+            {
+                YearsOfExperience = -1;
+            }
         }
 
-       /*   int LiveinAthens(Employee[] Empls)
-        *  
-        *   Είσοδος[1] --> [Empls]     
-        *   Λειτουργία -->                 
-        *   Έξοδος[1]  --> [numEmpls]   
-        *  
-        *   Παραδοχές υλοποίησης:
-        *  
-        */
+
+        /*   int LiveinAthens(Employee[] Empls)
+         *  
+         *   Είσοδος[1] --> [Empls]     
+         *   Λειτουργία -->                 
+         *   Έξοδος[1]  --> [numEmpls]   
+         *  
+         *   Παραδοχές υλοποίησης:
+         *  
+         */
         public int LiveinAthens(Employee[] Empls) 
         {
             return 0;
