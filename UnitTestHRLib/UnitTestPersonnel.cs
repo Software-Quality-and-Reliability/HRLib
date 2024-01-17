@@ -8,7 +8,7 @@ namespace HRLibUnitTest
     public class UnitTestPersonnel
     {
         [TestMethod]
-        public void TestMethodValidName() /* TIGER */
+        public void TestMethodValidName() 
         {
             // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
             HRLib.Personnel per = new HRLib.Personnel();
@@ -16,8 +16,8 @@ namespace HRLibUnitTest
             // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
             object[,] testcases =
             {
-             // { id,    "Ονοματεπώνυμο",         εκτιμώμενη τιμή       "Προδιαγραφή της ValidName() που παραβιάζεται ή μήνυμα έγκυρου ονοματεπωνύμου"}
-             //                               επιστροφής της ValidName                      
+            //  { id,    "Ονοματεπώνυμο",          εκτιμώμενη τιμή      "Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου"}
+            //                                 επιστροφής της ValidName                      
                 { 1,     "VasilisAthanasiou",          false,           "[1] Να υπάρχει ο χαρακτήρας κενό ' ' ακριβώς μία φορά" },
                 { 2,     "George Theo Xaris",          false,           "[1] Να υπάρχει ο χαρακτήρας κενό ' ' ακριβώς μία φορά" },
                 { 3,     "Om Alhaz",                   false,           "[2.1] Το πλήθος των χαρακτήρων πρέπει να είναι τουλάχιστον 3" },
