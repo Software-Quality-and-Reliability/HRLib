@@ -396,7 +396,21 @@ namespace HRLib
         */
         public int LiveinAthens(Employee[] Empls) 
         {
-            return 0;
+            int countAthens = 0;
+            int typePhone = 0;
+            string infoPhone = "";
+
+            foreach (var emp in Empls)
+            {
+                CheckPhone(emp.MobilePhone, ref typePhone, ref infoPhone);
+                if(typePhone == 0)
+                {
+                    if (infoPhone.Equals("Metropolitan Area of Athens - Piraeus"))
+                        countAthens++;
+                }
+            }
+
+            return countAthens;
         }
     }
 }
