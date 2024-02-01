@@ -182,6 +182,21 @@ namespace HRLib
         */
         public void EncryptPassword(string Password, ref string EncryptedPW) 
         {
+            // Define the ASCII alphabet size
+            int alphabetSize = 128;
+
+            // Define the shift value for Caesar's Cipher
+            int shift = 5;
+
+            // Loop through each character in the password
+            foreach (char character in Password)
+            {
+                // Encrypt the character using Caesar's Cipher
+                char encryptedChar = (char)((character + shift) % alphabetSize);
+
+                // Append the encrypted character to the result
+                EncryptedPW += encryptedChar;
+            }
 
         }
 
