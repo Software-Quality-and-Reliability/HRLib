@@ -179,25 +179,31 @@ namespace HRLib
 
        /*  Παραδοχές υλοποίησης:
         *  
+        *  [1] Ο κωδικός πρέπει να είναι έγκυρος σύμφωνα με τις παραδοχές υλοποίησης της ValidPassword
+        *  
         */
         public void EncryptPassword(string Password, ref string EncryptedPW) 
         {
-            // Define the ASCII alphabet size
-            int alphabetSize = 128;
+            bool isValidPassword = this.ValidPassword(Password);
 
-            // Define the shift value for Caesar's Cipher
-            int shift = 5;
-
-            // Loop through each character in the password
-            foreach (char character in Password)
+            // ----- [1] Ο κωδικός πρέπει να είναι έγκυρος σύμφωνα με τις παραδοχές της ValidPassword -----
+            if (isValidPassword)
             {
-                // Encrypt the character using Caesar's Cipher
-                char encryptedChar = (char)((character + shift) % alphabetSize);
+                // ----- Έγκυρος κωδικός πρόσβασης -----
+                int alphabetSize = 128;
+                int shift = 5;
 
-                // Append the encrypted character to the result
-                EncryptedPW += encryptedChar;
+                foreach (char character in Password)
+                {
+                    char encryptedChar = (char)((character + shift) % alphabetSize);
+                    EncryptedPW += encryptedChar;
+                }
             }
-
+            else
+            {
+                // ----- Άκυρος κωδικός πρόσβασης -----
+                EncryptedPW = "";
+            }
         }
 
        /*  

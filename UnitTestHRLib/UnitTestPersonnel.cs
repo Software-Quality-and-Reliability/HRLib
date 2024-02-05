@@ -142,10 +142,11 @@ namespace HRLibUnitTest
             // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
             object[,] testcases =
             {
-                //  { id,    "Κωδικός",                      εκτιμώμενη τιμή           "Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου"}
-                //                                      επιστροφής της ValidPassword
-                {      1,    "theodosis123",                    "hhhhhhh",             "Οι αναλυτές είναι πάνω από τους προγραμματιστές" }
-                
+            //  { id,        "Κωδικός",                      εκτιμώμενη τιμή                "Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου"}
+            //                                          επιστροφής της EncryptPassword
+                { 1,       "Omar_@Alhaz123",                    "hhhhhhh",                  "Λανθασμένη κρυπτογράφηση" },
+                { 2,       "theodosis123",                      "Twrdj134",                 "[1] Ο κωδικός πρέπει να είναι έγκυρος σύμφωνα με τις παραδοχές υλοποίησης της ValidPassword" }
+
             };
 
 
@@ -159,8 +160,8 @@ namespace HRLibUnitTest
             {
                 try
                 {
-                    string TestcasePW = (string)testcases[i, 1];       // Το τηλέφωνο του testcase i 
-                    string ExpectedEnPW = (string)testcases[i, 2];         // Ο τύπος τηλεφώνου του testcase i που περιμένω να επιστρέψει η CheckPhone() 
+                    string TestcasePW = (string)testcases[i, 1];       // Ο κωδικός του testcase i 
+                    string ExpectedEnPW = (string)testcases[i, 2];     // Ο κρυπτογραφημένος κωδικός του testcase i που περιμένω να επιστρέψει η EncryptPassword() 
                    
 
                     // Δήλωση και αρχικοποίηση ref μεταβλητών μεθόδου
