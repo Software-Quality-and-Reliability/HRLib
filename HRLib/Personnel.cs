@@ -179,10 +179,31 @@ namespace HRLib
 
        /*  Παραδοχές υλοποίησης:
         *  
+        *  [1] Ο κωδικός πρέπει να είναι έγκυρος σύμφωνα με τις παραδοχές υλοποίησης της ValidPassword
+        *  
         */
         public void EncryptPassword(string Password, ref string EncryptedPW) 
         {
+            bool isValidPassword = this.ValidPassword(Password);
 
+            // ----- [1] Ο κωδικός πρέπει να είναι έγκυρος σύμφωνα με τις παραδοχές της ValidPassword -----
+            if (isValidPassword)
+            {
+                // ----- Έγκυρος κωδικός πρόσβασης -----
+                int alphabetSize = 128;
+                int shift = 5;
+
+                foreach (char character in Password)
+                {
+                    char encryptedChar = (char)((character + shift) % alphabetSize);
+                    EncryptedPW += encryptedChar;
+                }
+            }
+            else
+            {
+                // ----- Άκυρος κωδικός πρόσβασης -----
+                EncryptedPW = "";
+            }
         }
 
        /*  

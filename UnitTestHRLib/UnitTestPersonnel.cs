@@ -136,6 +136,57 @@ namespace HRLibUnitTest
         [TestMethod]
         public void TestMethodEncryptPassword() 
         {
+            // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
+            HRLib.Personnel per = new HRLib.Personnel();
+
+            // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
+            object[,] testcases =
+            {
+            //  { id,        "Κωδικός",                      εκτιμώμενη τιμή                "Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου"}
+            //                                          επιστροφής της EncryptPassword
+                { 1,       "Omar_@Alhaz123",                    "hhhhhhh",                  "Λανθασμένη κρυπτογράφηση" },
+                { 2,       "theodosis123",                      "Twrdj134",                 "[1] Ο κωδικός πρέπει να είναι έγκυρος σύμφωνα με τις παραδοχές υλοποίησης της ValidPassword" }
+
+            };
+
+
+            // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
+            int i = 0;
+            bool failed = false;
+
+            // Προσπέλαση και εκτέλεση περιπτώσεων ελέγχου
+            for (i = 0; i < testcases.GetLength(0); i++)
+            // Για κάθε περίπτωση ελέγχου (Test Case), δηλαδή για κάθε γραμμή i του πίνακα testcases
+            {
+                try
+                {
+                    string TestcasePW = (string)testcases[i, 1];       // Ο κωδικός του testcase i 
+                    string ExpectedEnPW = (string)testcases[i, 2];     // Ο κρυπτογραφημένος κωδικός του testcase i που περιμένω να επιστρέψει η EncryptPassword() 
+                   
+
+                    // Δήλωση και αρχικοποίηση ref μεταβλητών μεθόδου
+                    string ActualEnPW = "";
+
+                    per.EncryptPassword(TestcasePW, ref ActualEnPW);
+
+                    // Καλούμε την Assert.AreEqual δίνοντας ως παραμέτρους τα στοιχεία της περίπτωσης ελέγχου,
+                    // δηλαδή τα αντίστοιχα στοιχεία της γραμμής i του πίνακα testcases
+                    Assert.AreEqual(ExpectedEnPW, ActualEnPW);
+                }
+                catch (Exception e)
+                {
+                    // Απέτυχε το Test Case
+                    failed = true;
+                    // Καταγράφουμε το Test Case που απέτυχε
+                    Console.WriteLine("Αποτυχημένο Test Case: {0} \n \t Παραδοχή: {1} \n \t Εξαίρεση: {2} ",
+                                             (int)testcases[i, 0], (string)testcases[i, 3], e.Message);
+                    //                       id,                   Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου,         Μήνυμα του exception 
+                }
+            }
+
+            // Στην περίπτωση που κάποιο Test Case απέτυχε, πέταξε exception.
+            if (failed)
+                Assert.Fail();
 
         }
 
