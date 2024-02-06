@@ -68,11 +68,9 @@ namespace HRLib
                 return false;
 
             // ----- [2.4] Το 1ο γράμμα πρέπει να είναι κεφαλαίο -----
-            char[] firstNameArray = firstName.ToCharArray();
-            char[] lastNameArray = lastName.ToCharArray();
-            if (!char.IsUpper(firstNameArray[0]))
+            if (!char.IsUpper(firstName[0]))
                 return false;
-            if (!char.IsUpper(lastNameArray[0]))
+            if (!char.IsUpper(lastName[0]))
                 return false;
 
             // ----- [2.5] Τα γράμματα εκτός από το 1ο, πρέπει να είναι πεζά -----
@@ -82,6 +80,8 @@ namespace HRLib
                 return false;
 
             // ----- [2.6] Τα γράμματα πρέπει να είναι όλα λατινικά -----
+            char[] firstNameArray = firstName.ToCharArray();
+            char[] lastNameArray = lastName.ToCharArray();
             bool isLatinLetter = true;
             for (int i = 0; i < firstNameArray.Length; i++)
             {
@@ -202,7 +202,7 @@ namespace HRLib
             else
             {
                 // ----- Άκυρος κωδικός πρόσβασης -----
-                EncryptedPW = "";
+                EncryptedPW = null;
             }
         }
 
