@@ -283,7 +283,7 @@ namespace HRLib
                                 InfoPhone = "Crete";
                                 break;
                             default:
-                                // ----- Άκυρο τηλέφωνο -----
+                                // ----- Άκυρο σταθερό τηλέφωνο -----
                                 TypePhone = -1;
                                 InfoPhone = null;
                                 break;
@@ -321,7 +321,7 @@ namespace HRLib
                                     InfoPhone = "Cosmote";
                                     break;
                                 default:
-                                    // ----- Άκυρο τηλέφωνο -----
+                                    // ----- Άκυρο κινητό τηλέφωνο -----
                                     TypePhone = -1;
                                     InfoPhone = null;
                                     break;
