@@ -240,44 +240,44 @@ namespace HRLib
                     if (Phone.StartsWith("2"))
                     {
                         // ----- [3.1] Να ανήκει σε ζώνη -----
-                        switch (Int32.Parse(Phone.Substring(1, 1)))                                  
+                        switch (Phone[1])                                  
                         {
-                            case 1:
+                            case '1':
                                 // ----- Έγκυρο σταθερό τηλέφωνο με ζώνη την Μητροπολιτική Περιοχή Αθήνας – Πειραιά -----
                                 TypePhone = 0;
                                 InfoPhone = "Metropolitan Area of Athens - Piraeus";
                                 break;
-                            case 2:
+                            case '2':
                                 // ----- Έγκυρο σταθερό τηλέφωνο με ζώνη την Ανατολική Στερεά Ελλάδα, Αττική, Νησιά Αιγαίου -----
                                 TypePhone = 0;
                                 InfoPhone = "Eastern Central Greece, Attica, Aegean Islands";
                                 break;
-                            case 3:
+                            case '3':
                                 // ----- Έγκυρο σταθερό τηλέφωνο με ζώνη την Κεντρική Μακεδονία -----
                                 TypePhone = 0;
                                 InfoPhone = "Central Macedonia";
                                 break;
-                            case 4:
+                            case '4':
                                 // ----- Έγκυρο σταθερό τηλέφωνο με ζώνη την Θεσσαλία, Δυτική Μακεδονία -----
                                 TypePhone = 0;
                                 InfoPhone = "Thessaly, Western Macedonia";
                                 break;
-                            case 5:
+                            case '5':
                                 // ----- Έγκυρο σταθερό τηλέφωνο με ζώνη την Θράκη, Ανατολική Μακεδονία -----
                                 TypePhone = 0;
                                 InfoPhone = "Thrace, Eastern Macedonia";
                                 break;
-                            case 6:
+                            case '6':
                                 // ----- Έγκυρο σταθερό τηλέφωνο με ζώνη την Ήπειρο, Δυτική Στερεά Ελλάδα, Δυτική Πελοπόννησο, Ιόνια Νησιά -----
                                 TypePhone = 0;
                                 InfoPhone = "Epirus, Western Central Greece, Western Peloponnese, Ionian Islands";
                                 break;
-                            case 7:
+                            case '7':
                                 // ----- Έγκυρο σταθερό τηλέφωνο με ζώνη την Ανατολική Πελοπόννησο, Κύθηρα -----
                                 TypePhone = 0;
                                 InfoPhone = "Eastern Peloponnese, Kythera";
                                 break;
-                            case 8:
+                            case '8':
                                 // ----- Έγκυρο σταθερό τηλέφωνο με ζώνη την Κρήτη -----
                                 TypePhone = 0;
                                 InfoPhone = "Crete";
@@ -295,27 +295,27 @@ namespace HRLib
                         if (Phone.StartsWith("69"))
                         {
                             // ----- [4.1] Να ανήκει σε εταιρία κινητής τηλεφωνίας -----
-                            switch (Int32.Parse(Phone.Substring(2, 1)))
+                            switch (Phone[2])
                             {
-                                case 0:
+                                case '0':
                                     // ----- Έγκυρο κινητό τηλέφωνο με εταιρία κινητής τηλεφωνίας τη Nova -----
-                                case 3:
+                                case '3':
                                     // ----- Έγκυρο κινητό τηλέφωνο με εταιρία κινητής τηλεφωνίας τη Nova -----
-                                case 9:
+                                case '9':
                                     // ----- Έγκυρο κινητό τηλέφωνο με εταιρία κινητής τηλεφωνίας τη Nova -----
                                     TypePhone = 1;
                                     InfoPhone = "Nova";
                                     break;
-                                case 4:
+                                case '4':
                                     // ----- Έγκυρο κινητό τηλέφωνο με εταιρία κινητής τηλεφωνίας τη Vodafone -----
-                                case 5:
+                                case '5':
                                     // ----- Έγκυρο κινητό τηλέφωνο με εταιρία κινητής τηλεφωνίας τη Vodafone -----
                                     TypePhone = 1;
                                     InfoPhone = "Vodafone";
                                     break;
-                                case 7:
+                                case '7':
                                     // ----- Έγκυρο κινητό τηλέφωνο με εταιρία κινητής τηλεφωνίας τη Cosmote -----
-                                case 8:
+                                case '8':
                                     // ----- Έγκυρο κινητό τηλέφωνο με εταιρία κινητής τηλεφωνίας τη Cosmote -----
                                     TypePhone = 1;
                                     InfoPhone = "Cosmote";
@@ -418,13 +418,13 @@ namespace HRLib
 
                 bool isValidName = this.ValidName(emp.Name);
                 this.InfoEmployee(emp, ref Age, ref YearsOfExperience);
-                this.CheckPhone(emp.MobilePhone, ref TypePhone, ref InfoPhone);
+                this.CheckPhone(emp.HomePhone, ref TypePhone, ref InfoPhone);
                 // ----- [1] Το όνομα πρέπει να είναι έγκυρο σύμφωνα με τις παραδοχές υλοποίησης της ValidName() -----
                 // ----- [2] Η ημερομηνία γέννησης πρέπει να είναι έγκυρη σύμφωνα με τις παραδοχές υλοποίησης της InfoEmployee() -----
                 // ----- [3] Η ημερομηνία πρόσληψης πρέπει να είναι έγκυρη σύμφωνα με τις παραδοχές υλοποίησης της InfoEmployee() -----
                 // ----- [4] Το σταθερό τηλέφωνο πρέπει να είναι έγκυρο ως προς τον τύπο τηλεφώνου (TypePhone) σύμφωνα με τις παραδοχές υλοποίησης της CheckPhone() -----
                 // ----- [5] Το σταθερό τηλέφωνο πρέπει να είναι έγκυρο ως προς τις πληροφορίες τηλεφώνου (InfoPhone) σύμφωνα με τις παραδοχές υλοποίησης της CheckPhone() -----
-                if (isValidName && Age != -1 && YearsOfExperience != -1 && TypePhone != -1 && InfoPhone != null)
+                if (isValidName && Age != -1 && YearsOfExperience != -1 && TypePhone == 0 && InfoPhone != null)
                 {
                     // ----- Έγκυρο όνομα, ημερομηνία γέννησης, ημερομηνία πρόσληψης, τύπος τηλεφώνου, πληροφορίες τηλεφώνου -----
                     if (InfoPhone.Equals("Metropolitan Area of Athens - Piraeus"))

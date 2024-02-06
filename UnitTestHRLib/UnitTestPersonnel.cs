@@ -213,8 +213,8 @@ namespace HRLibUnitTest
                 { 10,     "23444444444444",                   -1,                           "Central Macedonia",                                "[2] Οι αριθμοί να είναι ακριβώς 10" },
                 { 11,     "69988888888888",                    1,                                 null,                                         "[2] Οι αριθμοί να είναι ακριβώς 10" },
                 { 12,     "69988888888888",                   -1,                                "Nova",                                        "[2] Οι αριθμοί να είναι ακριβώς 10" },
-                { 13,     "140124567",                         0,                                 null,                                         "[3] Να ξεκινάει σε 2 αν πρόκειται για σταθερό" },
-                { 14,     "140124567",                         0,                       "Thessaly, Western Macedonia",                          "[3] Να ξεκινάει σε 2 αν πρόκειται για σταθερό" },
+                { 13,     "140124567",                         0,                                 null,                                         "[3] Να ξεκινάει σε 21 αν πρόκειται για σταθερό" },
+                { 14,     "140124567",                         0,                       "Thessaly, Western Macedonia",                          "[3] Να ξεκινάει σε 21 αν πρόκειται για σταθερό" },
                 { 15,     "2001010101",                        0,                                 null,                                         "[3.1] Να ανήκει σε ζώνη" },
                 { 16,     "2001010101",                       -1,       "Epirus, Western Central Greece, Western Peloponnese, Ionian Islands",  "[3.1] Να ανήκει σε ζώνη" },
                 { 17,     "2101010101",                        0,                "Metropolitan Area of Athens - Piraeus",                       "Έγκυρο σταθερό τηλέφωνο με ζώνη την Μητροπολιτική Περιοχή Αθήνας - Πειραιά" },
@@ -289,22 +289,19 @@ namespace HRLibUnitTest
             // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
             HRLib.Personnel per = new HRLib.Personnel();
 
-            Employee[] emps = new Employee[]
-            {
-                new Employee("George", "2102322751", "6998843565", new DateTime(2001, 03, 01), new DateTime(2023, 01, 02)),
-                // new Employee(...)
-            };
-
-            /*
-             *  Πρέπει να ελέγχει και το όνομα (ValidName) και τα τηλέφωνα (CheckPhone)?
-             */
+            //                            "Ονοματεπώνυμο",    "Σταθερό Τηλέφωνο", "Κινητό Τηλέφωνο", "Ημερομηνία Γέννησης", "Ημερομηνία Πρόσληψης
+            Employee empl1 = new Employee("George Theoxaris", "2102322751", "6998843565", new DateTime(2001, 03, 01), new DateTime(2023, 01, 02));
+            // Employee empl2 = new Employee(...);
+            // ...
 
             // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
             object[,] testcases =
             {
-             // { id,    "Υπάλληλος",            εκτιμώμενη τιμή επιστροφής,          εκτιμώμενη τιμή επιστροφής,                      "Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου"}
-             //                                  της InfoEmployee() στην Age     της InfoEmployee() στην YearsOfExperience              
-                { 1,        emps[0],                        21,                                    1,                                  "Ο υπάλληλος είναι 22 χρονών και έχει 1 χρόνο υπηρεσίας" },
+             // { id,      "Υπάλληλος",            εκτιμώμενη τιμή επιστροφής,          εκτιμώμενη τιμή επιστροφής,                      "Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου"}
+             //                                    της InfoEmployee() στην Age     της InfoEmployee() στην YearsOfExperience              
+                { 1,          empl1,                          21,                                    1,                                  "Ο υπάλληλος είναι 22 χρονών και έχει 1 χρόνο υπηρεσίας" },
+             // { 2,          empl2,                          ...,                                  ...,                                 "..."}
+             // ...
             };
 
             // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
@@ -352,6 +349,81 @@ namespace HRLibUnitTest
         [TestMethod]
         public void TestMethodLiveInAthens() 
         {
+            // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
+            HRLib.Personnel per = new HRLib.Personnel();
+
+            Employee[] empl1 = new Employee[]
+            {
+                //           "Ονοματεπώνυμο", "Σταθερό Τηλέφωνο", "Κινητό Τηλέφωνο", "Ημερομηνία Γέννησης", "Ημερομηνία Πρόσληψης
+                new Employee("George Theoxaris", "2102322751", "6998843565", new DateTime(2001, 03, 01), new DateTime(2023, 01, 02)),
+                // new Employee(...)
+            };
+            Employee[] empl2 = new Employee[]
+            {
+                //           "Ονοματεπώνυμο", "Σταθερό Τηλέφωνο", "Κινητό Τηλέφωνο", "Ημερομηνία Γέννησης", "Ημερομηνία Πρόσληψης
+                new Employee("Vasilis Athanasiou", "2132322751", "6998843565", new DateTime(2001, 03, 01), new DateTime(2023, 01, 02)),
+                // new Employee(...)
+            };
+            Employee[] empl3 = new Employee[]
+            {
+                //           "Ονοματεπώνυμο", "Σταθερό Τηλέφωνο", "Κινητό Τηλέφωνο", "Ημερομηνία Γέννησης", "Ημερομηνία Πρόσληψης
+                new Employee("Omar Alhaz", "2102322751", "6998843565", new DateTime(2001, 03, 01), new DateTime(2023, 01, 02)),
+                // new Employee(...)
+            };
+            /*
+            Employee[] empl4 = new Employee[]
+            {
+                //           "Ονοματεπώνυμο", "Σταθερό Τηλέφωνο", "Κινητό Τηλέφωνο", "Ημερομηνία Γέννησης", "Ημερομηνία Πρόσληψης
+                new Employee("...", "...", "...", new DateTime(..., ..., ...), new DateTime(..., ..., ...)),
+                // new Employee(...)
+            };
+            */
+
+
+            // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
+            object[,] testcases =
+            {
+             // { id,          "Λίστα Υπαλλήλων",    εκτιμώμενη τιμή επιστροφής,          "Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου"}
+             //                                           της LiveInAthens()              
+                { 1,                empl1,                        1,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 1" },
+                { 2,                empl2,                        1,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 1" },
+                { 3,                empl3,                        1,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 1" },
+             // { 4,                empl4,                       ...,                      "..."}
+             // ...
+            };
+
+            // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
+            int i = 0;
+            bool failed = false;
+
+            // Προσπέλαση και εκτέλεση περιπτώσεων ελέγχου
+            for (i = 0; i < testcases.GetLength(0); i++)
+            // Για κάθε περίπτωση ελέγχου (Test Case), δηλαδή για κάθε γραμμή i του πίνακα testcases
+            {
+                try
+                {
+                    Employee[] TestcaseEmpls = (Employee[])testcases[i, 1];          // Η λίστα των υπαλλήλων του testcase i 
+                    int ExpectedAthensHabitants = (int)testcases[i, 2];              // Οι κάτοικοι Αθήνας του testcase i που περιμένω να επιστρέψει η LiveInAthens() 
+                    int ActualAthensHabitants = per.LiveinAthens(TestcaseEmpls);     // Οι κάτοικοι Αθήνας του testcase i που επιστρέφει η LiveInAthens() 
+
+                    // Καλούμε την Assert.AreEqual δίνοντας ως παραμέτρους τα στοιχεία της περίπτωσης ελέγχου,
+                    // δηλαδή τα αντίστοιχα στοιχεία της γραμμής i του πίνακα testcases
+                    Assert.AreEqual(ExpectedAthensHabitants, ActualAthensHabitants);
+                }
+                catch (Exception e)
+                {
+                    // Απέτυχε το Test Case
+                    failed = true;
+                    // Καταγράφουμε το Test Case που απέτυχε
+                    Console.WriteLine("Αποτυχημένο Test Case: {0} \n \t Παραδοχή: {1} \n \t Εξαίρεση: {2} ",
+                                             (int)testcases[i, 0], (string)testcases[i, 3], e.Message);
+                    //                       id,                   Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου,         Μήνυμα του exception 
+                }
+            }
+
+            // Στην περίπτωση που κάποιο Test Case απέτυχε, πέταξε exception.
+            if (failed)
+                Assert.Fail();
 
         }
 
