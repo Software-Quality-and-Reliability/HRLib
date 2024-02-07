@@ -358,39 +358,54 @@ namespace HRLib
         {
             int ageYear, ageMonth, ageDay;
             int xpYear, xpMonth, xpDay;
-            
+            int typephone = 0;
+            string infophone = "";
+            int typephone2 = 0;
+            string infophone2 = "";
+
             DateTime firstBirthDate = new DateTime(1958, 01, 01);   // Η 1η έγκυρη ημερομηνία γέννησης
             DateTime lastBirthDate = new DateTime(2006, 12, 31);    // Η τελευταία έγκυρη ημερομηνία γέννησης
             DateTime firstHiringDate = EmplX.Birthday.AddYears(18); // Η 1η έγκυρη ημερομήνια πρόσληψης  // new DateTime(EmplX.Birthday.Year + 18, EmplX.Birthday.Month, EmplX.Birthday.Day); 
             DateTime lastHiringDate = DateTime.Today;               // Η τελευταία ημερομηνία πρόσληψης  //new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
-
-            if (EmplX.Birthday >= firstBirthDate && EmplX.Birthday <= lastBirthDate) 
+            this.CheckPhone(EmplX.HomePhone, ref typephone,ref infophone);
+            this.CheckPhone(EmplX.MobilePhone, ref typephone2, ref infophone2);
+            bool isValidName = this.ValidName(EmplX.Name);
+            if (isValidName&&typephone!=-1&&typephone2!=-1)
             {
-                ageYear = DateTime.Today.Year - EmplX.Birthday.Year;
-                ageMonth = DateTime.Today.Month - EmplX.Birthday.Month;
-                ageDay = DateTime.Today.Day - EmplX.Birthday.Day;
-                if (ageMonth < 0 || ageDay < 0)     // 2004-01-30 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-30 = -14 (Ο φίλος είναι 20-1=19 χρονών παρά 14!! ημερών)
-                    Age = ageYear - 1;
-                else                                // 2004-01-02 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-02 = 14 (Ο φίλος είναι 20 χρονών και 14!! ημερών)
-                    Age = ageYear;
+                if (EmplX.Birthday >= firstBirthDate && EmplX.Birthday <= lastBirthDate)
+                {
+                    ageYear = DateTime.Today.Year - EmplX.Birthday.Year;
+                    ageMonth = DateTime.Today.Month - EmplX.Birthday.Month;
+                    ageDay = DateTime.Today.Day - EmplX.Birthday.Day;
+                    if (ageMonth < 0 || ageDay < 0)     // 2004-01-30 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-30 = -14 (Ο φίλος είναι 20-1=19 χρονών παρά 14!! ημερών)
+                        Age = ageYear - 1;
+                    else                                // 2004-01-02 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-02 = 14 (Ο φίλος είναι 20 χρονών και 14!! ημερών)
+                        Age = ageYear;
+                }
+                else
+                {
+                    Age = -1;
+                }
+
+                if (EmplX.HiringDate >= firstHiringDate && EmplX.HiringDate <= lastHiringDate)
+                {
+                    xpYear = DateTime.Today.Year - EmplX.HiringDate.Year;
+                    xpMonth = DateTime.Today.Month - EmplX.HiringDate.Month;
+                    xpDay = DateTime.Today.Day - EmplX.HiringDate.Day;
+                    if (xpMonth < 0 || xpDay < 0)           // 2004-01-30 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-30 = -14 (Ο φίλος έχει 20-1=19 χρόνια παρά 14!! ημέρες υπηρεσία)
+                        YearsOfExperience = xpYear - 1;
+                    else                                    // 2004-01-02 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-02 = 14 (Ο φίλος έχει 20 χρόνια και 14 ημέρες υπηρεσίας)
+                        YearsOfExperience = xpYear;
+                }
+                else
+                {
+                    YearsOfExperience = -1;
+                }
+
             }
-            else
+               else
             {
                 Age = -1;
-            }
-
-            if (EmplX.HiringDate >= firstHiringDate && EmplX.HiringDate <= lastHiringDate) 
-            {
-                xpYear = DateTime.Today.Year - EmplX.HiringDate.Year;
-                xpMonth = DateTime.Today.Month - EmplX.HiringDate.Month;
-                xpDay = DateTime.Today.Day - EmplX.HiringDate.Day;
-                if (xpMonth < 0 || xpDay < 0)           // 2004-01-30 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-30 = -14 (Ο φίλος έχει 20-1=19 χρόνια παρά 14!! ημέρες υπηρεσία)
-                    YearsOfExperience = xpYear - 1;
-                else                                    // 2004-01-02 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-02 = 14 (Ο φίλος έχει 20 χρόνια και 14 ημέρες υπηρεσίας)
-                    YearsOfExperience = xpYear;
-            }
-            else
-            {
                 YearsOfExperience = -1;
             }
         }
