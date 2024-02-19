@@ -16,13 +16,24 @@ namespace HRLib
             public DateTime Birthday;
             public DateTime HiringDate;
 
-            public Employee(string Name, string HomePhone, string MobilePhone, DateTime Birthday, DateTime HiringDate)
+            public Employee(string Name, string HomePhone, string MobilePhone, string Birthday, string HiringDate)
             {
+                bool isValidBirthday = DateTime.TryParse(Birthday, out DateTime birthday);
+                bool isHiringDate = DateTime.TryParse(HiringDate, out DateTime hiringDate);
+                
                 this.Name = Name;
                 this.HomePhone = HomePhone;
                 this.MobilePhone = MobilePhone;
-                this.Birthday = Birthday;
-                this.HiringDate = HiringDate;
+
+                if (isValidBirthday)
+                    this.Birthday = birthday;
+                else
+                    this.Birthday = DateTime.MinValue;
+
+                if (isHiringDate)
+                    this.HiringDate = hiringDate;
+                else
+                    this.HiringDate = DateTime.MinValue;
             }
         }
 
@@ -339,21 +350,21 @@ namespace HRLib
         }
 
 
-        /*  
-         *  Παραδοχές υλοποίησης:
-         *    
-         *   [1] Η ημερομηνία πρέπει να είναι έγκυρη
-         *       [1.1] Η ημερομηνία πρέπει να περιλαμβάνει τον χαρακτήρα '-' ακριβώς 3 φορές
-         *       [1.2] Η ημερομηνία πρέπει να περιλαμβάνει μόνο ψηφία
-         *       [1.3] Το μορφότυπο της ημερομηνίας πρέπει να είναι "ΧΧΧΧ-ΜΜ-ΗΗ"
-         *       [1.4] Η ημερομηνία γέννησης θα πρέπει να είναι έγκυρη ως προς την αντιστοιχία ημερών και μήνα
-         *       [1.4.1] Με εισαγωγή 04 στο πεδίο "ΜΜ", οι έγκυρες εισαγωγές στο πεδίο "ΗΗ" είναι από 1 εώς 30, καθώς ο μήνας Απρίλιος διαρκεί 30 μέρες
-         *       [1.4.2] Με εισαγωγή 2003 στο πεδίο "ΧΧΧΧ" και 02 στο πεδίο "ΜΜ", οι έγκυρες εισαγωγές στο πεδίο "ΗΗ" είναι από 1 εώς 28, 
-         *               καθώς ο Φεβρουάριος διαρκεί 28 μέρες στα μη-δίσεκτα έτη
-         *   [2] Η ημερομηνία γέννησης πρέπει να είναι από 1958-01-01 εώς 2006-12-31
-         *   [3] Η ημερομηνία πρόσληψης πρέπει να είναι από την ημερομηνία γέννησης μεταγενέστερα κατά 18 χρόνια εώς την τρέχουσα ημερομηνία 
-         * 
-         */
+       /*  
+        *  Παραδοχές υλοποίησης:
+        *    
+        *   [1] Η ημερομηνία πρέπει να είναι έγκυρη
+        *       [1.1] Η ημερομηνία πρέπει να περιλαμβάνει τον χαρακτήρα '-' ακριβώς 3 φορές
+        *       [1.2] Η ημερομηνία πρέπει να περιλαμβάνει μόνο ψηφία
+        *       [1.3] Το μορφότυπο της ημερομηνίας πρέπει να είναι "ΧΧΧΧ-ΜΜ-ΗΗ"
+        *       [1.4] Η ημερομηνία γέννησης θα πρέπει να είναι έγκυρη ως προς την αντιστοιχία ημερών και μήνα
+        *       [1.4.1] Με εισαγωγή 04 στο πεδίο "ΜΜ", οι έγκυρες εισαγωγές στο πεδίο "ΗΗ" είναι από 1 εώς 30, καθώς ο μήνας Απρίλιος διαρκεί 30 μέρες
+        *       [1.4.2] Με εισαγωγή 2003 στο πεδίο "ΧΧΧΧ" και 02 στο πεδίο "ΜΜ", οι έγκυρες εισαγωγές στο πεδίο "ΗΗ" είναι από 1 εώς 28, 
+        *               καθώς ο Φεβρουάριος διαρκεί 28 μέρες στα μη-δίσεκτα έτη
+        *   [2] Η ημερομηνία γέννησης πρέπει να είναι από 1958-01-01 εώς 2006-12-31
+        *   [3] Η ημερομηνία πρόσληψης πρέπει να είναι από την ημερομηνία γέννησης μεταγενέστερα κατά 18 χρόνια εώς την τρέχουσα ημερομηνία 
+        * 
+        */
         public void InfoEmployee(Employee EmplX, ref int Age, ref int YearsOfExperience) 
         {
             int ageYear, ageMonth, ageDay;
