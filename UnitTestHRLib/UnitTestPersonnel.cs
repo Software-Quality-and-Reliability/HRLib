@@ -363,19 +363,19 @@ namespace HRLibUnitTest
             Employee[] empl1 = new Employee[]
             {
                 //           "Ονοματεπώνυμο", "Σταθερό Τηλέφωνο", "Κινητό Τηλέφωνο", "Ημερομηνία Γέννησης", "Ημερομηνία Πρόσληψης
-                new Employee("George Theoxaris", "2102322751", "6998843565", new DateTime(2001, 03, 01), new DateTime(2023, 01, 02)),
+                new Employee("George Theoxaris", "2102322751", "6998843565", "2001, 03, 01", "2023, 01, 02"),
                 // new Employee(...)
             };
             Employee[] empl2 = new Employee[]
             {
                 //           "Ονοματεπώνυμο", "Σταθερό Τηλέφωνο", "Κινητό Τηλέφωνο", "Ημερομηνία Γέννησης", "Ημερομηνία Πρόσληψης
-                new Employee("Vasilis Athanasiou", "2132322751", "6998843565", new DateTime(2001, 03, 01), new DateTime(2023, 01, 02)),
+                new Employee("Vasilis Athanasiou", "2132322751", "6998843565", "2001, 03, 01", "2023, 01, 02"),
                 // new Employee(...)
             };
             Employee[] empl3 = new Employee[]
             {
                 //           "Ονοματεπώνυμο", "Σταθερό Τηλέφωνο", "Κινητό Τηλέφωνο", "Ημερομηνία Γέννησης", "Ημερομηνία Πρόσληψης
-                new Employee("Omar Alhaz", "2102322751", "6998843565", new DateTime(2001, 03, 01), new DateTime(2023, 01, 02)),
+                new Employee("Omar Alhaz", "2102322751", "6998843565", "2001, 03, 01", "2023, 01, 02"),
                 // new Employee(...)
             };
             /*
