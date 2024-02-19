@@ -367,10 +367,12 @@ namespace HRLib
             DateTime lastBirthDate = new DateTime(2006, 12, 31);    // Η τελευταία έγκυρη ημερομηνία γέννησης
             DateTime firstHiringDate = EmplX.Birthday.AddYears(18); // Η 1η έγκυρη ημερομήνια πρόσληψης  // new DateTime(EmplX.Birthday.Year + 18, EmplX.Birthday.Month, EmplX.Birthday.Day); 
             DateTime lastHiringDate = DateTime.Today;               // Η τελευταία ημερομηνία πρόσληψης  //new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
+            
             this.CheckPhone(EmplX.HomePhone, ref typephone,ref infophone);
             this.CheckPhone(EmplX.MobilePhone, ref typephone2, ref infophone2);
             bool isValidName = this.ValidName(EmplX.Name);
-            if (isValidName&&typephone!=-1&&typephone2!=-1)
+            
+            if (isValidName && typephone != -1 && typephone2 != -1)
             {
                 if (EmplX.Birthday >= firstBirthDate && EmplX.Birthday <= lastBirthDate)
                 {
@@ -403,7 +405,7 @@ namespace HRLib
                 }
 
             }
-               else
+            else
             {
                 Age = -1;
                 YearsOfExperience = -1;
