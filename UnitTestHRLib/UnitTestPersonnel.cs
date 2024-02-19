@@ -296,10 +296,10 @@ namespace HRLibUnitTest
             HRLib.Personnel per = new HRLib.Personnel();
 
             //                            "Ονοματεπώνυμο",       "Σταθερό Τηλέφωνο",   "Κινητό Τηλέφωνο",  "Ημερομηνία Γέννησης",        "Ημερομηνία Πρόσληψης
-            Employee empl1 = new Employee("George Theocharis",     "2102322751",        "6998843565",       new DateTime(2001, 03, 01),   new DateTime(2023, 01, 02));
-            Employee empl2 = new Employee("Vasilis Athaniasiou",   "2201010101",        "6980101010",       new DateTime(1990, 06, 08),   new DateTime(2015, 02, 05));
-            Employee empl3 = new Employee("Evangelos Tsimentas",   "2701010101",        "6990101010",       new DateTime(1959, 02, 15),   new DateTime(1990, 05, 15));
-            Employee empl4 = new Employee("Omar Alhaz",            "2301010101",        "6970101010",       new DateTime(1957, 09, 25),   new DateTime(1975, 06,  01));
+            Employee empl1 = new Employee("George Theocharis",     "2102322751",        "6998843565",       );
+            Employee empl2 = new Employee("Vasilis Athaniasiou",   "2201010101",        "6980101010",      );
+            Employee empl3 = new Employee("Evangelos Tsimentas",   "2701010101",        "6990101010",       );
+            Employee empl4 = new Employee("Omar Alhaz",            "2301010101",        "6970101010",      );
             
             // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
             object[,] testcases =
