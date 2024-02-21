@@ -297,7 +297,7 @@ namespace HRLibUnitTest
 
             //                            "Ονοματεπώνυμο",          "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",  "Ημερομηνία Γέννησης",  "Ημερομηνία Πρόσληψης
             Employee empl1  = new Employee("George theocharis",       "2102322751",        "6998843565",       "2001-08-23",           "2022-05-08");
-            Employee empl2  = new Employee("vasilis Koutsianikoulis", "2102887987",        "6975522693",       "1985-04-03",           "2010-06-15");
+            Employee empl2  = new Employee("panagiotis Petropoulos", "2102887987",        "6975522693",       "1985-04-03",           "2010-06-15");
             Employee empl3  = new Employee("Vasilis Athaniasiou",     "1201010101",        "6980101010",       "1999-07-15",           "2020-08-15");
             Employee empl4  = new Employee("Evangelos Tsimentas",     "2701010101",        "7990101010",       "1990-03-04",           "2015-06-03");
             Employee empl5  = new Employee("Omar Alhaz",              "2301010101",        "6970101010",       "2000@02@01",           "2020-05-06");
