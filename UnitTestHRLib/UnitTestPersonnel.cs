@@ -295,7 +295,7 @@ namespace HRLibUnitTest
             // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
             HRLib.Personnel per = new HRLib.Personnel();
 
-            //                            "Ονοματεπώνυμο",          "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",  "Ημερομηνία Γέννησης",  "Ημερομηνία Πρόσληψης
+            //                            "Ονοματεπώνυμο",          "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",  "Ημερομηνία Γέννησης",  "Ημερομηνία Πρόσληψης"
             Employee empl1  = new Employee("George theocharis",       "2102322751",        "6998843565",       "2001-08-23",           "2022-05-08");
             Employee empl2  = new Employee("panagiotis Petropoulos", "2102887987",        "6975522693",       "1985-04-03",           "2010-06-15");
             Employee empl3  = new Employee("Vasilis Athaniasiou",     "1201010101",        "6980101010",       "1999-07-15",           "2020-08-15");
@@ -306,7 +306,7 @@ namespace HRLibUnitTest
             Employee empl8  = new Employee("Aristotelis Sifakis",     "2601010801",        "6973298777",       "2001-01-07",           "2019-o5-k8");
             Employee empl9  = new Employee("Antonis Kokkinos",        "2102322751",        "6978899987",       "13-002-2001",          "2021-05-02");
             Employee empl10 = new Employee("Katerina Vossoy",         "2105042087",        "6987304875",       "2001-07-11",           "001-09-2022");
-            Employee empl11 = new Employee("Athina Nikolaou",         "2700101010",        "6975588489",       "1997-02-30",           "2023-05-22");
+            Employee empl11 = new Employee("Athina Nikolaou",         "2105042087",        "6975588489",       "1997-02-30",           "2023-05-22");
             Employee empl12 = new Employee("Aggelikh Panou",          "2401010101",        "6954848497",       "1998-04-31",           "2019-06-07");
             Employee empl13 = new Employee("Hlias Konstantinidis",    "2701010102",        "6935660423",       "1950-09-25",           "1970-04-08");
             Employee empl14 = new Employee("George Gomez",            "2501010101",        "6990101010",       "2007-12-01",           "2023-08-01");
@@ -315,8 +315,8 @@ namespace HRLibUnitTest
             Employee empl17 = new Employee("Xristos Pilarinos",       "2105555555",        "6987451235",       "1999-05-21",           "2019-06-30");
             
             
-            Employee emplfault1 = new Employee("Aggelos Skandalis",       "2501010102",        "6988558589",       "1957-05-30",           "1977-02-03");
-            Employee emplfault2 = new Employee("Dimitris Siametis",       "2104588989",        "6999999999",       "1987-01-02",           "2004-01-02");
+            Employee emplfault1 = new Employee("Aggelos Skandalis",   "2501010102",        "6988558589",       "1957-05-30",           "1977-02-03");
+            Employee emplfault2 = new Employee("Dimitris Siametis",   "2104588989",        "6999999999",       "1987-01-02",           "2004-01-02");
 
             // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
             object[,] testcases =
