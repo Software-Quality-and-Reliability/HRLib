@@ -15,6 +15,13 @@ namespace HRLib
 
             public Employee(string Name, string HomePhone, string MobilePhone, string Birthday, string HiringDate)
             {
+                /***** [4] Η ημερομηνία πρέπει να είναι έγκυρη *****/
+                //        [4.1] Η ημερομηνία πρέπει να περιλαμβάνει τον χαρακτήρα '-', '/' ακριβώς 2 φορές
+                //        [4.2] Η ημερομηνία πρέπει να περιλαμβάνει μόνο ψηφία
+                //        [4.3] Το μορφότυπο της ημερομηνίας πρέπει να είναι "ΧΧΧΧ-ΜΜ-ΗΗ"
+                //        [4.4] Η ημερομηνία γέννησης θα πρέπει να είναι έγκυρη ως προς την αντιστοιχία ημερών και μήνα
+                //             [4.4.1] Με εισαγωγή 04 στο πεδίο "ΜΜ", οι έγκυρες εισαγωγές στο πεδίο "ΗΗ" είναι από 1 εώς 30, καθώς ο μήνας Απρίλιος διαρκεί 30 μέρες
+                //             [4.4.2] Με εισαγωγή 2003 στο πεδίο "ΧΧΧΧ" και 02 στο πεδίο "ΜΜ", οι έγκυρες εισαγωγές στο πεδίο "ΗΗ" είναι από 1 εώς 28, καθώς ο Φεβρουάριος διαρκεί 28 μέρες στα μη - δίσεκτα έτη
                 bool isValidBirthday = DateTime.TryParse(Birthday, out DateTime birthday);
                 bool isHiringDate = DateTime.TryParse(HiringDate, out DateTime hiringDate);
                 
@@ -368,55 +375,65 @@ namespace HRLib
         {
             int ageYear, ageMonth, ageDay;
             int xpYear, xpMonth, xpDay;
-            int typephone = 0;
-            string infophone = "";
-            int typephone2 = 0;
-            string infophone2 = "";
+            int TypePhone = 0;
+            string InfoPhone = "";
+            int TypePhone2 = 0;
+            string InfoPhone2 = "";
 
             DateTime firstBirthDate = new DateTime(1958, 01, 01); 
             DateTime lastBirthDate = new DateTime(2006, 12, 31);   
             DateTime firstHiringDate = EmplX.Birthday.AddYears(18);  
             DateTime lastHiringDate = DateTime.Today;               
             
-            this.CheckPhone(EmplX.HomePhone, ref typephone,ref infophone);
-            this.CheckPhone(EmplX.MobilePhone, ref typephone2, ref infophone2);
+            this.CheckPhone(EmplX.HomePhone, ref TypePhone,ref InfoPhone);
+            this.CheckPhone(EmplX.MobilePhone, ref TypePhone2, ref InfoPhone2);
             bool isValidName = this.ValidName(EmplX.Name);
-            
-            if (isValidName && typephone != -1 && typephone2 != -1)
+
+            // ----- [1] Το ονοματεπώνυμο πρέπει να είναι έγκυρο σύμφωνα με τις παραδοχές υλοποίησης της ValidName() -----
+            // ----- [2] Το σταθερό τηλέφωνο πρέπει να είναι έγκυρο σύμφωνα με τις παραδοχές υλοποίησης της CheckPhone() -----
+            // ----- [3] Το κινητό τηλέφωνο πρέπει να είναι έγκυρο σύμφωνα με τις παραδοχές υλοποίησης της CheckPhone() -----
+            // ----- [4] Η ημερομηνία πρέπει να είναι έγκυρη -----
+            // !! Η παραδοχή [4] ελέγχεται από την μέθοδο DateTime.TryParse() στον constructor της Employee
+            if (isValidName && TypePhone != -1 && InfoPhone != null && TypePhone2 != -1 && InfoPhone2 != null)
             {
+                // ----- [5] Η ημερομηνία γέννησης πρέπει να είναι από 1958-01-01 εώς 2006-12-31 ----- 
                 if (EmplX.Birthday >= firstBirthDate && EmplX.Birthday <= lastBirthDate)
                 {
                     ageYear = DateTime.Today.Year - EmplX.Birthday.Year;
                     ageMonth = DateTime.Today.Month - EmplX.Birthday.Month;
                     ageDay = DateTime.Today.Day - EmplX.Birthday.Day;
-                    if (ageMonth < 0 || ageDay < 0)     // 2004-01-30 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-30 = -14 (Ο υπάλληος είναι 20-1=19 χρονών παρά 14 ημερών)
+                    if (ageMonth < 0 || ageDay < 0)     // 2004-01-30 ... 2024-01-16 ==> 2024-2004 = 20 / 01-01 = 0 / 16-30 = -14 (Ο υπάλληος είναι 20-1=19 χρονών παρά 14 ημερών)
                         Age = ageYear - 1;
-                    else                                // 2004-01-02 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-02 = 14 (Ο υπάλληλος είναι 20 χρονών και 14 ημερών)
+                    else                                // 2004-01-02 ... 2024-01-16 ==> 2024-2004 = 20 / 01-01 = 0 / 16-02 = 14 (Ο υπάλληλος είναι 20 χρονών και 14 ημερών)
                         Age = ageYear;
                 }
                 else
                 {
+                    // ----- Άκυρη ημερομηνία γέννησης -----
                     Age = -1;
                 }
 
+                // ----- [6] Η ημερομηνία πρόσληψης πρέπει να είναι από την ημερομηνία γέννησης μεταγενέστερα κατά 18 χρόνια εώς την τρέχουσα ημερομηνία -----
                 if (EmplX.HiringDate >= firstHiringDate && EmplX.HiringDate <= lastHiringDate)
                 {
                     xpYear = DateTime.Today.Year - EmplX.HiringDate.Year;
                     xpMonth = DateTime.Today.Month - EmplX.HiringDate.Month;
                     xpDay = DateTime.Today.Day - EmplX.HiringDate.Day;
-                    if (xpMonth < 0 || xpDay < 0)           // 2004-01-30 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-30 = -14 (Ο υπάλληλος έχει 20-1=19 χρόνια παρά 14 ημέρες υπηρεσία)
+                    if (xpMonth < 0 || xpDay < 0)           // 2004-01-30 ... 2024-01-16 ==> 2024-2004 = 20 / 01-01 = 0 / 16-30 = -14 (Ο υπάλληλος έχει 20-1=19 χρόνια παρά 14 ημέρες υπηρεσία)
                         YearsOfExperience = xpYear - 1;
-                    else                                    // 2004-01-02 ... 2024-01-16 ==> 2024-2004 = 20... 01-01 = 0 ... 16-02 = 14 (Ο υπάλληλος έχει 20 χρόνια και 14 ημέρες υπηρεσίας)
+                    else                                    // 2004-01-02 ... 2024-01-16 ==> 2024-2004 = 20 / 01-01 = 0 / 16-02 = 14 (Ο υπάλληλος έχει 20 χρόνια και 14 ημέρες υπηρεσίας)
                         YearsOfExperience = xpYear;
                 }
                 else
                 {
+                    // ----- Άκυρη ημερομηνία πρόσληψης -----
                     YearsOfExperience = -1;
                 }
                 
             }
             else
             {
+                // ----- Άκυρα στοιχεία υπαλλήλου -----
                 Age = -1;
                 YearsOfExperience = -1;
             }
@@ -427,8 +444,8 @@ namespace HRLib
         /*   Παραδοχές υλοποίησης:
          *  
          *   [1] Το ονοματεπώνυμο πρέπει να είναι έγκυρο σύμφωνα με τις παραδοχές υλοποίησης της ValidName()
-         *   [2] Το σταθερό τηλέφωνο πρέπει να είναι έγκυρο ως προς τον τύπο τηλεφώνου (TypePhone) σύμφωνα με τις παραδοχές υλοποίησης της CheckPhone()
-         *   [3] Το σταθερό τηλέφωνο πρέπει να είναι έγκυρο ως προς τις πληροφορίες τηλεφώνου (InfoPhone) σύμφωνα με τις παραδοχές υλοποίησης της CheckPhone()
+         *   [2] Το σταθερό τηλέφωνο πρέπει να είναι έγκυρο σύμφωνα με τις παραδοχές υλοποίησης της CheckPhone()
+         *   [3] Το κινητό τηλέφωνο πρέπει να είναι έγκυρο σύμφωνα με τις παραδοχές υλοποίησης της CheckPhone()
          *   [4] Η ημερομηνία γέννησης πρέπει να είναι έγκυρη σύμφωνα με τις παραδοχές υλοποίησης της InfoEmployee()
          *   [5] Η ημερομηνία πρόσληψης πρέπει να είναι έγκυρη σύμφωνα με τις παραδοχές υλοποίησης της InfoEmployee()
          */
@@ -442,16 +459,19 @@ namespace HRLib
                 int YearsOfExperience = 0;
                 int TypePhone = 0;
                 string InfoPhone = "";
+                int TypePhone2 = 0;
+                string InfoPhone2 = "";
 
                 bool isValidName = this.ValidName(emp.Name);
-                this.InfoEmployee(emp, ref Age, ref YearsOfExperience);
                 this.CheckPhone(emp.HomePhone, ref TypePhone, ref InfoPhone);
+                this.CheckPhone(emp.MobilePhone, ref TypePhone2, ref InfoPhone2);
+                this.InfoEmployee(emp, ref Age, ref YearsOfExperience);
                 // ----- [1] Το ονοματεπώνυμο πρέπει να είναι έγκυρο σύμφωνα με τις παραδοχές υλοποίησης της ValidName() -----
-                // ----- [2] Το σταθερό τηλέφωνο πρέπει να είναι έγκυρο ως προς τον τύπο τηλεφώνου (TypePhone) σύμφωνα με τις παραδοχές υλοποίησης της CheckPhone() -----
-                // ----- [3] Το σταθερό τηλέφωνο πρέπει να είναι έγκυρο ως προς τις πληροφορίες τηλεφώνου (InfoPhone) σύμφωνα με τις παραδοχές υλοποίησης της CheckPhone( -----
+                // ----- [2] Το σταθερό τηλέφωνο πρέπει να είναι έγκυρο σύμφωνα με τις παραδοχές υλοποίησης της CheckPhone() -----
+                // ----- [3] Το κινητό τηλέφωνο πρέπει να είναι έγκυρο σύμφωνα με τις παραδοχές υλοποίησης της CheckPhone() -----
                 // ----- [4] Η ημερομηνία γέννησης πρέπει να είναι έγκυρη σύμφωνα με τις παραδοχές υλοποίησης της InfoEmployee()  -----
                 // ----- [5] Η ημερομηνία πρόσληψης πρέπει να είναι έγκυρη σύμφωνα με τις παραδοχές υλοποίησης της InfoEmployee() -----
-                if (isValidName && Age != -1 && YearsOfExperience != -1 && TypePhone == 0 && InfoPhone != null)
+                if (isValidName && TypePhone == 0 && InfoPhone != null && TypePhone2 != -1 && InfoPhone2 != null && Age != -1 && YearsOfExperience != -1)
                 {
                     // ----- Έγκυρο όνομα, ημερομηνία γέννησης, ημερομηνία πρόσληψης, τύπος τηλεφώνου, πληροφορίες τηλεφώνου -----
                     if (InfoPhone.Equals("Metropolitan Area of Athens - Piraeus"))
