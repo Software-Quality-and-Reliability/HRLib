@@ -290,26 +290,26 @@ namespace HRLibUnitTest
             // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
             HRLib.Personnel per = new HRLib.Personnel();
 
-            //                            "Ονοματεπώνυμο",          "Σταθερό Τηλέφωνο",        "Κινητό Τηλέφωνο",       "Ημερομηνία Γέννησης",          "Ημερομηνία Πρόσληψης
-            Employee empl1 = new Employee("George theocharis",         "2102322751",              "6998843565",         new DateTime(2001, 8, 23),      new DateTime(2022, 5, 8));
-            Employee empl2 = new Employee("panagiotis Petropoulos",    "2102887987",              "6975522693",         new DateTime(1985, 4, 3),       new DateTime(2010, 6, 15));
-            Employee empl3 = new Employee("Vasilis Athaniasiou",       "1201010101",              "6980101010",         new DateTime(1999, 7, 15),      new DateTime(2020, 8, 15));
-            Employee empl4 = new Employee("Evangelos Tsimentas",       "2701010101",              "7990101010",         new DateTime(1990, 3, 4),       new DateTime(2015, 6, 3));
-            Employee empl5 = new Employee("Omar Alhaz",                "2301010101",              "6970101010",         new DateTime(2000, 2, 1),       new DateTime(2020, 5, 6));
-            Employee empl6 = new Employee("Akrivh Krouska",            "2301110101",              "6970101011",         new DateTime(2000, 2, 1),       new DateTime(2020, 5, 6));
-            Employee empl7 = new Employee("Pantelhs Tatsis",           "2601010101",              "6975522897",         new DateTime(2001, 1, 8),       new DateTime(2020, 1, 5));
-            Employee empl8 = new Employee("Aristotelis Sifakis",       "2601010801",              "6973298777",         new DateTime(2001, 1, 7),       new DateTime(2019, 5, 8));
-            Employee empl9 = new Employee("Antonis Kokkinos",          "2102322751",              "6978899987",         new DateTime(2001, 2, 13),      new DateTime(2021, 5, 2));
-            Employee empl10 = new Employee("Katerina Vossoy",          "2105042087",              "6987304875",         new DateTime(2001, 7, 11),      new DateTime(2022, 9, 1));
-            Employee empl11 = new Employee("Athina Nikolaou",          "2700101010",              "6975588489",         new DateTime(1997, 2, 30),      new DateTime(2023, 5, 22));
-            Employee empl12 = new Employee("Aggelikh Panou",           "2401010101",              "6954848497",         new DateTime(1998, 4, 31),      new DateTime(2019, 6, 7));
-            Employee empl13 = new Employee("Hlias Konstantinidis",     "2701010102",              "6935660423",         new DateTime(1950, 9, 25),      new DateTime(1970, 4, 8));
-            Employee empl14 = new Employee("George Gomez",             "2501010101",              "6990101010",         new DateTime(2007, 12, 1),      new DateTime(2023, 8, 1));
-            Employee empl15 = new Employee("George Santos",            "2105000000",              "6988888888",         new DateTime(1990, 4, 29),      new DateTime(2014, 6, 1));
-            Employee empl16 = new Employee("Antonis Varvaris",         "2300000000",              "6955555555",         new DateTime(2000, 1, 10),      new DateTime(2018, 5, 6));
-            Employee empl17 = new Employee("Xristos Pilarinos",        "2105555555",              "6987451235",         new DateTime(1999, 5, 21),      new DateTime(2019, 6, 30));
-            Employee emplfault1 = new Employee("Aggelos Skandalis",    "2501010102",              "6988558589",         new DateTime(1957, 5, 30),      new DateTime(1977, 2, 3));
-            Employee emplfault2 = new Employee("Dimitris Siametis",    "2104588989",              "6999999999",         new DateTime(2006, 1, 2),       new DateTime(2024, 1, 1));
+            //                            "Ονοματεπώνυμο",          "Σταθερό Τηλέφωνο",        "Κινητό Τηλέφωνο",         "Ημερομηνία Γέννησης",           "Ημερομηνία Πρόσληψης
+            Employee empl1 = new Employee("George Theocharis",         "2102322751",              "6998843565",         new DateTime(2001, 08, 23),      new DateTime(2022, 05, 08));
+            Employee empl2 = new Employee("Panagiotis Petropoulos",    "2102887987",              "6975522693",         new DateTime(1985, 04, 03),      new DateTime(2010, 06, 15));
+            Employee empl3 = new Employee("Vasilis Athanasiou",        "2201010101",              "6980101010",         new DateTime(1999, 07, 15),      new DateTime(2020, 08, 15));
+            Employee empl4 = new Employee("Evangelos Tsimentas",       "2701010101",              "6990101010",         new DateTime(1990, 03, 04),      new DateTime(2015, 06, 03));
+            Employee empl5 = new Employee("Omar Alhaz",                "2301010101",              "6970101010",         new DateTime(2000, 02, 01),      new DateTime(2020, 05, 06));
+            Employee empl6 = new Employee("Akrivh Krouska",            "2301110101",              "6970101011",         new DateTime(2000, 02, 01),      new DateTime(2020, 05, 06));
+            Employee empl7 = new Employee("Pantelhs Tatsis",           "2601010101",              "6975522897",         new DateTime(2001, 01, 08),      new DateTime(2020, 01, 05));
+            Employee empl8 = new Employee("Aristotelis Sifakis",       "2601010801",              "6973298777",         new DateTime(2001, 01, 07),      new DateTime(2019, 05, 08));
+            Employee empl9 = new Employee("Antonis Kokkinos",          "2102322751",              "6978899987",         new DateTime(2001, 02, 13),      new DateTime(2021, 05, 02));
+            Employee empl10 = new Employee("Katerina Vossoy",          "2105042087",              "6987304875",         new DateTime(2001, 07, 11),      new DateTime(2022, 09, 01));
+            Employee empl11 = new Employee("Athina Nikolaou",          "2700101010",              "6975588489",         new DateTime(1997, 02, 27),      new DateTime(2023, 05, 22));
+            Employee empl12 = new Employee("Aggelikh Panou",           "2401010101",              "6954848497",         new DateTime(1998, 04, 30),      new DateTime(2019, 06, 07));
+            Employee empl13 = new Employee("Hlias Konstantinidis",     "2701010102",              "6935660423",         new DateTime(1950, 09, 25),      new DateTime(1970, 04, 08));
+            Employee empl14 = new Employee("George Gomez",             "2501010101",              "6990101010",         new DateTime(2007, 12, 01),      new DateTime(2023, 08, 01));
+            Employee empl15 = new Employee("George Santos",            "2105000000",              "6988888888",         new DateTime(1990, 04, 29),      new DateTime(2014, 06, 01));
+            Employee empl16 = new Employee("Antonis Varvaris",         "2300000000",              "6955555555",         new DateTime(2000, 01, 10),      new DateTime(2018, 05, 06));
+            Employee empl17 = new Employee("Xristos Pilarinos",        "2105555555",              "6987451235",         new DateTime(1999, 05, 21),      new DateTime(2019, 06, 30));
+            Employee emplfault1 = new Employee("Aggelos Skandalis",    "2501010102",              "6988558589",         new DateTime(1953, 05, 30),      new DateTime(1977, 02, 03));
+            Employee emplfault2 = new Employee("Dimitris Siametis",    "2104588989",              "6999999999",         new DateTime(2006, 01, 02),      new DateTime(2024, 01, 01));
 
 
             // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
@@ -317,25 +317,25 @@ namespace HRLibUnitTest
             {
              // { id,                  "Υπάλληλος",            εκτιμώμενη τιμή επιστροφής,          εκτιμώμενη τιμή επιστροφής,                     "Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου"}
              //                                                της InfoEmployee() στην Age     της InfoEmployee() στην YearsOfExperience              
-                { "1",                   empl1,                          -1,                                    -1,                                 "[1] Το ονοματεπώνυμο πρέπει να είναι έγκυρο σύμφωνα με τις παραδοχές υλοποίησης της ValidName()"},
-                { "2",                   empl2,                          -1,                                    -1,                                 "[1] Το ονοματεπώνυμο πρέπει να είναι έγκυρο σύμφωνα με τις παραδοχές υλοποίησης της ValidName()"},
-                { "3",                   empl3,                          -1,                                    -1,                                 "[2] Το σταθερό τηλέφωνο πρέπει να είναι έγκυρο σύμφωνα με τις παραδοχές υλοποίησης της CheckPhone()"},
-                { "4",                   empl4,                          -1,                                    -1,                                 "[3] Το κινητό τηλέφωνο πρέπει να είναι έγκυρο σύμφωνα με τις παραδοχές υλοποίησης της CheckPhone()"},
-                { "5",                   empl5,                          -1,                                     3,                                 "[4.1] Η ημερομηνία πρέπει να περιλαμβάνει τον χαρακτήρα '-', '/' ακριβώς 2 φορές"},
-                { "6",                   empl6,                          24,                                    -1,                                 "[4.1] Η ημερομηνία πρέπει να περιλαμβάνει τον χαρακτήρα '-', '/' ακριβώς 2 φορές"},
-                { "7",                   empl7,                          -1,                                     4,                                 "[4.2] Η ημερομηνία πρέπει να περιλαμβάνει μόνο ψηφία"},
-                { "8",                   empl8,                          23,                                    -1,                                 "[4.2] Η ημερομηνία πρέπει να περιλαμβάνει μόνο ψηφία"},
-                { "9",                   empl9,                          -1,                                     2,                                 "[4.3] Το μορφότυπο της ημερομηνίας πρέπει να είναι ΧΧΧΧ-ΜΜ-ΗΗ"},
-                { "10",                  empl10,                         22,                                    -1,                                 "[4.3] Το μορφότυπο της ημερομηνίας πρέπει να είναι ΧΧΧΧ-ΜΜ-ΗΗ"},
-                { "11",                  empl11,                         -1,                                     0,                                 "[4.4] Η ημερομηνία γέννησης θα πρέπει να είναι έγκυρη ως προς την αντιστοιχία ημερών και μήνα"},
-                { "12",                  empl12,                         -1,                                     4,                                 "[4.4] Η ημερομηνία γέννησης θα πρέπει να είναι έγκυρη ως προς την αντιστοιχία ημερών και μήνα"},
-                { "13",                  empl13,                         -1,                                    53,                                 "[5]   Η ημερομηνία γέννησης πρέπει να είναι από 1958-01-01 εώς 2006-12-31" },
-                { "14",                  empl14,                         -1,                                    -1,                                 "[6]   Η ημερομηνία πρόσληψης πρέπει να είναι από την ημερομηνία γέννησης μεταγενέστερα κατά 18 χρόνια εώς την τρέχουσα ημερομηνία" },
+                { "1",                   empl1,                          22,                                     1,                                 "Ο υπάλληλος είναι 22 χρόνων και έχει 1 χρόνο προϋπηρεσίας"},
+                { "2",                   empl2,                          38,                                    13,                                 "Ο υπάλληλος είναι 38 χρόνων και έχει 13 χρόνια προϋπηρεσίας"},
+                { "3",                   empl3,                          24,                                     3,                                 "Ο υπάλληλος είναι 24 χρόνων και έχει 3 χρόνια προϋπηρεσίας"},
+                { "4",                   empl4,                          33,                                     8,                                 "Ο υπάλληλος είναι 33 χρόνων και έχει 8 χρόνια προϋπηρεσίας"},
+                { "5",                   empl5,                          24,                                     3,                                 "Ο υπάλληλος είναι 24 χρόνων και έχει 3 χρόνια προϋπηρεσίας"},
+                { "6",                   empl6,                          24,                                     3,                                 "Ο υπάλληλος είναι 24 χρόνων και έχει 3 χρόνια προϋπηρεσίας"},
+                { "7",                   empl7,                          23,                                     4,                                 "Ο υπάλληλος είναι 23 χρόνων και έχει 4 χρόνια προϋπηρεσίας"},
+                { "8",                   empl8,                          23,                                     4,                                 "Ο υπάλληλος είναι 23 χρόνων και έχει 4 χρόνια προϋπηρεσίας"},
+                { "9",                   empl9,                          23,                                     2,                                 "Ο υπάλληλος είναι 23 χρόνων και έχει 2 χρόνια προϋπηρεσίας"},
+                { "10",                  empl10,                         22,                                     1,                                 "Ο υπάλληλος είναι 22 χρόνων και έχει 1 χρόνο προϋπηρεσίας"},
+                { "11",                  empl11,                         26,                                     0,                                 "Ο υπάλληλος είναι 26 χρόνων και είναι στον 1ο χρόνο προϋπηρεσίας"},
+                { "12",                  empl12,                         25,                                     4,                                 "Ο υπάλληλος είναι 25 χρόνων και έχει 4 χρόνια προϋπηρεσίας"},
+                { "13",                  empl13,                         -1,                                    53,                                 "[1] Η ηλικία πρέπει να είναι από 18-70 χρονών" },
+                { "14",                  empl14,                         -1,                                    -1,                                 "[2] Η ημερομηνία πρόσληψης πρέπει να είναι από την ημερομηνία γέννησης μεταγενέστερα κατά 18 χρόνια εώς την τρέχουσα ημερομηνία" },
                 { "15",                  empl15,                         33,                                     9,                                 "Ο υπάλληλος είναι 33 χρόνων και έχει 9 χρόνια προϋπηρεσίας" },
                 { "16",                  empl16,                         24,                                     5,                                 "Ο υπάλληλος είναι 24 χρόνων και έχει 5 χρόνια προϋπηρεσίας" },
                 { "17",                  empl17,                         24,                                     4,                                 "Ο υπάλληλος είναι 24 χρόνων και έχει 4 χρόνια προϋπηρεσίας" },
-                { "AgeError_4",          emplfault1,                     66,                                    47,                                 "[5] Η ημερομηνία γέννησης πρέπει να είναι από 1958-01-01 εώς 2006-12-31"},
-                { "YearsOfXpError_5",    emplfault2,                     18,                                     0,                                 "[6] Η ημερομηνία πρόσληψης πρέπει να είναι από την ημερομηνία γέννησης μεταγενέστερα κατά 18 χρόνια εώς την τρέχουσα ημερομηνία"}
+                { "AgeError_4",          emplfault1,                     70,                                    47,                                 "[1] Η ηλικία πρέπει να είναι από 18-70 χρονών"},
+                { "YearsOfXpError_5",    emplfault2,                     18,                                     0,                                 "[2] Η ημερομηνία πρόσληψης πρέπει να είναι από την ημερομηνία γέννησης μεταγενέστερα κατά 18 χρόνια εώς την τρέχουσα ημερομηνία"}
 
             };
 
@@ -391,94 +391,81 @@ namespace HRLibUnitTest
 
             Employee[] empls1 = new Employee[]
             {
-                //           "Ονοματεπώνυμο",     "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",   "Ημερομηνία Γέννησης",  "Ημερομηνία Πρόσληψης"
-                new Employee("Γιώργος Theoxaris",   "2102625345",        "6971345456",          "2001-08-23",           "2023-07-03"),
-                new Employee("Vasilis Athanasiou",  "2102324901",        "6981314145",          "2001-03-19",           "2024-01-02"),
-                new Employee("Omar Alhaz",          "2801234681",        "6945678789",          "2001-03-24",           "2023-12-20")
+                //           "Ονοματεπώνυμο",     "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",       "Ημερομηνία Γέννησης",                 "Ημερομηνία Πρόσληψης"
+                new Employee("George Theoxaris",    "2202625345",        "6971345456",          new DateTime(2001, 08, 23),           new DateTime(2023, 07, 03)),
+                new Employee("Vasilis Athanasiou",  "2302324901",        "6981314145",          new DateTime(2001, 03, 19),           new DateTime(2024, 01, 02)),
+                new Employee("Omar Alhaz",          "2401234681",        "6945678789",          new DateTime(2001, 03, 24),           new DateTime(2023, 12, 20))
             };
-
             Employee[] empls2 = new Employee[]
             {
-                //           "Ονοματεπώνυμο",     "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",   "Ημερομηνία Γέννησης",  "Ημερομηνία Πρόσληψης"
-                new Employee("George Theoxaris",    "2102625345",        "6971345456",          "2001-08-23",           "2023-07-03"),
-                new Employee("Vasilis ATHANASIOU",  "2102324901",        "6981314145",          "2001-03-19",           "2024-01-02"),
-                new Employee("Omar Alhaz",          "2801234681",        "6945678789",          "2001-03-24",           "2023-12-20")
+                //           "Ονοματεπώνυμο",     "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",       "Ημερομηνία Γέννησης",                 "Ημερομηνία Πρόσληψης
+                new Employee("Tom Hanks",           "2102625345",         "6971345456",        new DateTime(1959, 07, 09),           new DateTime(1989, 06, 09)),
+                new Employee("Leonardo DiCaprio",   "2102324901",         "6981314145",        new DateTime(1974, 11, 11),           new DateTime(1995, 03, 15)),
+                new Employee("Meryl Streep",        "2801234681",         "6945678789",        new DateTime(1955, 06, 22),           new DateTime(1975, 05, 05)),
+                new Employee("Robert Downey Jr.",   "2102625345",         "6971345456",        new DateTime(1965, 04, 04),           new DateTime(1984, 08, 23)),
+                new Employee("Johnny Depp",         "2102324901",         "6981314145",        new DateTime(1963, 06, 09),           new DateTime(1984, 09, 10)),
+                new Employee("Angelina Jolie",      "2801234681",         "6945678789",        new DateTime(1975, 06, 04),           new DateTime(1994, 10, 12)),
+                new Employee("Chris Hemsworth",     "2102324901",         "6981314145",        new DateTime(1983, 08, 11),           new DateTime(2002, 03, 18)),
             };
             Employee[] empls3 = new Employee[]
             {
-                //           "Ονοματεπώνυμο",     "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",   "Ημερομηνία Γέννησης",   "Ημερομηνία Πρόσληψης"
-                new Employee("George Theoxaris",    "2102625345",        "6971345456",          "2001-08-23",           "2023-07-03"),
-                new Employee("Vasilis Athanasiou",  "2102324901",        "6981314145",          "2001-03-19",           "2024-01-02"),
-                new Employee("Omar Alhaz",          "1801234681",        "6945678789",          "2001-03-24",           "2023-12-20")
+                //           "Ονοματεπώνυμο",     "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",       "Ημερομηνία Γέννησης",                 "Ημερομηνία Πρόσληψης
+                new Employee("Brad Pitt",           "2702625345",        "6971345456",        new DateTime(1963, 12, 18),            new DateTime(1987, 05, 20)),
+                new Employee("Jennifer Aniston",    "2602324901",        "6981314145",        new DateTime(1969, 02, 11),            new DateTime(1992, 07, 15)),
+                new Employee("Tom Cruise",          "2801234681",        "6945678789",        new DateTime(1962, 07, 03),            new DateTime(1981, 10, 10)),
+                new Employee("George Clooney",      "2102625345",        "6971345456",        new DateTime(1961, 05, 06),            new DateTime(1982, 09, 22)),
+                new Employee("Julia Roberts",       "2102324901",        "6981314145",        new DateTime(1967, 10, 28),            new DateTime(1988, 07, 15)),
+                new Employee("Denzel Washington",   "2801234681",        "6945678789",        new DateTime(1954, 12, 28),            new DateTime(1978, 06, 12)),
+                new Employee("Scarlett Johansson",  "2102625345",        "6971345456",        new DateTime(1984, 11, 22),            new DateTime(2003, 05, 10)),
+                new Employee("Robert Pattinson",    "2801234681",        "6945678789",        new DateTime(1986, 05, 13),            new DateTime(2004, 11, 07))
             };
             Employee[] empls4 = new Employee[]
             {
-                //           "Ονοματεπώνυμο",     "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",   "Ημερομηνία Γέννησης",   "Ημερομηνία Πρόσληψης"
-                new Employee("George Theoxaris",    "2102625345",        "5971345456",          "2001-08-23",           "2023-07-03"),
-                new Employee("Vasilis Athanasiou",  "2102324901",        "6981314145",          "2001-03-19",           "2024-01-02"),
-                new Employee("Omar Alhaz",          "2801234681",        "6945678789",          "2001-03-24",           "2023-12-20")
+                //           "Ονοματεπώνυμο",             "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",             "Ημερομηνία Γέννησης",                  "Ημερομηνία Πρόσληψης"
+                new Employee("George Theoxaris",           "2102625345",          "6971345456",             new DateTime(2001, 08, 23),              new DateTime(2023, 07, 03)),
+                new Employee("Vasilis Athanasiou",         "2102324901",          "6981314145",             new DateTime(2001, 03, 19),              new DateTime(2024, 01, 02)),
+                new Employee("Omar Alhaz",                 "2801234681",          "6945678789",             new DateTime(2001, 03, 24),              new DateTime(2023, 12, 20)),
+                new Employee("Christos Troussas",          "2131414567",          "6941296963",             new DateTime(1994, 11, 15),              new DateTime(2024, 01, 01)),
+                new Employee("Akrivi Krouska",             "2215678901",          "6901234345",             new DateTime(1998, 05, 19),              new DateTime(2023, 12, 20)),
+                new Employee("Ioannis Vogiatzis",          "2801234681",          "6945678789",             new DateTime(2001, 03, 24),              new DateTime(2023, 12, 20)),
+                new Employee("George Meletiou",            "2461345679",          "6931345450",             new DateTime(1980, 06, 04),              new DateTime(2023, 11, 03)),
+                new Employee("Panagiotis Giannakopoulos",  "2151234510",          "6901234342",             new DateTime(1978, 06, 10),              new DateTime(2024, 02, 20)),
+                new Employee("Stavros Fatouros",           "2612828456",          "6951616987",             new DateTime(1990, 01, 24),              new DateTime(2023, 03, 11))
             };
             Employee[] empls5 = new Employee[]
             {
-                //           "Ονοματεπώνυμο",     "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",   "Ημερομηνία Γέννησης",   "Ημερομηνία Πρόσληψης"
-                new Employee("George Theoxaris",    "2102625345",        "6971345456",          "2001-08-32",           "2023-07-03"),
-                new Employee("Vasilis Athanasiou",  "2102324901",        "6981314145",          "2001-03-19",           "2024-01-02"),
-                new Employee("Omar Alhaz",          "2801234681",        "6945678789",          "2001-03-24",           "2023-12-20")
+                //           "Ονοματεπώνυμο",            "Σταθερό Τηλέφωνο",    "Κινητό Τηλέφωνο",            "Ημερομηνία Γέννησης",                  "Ημερομηνία Πρόσληψης"
+                new Employee("Bartlomiej Dragowski",       "2145678901",          "6905678901",             new DateTime(1997, 08, 19),              new DateTime(2024, 01, 19)),
+                new Employee("Tin Jedvaj",                 "2156789012",          "6935678901",             new DateTime(1995, 11, 28),              new DateTime(2023, 07, 14)),
+                new Employee("Filip Mladenovic",           "2167890123",          "6995678901",             new DateTime(1991, 08, 15),              new DateTime(2023, 07, 01)),
+                new Employee("Giannis Kotsiras",           "2178901234",          "6945678901",             new DateTime(1992, 12, 16),              new DateTime(2021, 07, 01)),
+                new Employee("Willian Arao",               "2189012345",          "6955678901",             new DateTime(1992, 03, 12),              new DateTime(2023, 08, 17)),
+                new Employee("Carlos Zeca",                "2190123456",          "6975678901",             new DateTime(1988, 08, 21),              new DateTime(2023, 07, 01)),
+                new Employee("Bernard Duarte",             "2101234567",          "6985678901",             new DateTime(1992, 09, 08),              new DateTime(2022, 08, 21)),
+                new Employee("Anastasios Bakasetas",       "2112345678",          "6935678901",             new DateTime(1993, 06, 28),              new DateTime(2024, 01, 22)),
+                new Employee("Adam Cerin",                 "2123456789",          "6945678901",             new DateTime(1999, 07, 16),              new DateTime(2022, 07, 02)),
+                new Employee("Sebastian Palacios",         "2134567890",          "6975678901",             new DateTime(1992, 01, 20),              new DateTime(2021, 08, 31)),
+                new Employee("Fotis Ioannidis",            "2145678901",          "6985678901",             new DateTime(2000, 01, 10),              new DateTime(2020, 08, 10))
             };
             Employee[] empls6 = new Employee[]
             {
-                //           "Ονοματεπώνυμο",     "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",    "Ημερομηνία Γέννησης",   "Ημερομηνία Πρόσληψης"
-                new Employee("George Theoxaris",    "2102625345",        "6971345456",         "2001-08-23",            "2023-07-03"),
-                new Employee("Vasilis Athanasiou",  "2102324901",        "6981314145",         "2001-03-19",            "2023-02-29"),
-                new Employee("Omar Alhaz",          "2801234681",        "6945678789",         "2001-03-24",            "2023-12-20")
+                //           "Ονοματεπώνυμο",             "Σταθερό Τηλέφωνο",    "Κινητό Τηλέφωνο",            "Ημερομηνία Γέννησης",                "Ημερομηνία Πρόσληψης"
+                new Employee("George Theoxaris",           "2102625345",          "6971345456",             new DateTime(2001, 08, 23),              new DateTime(2023, 07, 03)),
+                new Employee("Vasilis Athanasiou",         "2402324901",          "6981314145",             new DateTime(2001, 03, 19),              new DateTime(2024, 01, 02)),
+                new Employee("Omar Alhaz",                 "2501234681",          "6945678789",             new DateTime(2001, 03, 24),              new DateTime(2023, 12, 20)),
+                new Employee("Dimitra Papadopoulou",       "2604567890",          "6934567890",             new DateTime(2000, 01, 15),              new DateTime(2023, 06, 20)),
+                new Employee("Thanasis Papanikolaou",      "2705678901",          "6945678901",             new DateTime(1999, 11, 28),              new DateTime(2019, 03, 05)),
+                new Employee("Eirini Nikolaou",            "2806789012",          "6956789012",             new DateTime(2001, 09, 8),               new DateTime(2023, 08, 12)),
+                new Employee("Panagiotis Georgopoulos",    "2107890123",          "6907890123",             new DateTime(2000, 07, 22),              new DateTime(2019, 01, 01))
             };
             Employee[] empls7 = new Employee[]
             {
-                //           "Ονοματεπώνυμο",           "Σταθερό Τηλέφωνο",     "Κινητό Τηλέφωνο",     "Ημερομηνία Γέννησης",     "Ημερομηνία Πρόσληψης
-                new Employee("George Theoxaris",           "2102625345",          "6971345456",             "2001-08-23",             "2023-07-03"),
-                new Employee("Vasilis Athanasiou",         "2102324901",          "6981314145",             "2001-03-19",             "2024-01-02"),
-                new Employee("Omar Alhaz",                 "2801234681",          "6945678789",             "2001-03-24",             "2023-12-20"),
-                new Employee("Christos Troussas",          "2131414567",          "6941296963",             "1994-11-15",             "2024-01-01"),
-                new Employee("Akrivi Krouska",             "2215678901",          "6901234345",             "1998-05-19",             "2023-12-20"),
-                new Employee("Ioannis Vogiatzis",          "2801234681",          "6945678789",             "2001-03-24",             "2023-12-20"),
-                new Employee("George Meletiou",            "2461345679",          "6931345450",             "1980-06-04",             "2023-11-03"),
-                new Employee("Panagiotis Giannakopoulos",  "2151234510",          "6901234342",             "1978-06-10",             "2024-02-20"),
-                new Employee("Stavros Fatouros",           "2612828456",          "6951616987",             "1990-01-24",             "2023-03-11")
-            };
-            Employee[] empls8 = new Employee[]
-            {
-                //           "Ονοματεπώνυμο",           "Σταθερό Τηλέφωνο",     "Κινητό Τηλέφωνο",     "Ημερομηνία Γέννησης",     "Ημερομηνία Πρόσληψης
-                new Employee("Bartlomiej Dragowski",       "2145678901",          "6905678901",             "1997-08-19",             "2024-01-19"),
-                new Employee("Tin Jedvaj",                 "2156789012",          "6935678901",             "1995-11-28",             "2023-07-14"),
-                new Employee("Filip Mladenovic",           "2267890123",          "6995678901",             "1991-08-15",             "2023-07-01"),
-                new Employee("Giannis Kotsiras",           "2178901234",          "6945678901",             "1992-12-16",             "2021-07-01"),
-                new Employee("Willian Arao",               "2189012345",          "6955678901",             "1992-03-12",             "2023-08-17"),
-                new Employee("Carlos Zeca",                "2390123456",          "6975678901",             "1988-08-21",             "2023-07-01"),
-                new Employee("Bernard Duarte",             "2101234567",          "6985678901",             "1992-09-08",             "2022-08-21"),
-                new Employee("Anastasios Bakasetas",       "2112345678",          "6935678901",             "1993-06-28",             "2024-01-22"),
-                new Employee("Adam Cerin",                 "2423456789",          "6945678901",             "1999-07-16",             "2022-07-02"),
-                new Employee("Sebastian Palacios",         "2134567890",          "6975678901",             "1992-01-20",             "2021-08-31"),
-                new Employee("Fotis Ioannidis",            "2145678901",          "6985678901",             "2000-01-10",             "2020-08-10")
-            };
-            Employee[] empls9 = new Employee[]
-            {
-                //           "Ονοματεπώνυμο",           "Σταθερό Τηλέφωνο",    "Κινητό Τηλέφωνο",    "Ημερομηνία Γέννησης",    "Ημερομηνία Πρόσληψης
-                new Employee("George Theoxaris",           "2102625345",          "6971345456",           "2001-08-23",              "2023-07-03"),
-                new Employee("Vasilis Athanasiou",         "2402324901",          "6981314145",           "2001-03-19",              "2024-01-02"),
-                new Employee("Omar Alhaz",                 "2501234681",          "6945678789",           "2001-03-24",              "2023-12-20"),
-                new Employee("Dimitra Papadopoulou",       "2604567890",          "6934567890",           "2000-01-15",              "2023-06-20"),
-                new Employee("Thanasis Papanikolaou",      "2705678901",          "6945678901",           "1999-11-28",              "2019-03-05"),
-                new Employee("Eirini Nikolaou",            "2806789012",          "6956789012",           "2001-09-08",              "2023-08-12"),
-                new Employee("Panagiotis Georgopoulos",    "2107890123",          "6907890123",           "2000-07-22",              "2019-01-01")
-            };
-            Employee[] empls10 = new Employee[]
-            {
-                //           "Ονοματεπώνυμο",           "Σταθερό Τηλέφωνο",    "Κινητό Τηλέφωνο",    "Ημερομηνία Γέννησης",    "Ημερομηνία Πρόσληψης
-                new Employee("Despina Vandi",             "2201234567",          "6931234567",           "1964-07-22",              "1998-10-01"),
-                new Employee("Sakis Rouvas",              "2102345678",          "6942345678",           "1972-01-05",              "1990-05-15"),
-                new Employee("Kostas Martakis",           "2703456789",          "6953456789",           "1974-09-14",              "2000-12-30"),
-                new Employee("Elena Paparizou",           "2804567890",          "6944567890",           "1982-01-31",              "2010-02-20"),
-                new Employee("Giorgos Liagas",            "2605678901",          "6975678901",           "1974-10-26",              "2001-07-10")
+                //           "Ονοματεπώνυμο",           "Σταθερό Τηλέφωνο",     "Κινητό Τηλέφωνο",             "Ημερομηνία Γέννησης",                  "Ημερομηνία Πρόσληψης"
+                new Employee("Despina Vandi",             "2201234567",          "6931234567",               new DateTime(1964, 07, 22),              new DateTime(1998, 10, 01)),
+                new Employee("Sakis Rouvas",              "2102345678",          "6942345678",               new DateTime(1972, 01, 05),              new DateTime(1990, 05, 15)),
+                new Employee("Kostas Martakis",           "2703456789",          "6953456789",               new DateTime(1974, 09, 14),              new DateTime(2000, 12, 30)),
+                new Employee("Elena Paparizou",           "2804567890",          "6944567890",               new DateTime(1982, 01, 31),              new DateTime(2010, 02, 20)),
+                new Employee("Giorgos Liagas",            "2605678901",          "6975678901",               new DateTime(1974, 10, 26),              new DateTime(2001, 07, 10))
             };
 
 
@@ -487,16 +474,13 @@ namespace HRLibUnitTest
             {
              // { id,               "Λίστα Υπαλλήλων",    εκτιμώμενη τιμή επιστροφής,           "Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου"}
             //                                                της LiveInAthens()              
-                { "1",                  empls1,                       -1,                       "[1] Το ονοματεπώνυμο πρέπει να είναι έγκυρο σύμφωνα με τις παραδοχές υλοποίησης της ValidName()" },
-                { "2",                  empls2,                       -1,                       "[1] Το ονοματεπώνυμο πρέπει να είναι έγκυρο σύμφωνα με τις παραδοχές υλοποίησης της ValidName()" },
-                { "3",                  empls3,                       -1,                       "[2] Το σταθερό τηλέφωνο πρέπει να είναι έγκυρο ως προς τον τύπο τηλεφώνου (TypePhone) σύμφωνα με τις παραδοχές υλοποίησης της CheckPhone()" },
-                { "4",                  empls4,                       -1,                       "[3] Το σταθερό τηλέφωνο πρέπει να είναι έγκυρο ως προς τις πληροφορίες τηλεφώνου (InfoPhone) σύμφωνα με τις παραδοχές υλοποίησης της CheckPhone()" },
-                { "5",                  empls5,                       -1,                       "[4] Η ημερομηνία γέννησης πρέπει να είναι έγκυρη σύμφωνα με τις παραδοχές υλοποίησης της InfoEmployee()" },
-                { "6",                  empls6,                       -1,                       "[5] Η ημερομηνία πρόσληψης πρέπει να είναι έγκυρη σύμφωνα με τις παραδοχές υλοποίησης της InfoEmployee()" },
-                { "7",                  empls7,                        4,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 4" },
-                { "8",                  empls8,                        8,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 8" },
-                { "9",                  empls9,                        2,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 2" },
-                { "10",                 empls10,                       1,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 1" }
+                { "1",                  empls1,                        0,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 0" },
+                { "2",                  empls2,                        5,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 5" },
+                { "3",                  empls3,                        3,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 3" },
+                { "4",                  empls4,                        4,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 4" },
+                { "5",                  empls5,                       11,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 11" },
+                { "6",                  empls6,                        2,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 2" },
+                { "7",                  empls7,                        1,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 1" }
 
             };
 

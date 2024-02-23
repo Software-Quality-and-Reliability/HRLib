@@ -339,7 +339,7 @@ namespace HRLib
         /*  
          *  Παραδοχές υλοποίησης:
          *  
-         *  [1] Η ημερομηνία γέννησης πρέπει να είναι από 1958-01-01 εώς 2006-12-31
+         *  [1] Η ηλικία πρέπει να είναι από 18-70 χρονών
          *  [2] Η ημερομηνία πρόσληψης πρέπει να είναι από την ημερομηνία γέννησης μεταγενέστερα κατά 18 χρόνια εώς την τρέχουσα ημερομηνία 
          * 
          */
@@ -347,14 +347,17 @@ namespace HRLib
         {
             int ageYear, ageMonth, ageDay;
             int xpYear, xpMonth, xpDay;
-            
-            DateTime firstBirthDate = new DateTime(1958, 01, 01); 
-            DateTime lastBirthDate = new DateTime(2006, 12, 31);   
+            int firstYear, lastYear;
+
+            firstYear = DateTime.Today.Year - 70;
+            lastYear = DateTime.Today.Year - 18;
+            DateTime firstBirthday = new DateTime(firstYear, DateTime.Today.Month, DateTime.Today.Day); 
+            DateTime lastBirthday = new DateTime(lastYear, DateTime.Today.Month, DateTime.Today.Day);   
             DateTime firstHiringDate = EmplX.Birthday.AddYears(18);  
-            DateTime lastHiringDate = DateTime.Today;               
-            
-            // ----- [1] Η ημερομηνία γέννησης πρέπει να είναι από 1958-01-01 εώς 2006-12-31 ----- 
-            if (EmplX.Birthday >= firstBirthDate && EmplX.Birthday <= lastBirthDate)
+            DateTime lastHiringDate = DateTime.Today;
+
+            // ----- [1] Η ηλικία πρέπει να είναι από 18-70 χρονών ----- 
+            if (EmplX.Birthday >= firstBirthday && EmplX.Birthday <= lastBirthday)
             {
                 ageYear = DateTime.Today.Year - EmplX.Birthday.Year;
                 ageMonth = DateTime.Today.Month - EmplX.Birthday.Month;
