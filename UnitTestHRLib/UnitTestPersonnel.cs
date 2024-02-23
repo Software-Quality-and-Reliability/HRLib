@@ -290,26 +290,27 @@ namespace HRLibUnitTest
             // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
             HRLib.Personnel per = new HRLib.Personnel();
 
-            //                            "Ονοματεπώνυμο",          "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",  "Ημερομηνία Γέννησης",  "Ημερομηνία Πρόσληψης
-            Employee empl1  = new Employee("George theocharis",       "2102322751",        "6998843565",       "2001-08-23",           "2022-05-08");
-            Employee empl2  = new Employee("panagiotis Petropoulos",  "2102887987",        "6975522693",       "1985-04-03",           "2010-06-15");
-            Employee empl3  = new Employee("Vasilis Athaniasiou",     "1201010101",        "6980101010",       "1999-07-15",           "2020-08-15");
-            Employee empl4  = new Employee("Evangelos Tsimentas",     "2701010101",        "7990101010",       "1990-03-04",           "2015-06-03");
-            Employee empl5  = new Employee("Omar Alhaz",              "2301010101",        "6970101010",       "2000@02@01",           "2020-05-06");
-            Employee empl6  = new Employee("Akrivh Krouska",          "2301110101",        "6970101011",       "2000-02-01",           "2020@05@06");
-            Employee empl7  = new Employee("Pantelhs Tatsis",         "2601010101",        "6975522897",       "2001-a1-p8",           "2020-01-05");
-            Employee empl8  = new Employee("Aristotelis Sifakis",     "2601010801",        "6973298777",       "2001-01-07",           "2019-o5-k8");
-            Employee empl9  = new Employee("Antonis Kokkinos",        "2102322751",        "6978899987",       "13-002-2001",          "2021-05-02");
-            Employee empl10 = new Employee("Katerina Vossoy",         "2105042087",        "6987304875",       "2001-07-11",           "001-09-2022");
-            Employee empl11 = new Employee("Athina Nikolaou",         "2700101010",        "6975588489",       "1997-02-30",           "2023-05-22");
-            Employee empl12 = new Employee("Aggelikh Panou",          "2401010101",        "6954848497",       "1998-04-31",           "2019-06-07");
-            Employee empl13 = new Employee("Hlias Konstantinidis",    "2701010102",        "6935660423",       "1950-09-25",           "1970-04-08");
-            Employee empl14 = new Employee("George Gomez",            "2501010101",        "6990101010",       "2007-12-01",           "2023-08-01");
-            Employee empl15 = new Employee("George Santos",           "2105000000",        "6988888888",       "1990-04-29",           "2014-06-01");
-            Employee empl16 = new Employee("Antonis Varvaris",        "2300000000",        "6955555555",       "2000-01-10",           "2018-05-06");
-            Employee empl17 = new Employee("Xristos Pilarinos",       "2105555555",        "6987451235",       "1999-05-21",           "2019-06-30");
-            Employee emplfault1 = new Employee("Aggelos Skandalis",   "2501010102",        "6988558589",       "1957-05-30",           "1977-02-03");
-            Employee emplfault2 = new Employee("Dimitris Siametis",   "2104588989",        "6999999999",       "2006-01-02",           "2024-01-01");
+            //                            "Ονοματεπώνυμο",          "Σταθερό Τηλέφωνο",        "Κινητό Τηλέφωνο",       "Ημερομηνία Γέννησης",          "Ημερομηνία Πρόσληψης
+            Employee empl1 = new Employee("George theocharis",         "2102322751",              "6998843565",         new DateTime(2001, 8, 23),      new DateTime(2022, 5, 8));
+            Employee empl2 = new Employee("panagiotis Petropoulos",    "2102887987",              "6975522693",         new DateTime(1985, 4, 3),       new DateTime(2010, 6, 15));
+            Employee empl3 = new Employee("Vasilis Athaniasiou",       "1201010101",              "6980101010",         new DateTime(1999, 7, 15),      new DateTime(2020, 8, 15));
+            Employee empl4 = new Employee("Evangelos Tsimentas",       "2701010101",              "7990101010",         new DateTime(1990, 3, 4),       new DateTime(2015, 6, 3));
+            Employee empl5 = new Employee("Omar Alhaz",                "2301010101",              "6970101010",         new DateTime(2000, 2, 1),       new DateTime(2020, 5, 6));
+            Employee empl6 = new Employee("Akrivh Krouska",            "2301110101",              "6970101011",         new DateTime(2000, 2, 1),       new DateTime(2020, 5, 6));
+            Employee empl7 = new Employee("Pantelhs Tatsis",           "2601010101",              "6975522897",         new DateTime(2001, 1, 8),       new DateTime(2020, 1, 5));
+            Employee empl8 = new Employee("Aristotelis Sifakis",       "2601010801",              "6973298777",         new DateTime(2001, 1, 7),       new DateTime(2019, 5, 8));
+            Employee empl9 = new Employee("Antonis Kokkinos",          "2102322751",              "6978899987",         new DateTime(2001, 2, 13),      new DateTime(2021, 5, 2));
+            Employee empl10 = new Employee("Katerina Vossoy",          "2105042087",              "6987304875",         new DateTime(2001, 7, 11),      new DateTime(2022, 9, 1));
+            Employee empl11 = new Employee("Athina Nikolaou",          "2700101010",              "6975588489",         new DateTime(1997, 2, 30),      new DateTime(2023, 5, 22));
+            Employee empl12 = new Employee("Aggelikh Panou",           "2401010101",              "6954848497",         new DateTime(1998, 4, 31),      new DateTime(2019, 6, 7));
+            Employee empl13 = new Employee("Hlias Konstantinidis",     "2701010102",              "6935660423",         new DateTime(1950, 9, 25),      new DateTime(1970, 4, 8));
+            Employee empl14 = new Employee("George Gomez",             "2501010101",              "6990101010",         new DateTime(2007, 12, 1),      new DateTime(2023, 8, 1));
+            Employee empl15 = new Employee("George Santos",            "2105000000",              "6988888888",         new DateTime(1990, 4, 29),      new DateTime(2014, 6, 1));
+            Employee empl16 = new Employee("Antonis Varvaris",         "2300000000",              "6955555555",         new DateTime(2000, 1, 10),      new DateTime(2018, 5, 6));
+            Employee empl17 = new Employee("Xristos Pilarinos",        "2105555555",              "6987451235",         new DateTime(1999, 5, 21),      new DateTime(2019, 6, 30));
+            Employee emplfault1 = new Employee("Aggelos Skandalis",    "2501010102",              "6988558589",         new DateTime(1957, 5, 30),      new DateTime(1977, 2, 3));
+            Employee emplfault2 = new Employee("Dimitris Siametis",    "2104588989",              "6999999999",         new DateTime(2006, 1, 2),       new DateTime(2024, 1, 1));
+
 
             // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
             object[,] testcases =
