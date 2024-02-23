@@ -402,7 +402,7 @@ namespace HRLibUnitTest
                 new Employee("Tom Hanks",           "2102625345",         "6971345456",        new DateTime(1959, 07, 09),           new DateTime(1989, 06, 09)),
                 new Employee("Leonardo DiCaprio",   "2102324901",         "6981314145",        new DateTime(1974, 11, 11),           new DateTime(1995, 03, 15)),
                 new Employee("Meryl Streep",        "2801234681",         "6945678789",        new DateTime(1955, 06, 22),           new DateTime(1975, 05, 05)),
-                new Employee("Robert Downey Jr.",   "2102625345",         "6971345456",        new DateTime(1965, 04, 04),           new DateTime(1984, 08, 23)),
+                new Employee("Robert Downey",       "2102625345",         "6971345456",        new DateTime(1965, 04, 04),           new DateTime(1984, 08, 23)),
                 new Employee("Johnny Depp",         "2102324901",         "6981314145",        new DateTime(1963, 06, 09),           new DateTime(1984, 09, 10)),
                 new Employee("Angelina Jolie",      "2801234681",         "6945678789",        new DateTime(1975, 06, 04),           new DateTime(1994, 10, 12)),
                 new Employee("Chris Hemsworth",     "2102324901",         "6981314145",        new DateTime(1983, 08, 11),           new DateTime(2002, 03, 18)),
