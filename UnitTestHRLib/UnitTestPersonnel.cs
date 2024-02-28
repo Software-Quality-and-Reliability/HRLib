@@ -11,32 +11,42 @@ namespace HRLibUnitTest
         [TestMethod]
         public void TestMethodValidName() 
         {
+            // Παραδοχές υλοποίησης
+            string firstnameAndSurname = " [1] Να υπάρχει ο χαρακτήρας κενό ' ' ακριβώς μία φορά";
+            string moreThan3Chars = " [2.1] Το πλήθος των χαρακτήρων πρέπει να είναι τουλάχιστον 3";
+            string lessThan15Chars = " [2.2] Το πλήθος των χαρακτήρων πρέπει να είναι το πολύ 15";
+            string onlyLetters = " [2.3] Πρέπει να περιέχει μόνο γράμματα";
+            string firstLetterUpper = " [2.4] Το 1ο γράμμα πρέπει να είναι κεφαλαίο";
+            string restLettersLower = " [2.5] Τα γράμματα εκτός από το 1ο, πρέπει να είναι πεζά";
+            string onlyLatin = " [2.6] Τα γράμματα πρέπει να είναι όλα λατινικά";
+            string validName = " Έγκυρο ονοματεπώνυμο";
+
             // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
             HRLib.Personnel per = new HRLib.Personnel();
 
             // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
             object[,] testcases =
             {
-            //  { id,               "Ονοματεπώνυμο",                 εκτιμώμενη τιμή            "Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου"}
+            //  { id,               "Ονοματεπώνυμο",                 εκτιμώμενη τιμή            "Παραδοχή υλοποίησης"}
             //                                                    επιστροφής της ValidName()                      
-                { "1",              "VasilisAthanasiou",                  false,                "[1] Να υπάρχει ο χαρακτήρας κενό ' ' ακριβώς μία φορά" },
-                { "2",              "George Theo Xaris",                  false,                "[1] Να υπάρχει ο χαρακτήρας κενό ' ' ακριβώς μία φορά" },
-                { "3",              "Om Alhaz",                           false,                "[2.1] Το πλήθος των χαρακτήρων πρέπει να είναι τουλάχιστον 3" },
-                { "4",              "Vasilis At",                         false,                "[2.1] Το πλήθος των χαρακτήρων πρέπει να είναι τουλάχιστον 3" },
-                { "5",              "Georgeeeeeeeeeee Theoxaris",         false,                "[2.2] Το πλήθος των χαρακτήρων πρέπει να είναι το πολύ 15" },
-                { "6",              "Omar Alhaaaaaaaaaaaaz",              false,                "[2.2] Το πλήθος των χαρακτήρων πρέπει να είναι το πολύ 15" },
-                { "7",              "Vasilis123 Athanasiou",              false,                "[2.3] Πρέπει να περιέχει μόνο γράμματα" },
-                { "8",              "George Theo_xaris",                  false,                "[2.3] Πρέπει να περιέχει μόνο γράμματα" },
-                { "9",              "omar Alhaz",                         false,                "[2.4] Το 1ο γράμμα πρέπει να είναι κεφαλαίο" },
-                { "10",             "Vasilis athanasiou",                 false,                "[2.4] Το 1ο γράμμα πρέπει να είναι κεφαλαίο" },
-                { "11",             "GeorGe Theoxaris",                   false,                "[2.5] Τα γράμματα εκτός από το 1ο, πρέπει να είναι πεζά" },
-                { "12",             "Omar AlhAz",                         false,                "[2.5] Τα γράμματα εκτός από το 1ο, πρέπει να είναι πεζά" },
-                { "13",             "Βασίλης Athanasiou",                 false,                "[2.6] Τα γράμματα πρέπει να είναι όλα λατινικά" },
-                { "14",             "George Θεοχάρης",                    false,                "[2.6] Τα γράμματα πρέπει να είναι όλα λατινικά" },
-                { "15",             "Omar Alhaz",                          true,                "Έγκυρο ονοματεπώνυμο" },
-                { "16",             "Vasilis Athanasiou",                  true,                "Έγκυρο ονοματεπώνυμο" },
-                { "17",             "George Theoxaris",                    true,                "Έγκυρο ονοματεπώνυμο" },
-                { "NameError_1",    "Vasileios Evangelos Athanasiou",      true,                "[1] Να υπάρχει ο χαρακτήρας κενό ' ' ακριβώς μία φορά" }
+                { "1",              "VasilisAthanasiou",                  false,                firstnameAndSurname },
+                { "2",              "George Theo Xaris",                  false,                firstnameAndSurname },
+                { "3",              "Om Alhaz",                           false,                moreThan3Chars },
+                { "4",              "Vasilis At",                         false,                moreThan3Chars },
+                { "5",              "Georgeeeeeeeeeee Theoxaris",         false,                lessThan15Chars },
+                { "6",              "Omar Alhaaaaaaaaaaaaz",              false,                lessThan15Chars },
+                { "7",              "Vasilis123 Athanasiou",              false,                onlyLetters },
+                { "8",              "George Theo_xaris",                  false,                onlyLetters },
+                { "9",              "omar Alhaz",                         false,                firstLetterUpper },
+                { "10",             "Vasilis athanasiou",                 false,                firstLetterUpper },
+                { "11",             "GeorGe Theoxaris",                   false,                restLettersLower },
+                { "12",             "Omar AlhAz",                         false,                restLettersLower },
+                { "13",             "Βασίλης Athanasiou",                 false,                onlyLatin },
+                { "14",             "George Θεοχάρης",                    false,                onlyLatin },
+                { "15",             "Omar Alhaz",                          true,                validName },
+                { "16",             "Vasilis Athanasiou",                  true,                validName },
+                { "17",             "George Theoxaris",                    true,                validName },
+                { "NameError_1",    "Vasileios Evangelos Athanasiou",      true,                firstnameAndSurname }
             };
 
             // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
@@ -74,30 +84,43 @@ namespace HRLibUnitTest
 
         [TestMethod]
         public void TestMethodValidPassword() 
-        { 
+        {
+            // Παραδοχές υλοποίησης
+            string moreThan12Chars = " [1] Το πλήθος των χαρακτήρων πρέπει να είναι τουλάχιστον 12";
+            string lessThan24Chars = " [2] Το πλήθος των χαρακτήρων πρέπει να είναι το πολύ 24";
+            string oneUpper = " [3.1] Να περιέχει τουλάχιστον 1 κεφαλαίο γράμμα";
+            string oneLower = " [3.2] Να περιέχει τουλάχιστον 1 πεζό γράμμα";
+            string oneDigit = " [3.3] Να περιέχει τουλάχιστον 1 ψηφίο";
+            string oneSymbol = " [3.4] Να περιέχει τουλάχιστον 1 ειδικό σύμβολο";
+            string noWhitespaces = " [4] Να μην περιέχει χαρακτήρες διαφυγής";
+            string onlyLatin = " [5] Τα γράμματα πρέπει να είναι λατινικοί χαρακτήρες";
+            string startsWithUpper = " [6.1] Πρέπει να ξεκινάει από κεφαλαίο γράμμα";
+            string endsWithDigit = " [6.2] Πρέπει να τελειώνει με ψηφίο";
+            string validPassword = " Έγκυρος κωδικός πρόσβασης";
+
             // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
             HRLib.Personnel per = new HRLib.Personnel();
 
             // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
             object[,] testcases =
             { 
-            //  { id,                 "Κωδικός",                      εκτιμώμενη τιμή            "Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου"}
+            //  { id,                 "Κωδικός",                      εκτιμώμενη τιμή            "Παραδοχή υλοποίησης"}
             //                                                  επιστροφής της ValidPassword()
-                { "1",                "Ako2",                             false,                 "[1] Το πλήθος των χαρακτήρων πρέπει να είναι τουλάχιστον 12" },
-                { "2",                "Akkakbfpaoqweh!@#1224hhff1",       false,                 "[2] Το πλήθος των χαρακτήρων πρέπει να είναι το πολύ 24" },
-                { "3",                "!@#$%^&**&^%$#@!",                 false,                 "[3] Συνδυασμός χαρακτήρων"},
-                { "4",                "george@12#po12" ,                  false,                 "[3.1] Να περιέχει τουλάχιστον 1 κεφαλαίο γράμμα"},
-                { "5",                "OMARGYPAS2!@13",                   false,                 "[3.2] Να περιέχει τουλάχιστον ένα πεζό γράμμα"},
-                { "6",                "Ath@n@siouvasil",                  false,                 "[3.3] Να περιέχει τουλάχιστον 1 ψηφίο"},
-                { "7",                "George2001theo13",                 false,                 "[3.4] Να περιέχει τουλάχιστον 1 ειδικό σύμβολο"},
-                { "8",                "George!@#13 hf" ,                  false,                 "[4] Να μην περιέχει χαρακτήρες διαφυγής"},
-                { "9",                "Γιωργοςπαδα@2024",                 false,                 "[5] Τα γράμματα πρέπει να είναι λατινικοί χαρακτήρες"},
-                { "10",               "omara#Alhaz2001",                  false,                 "[6.1] Πρέπει να ξεκινάει από κεφαλαίο γράμμα"},
-                { "11",               "Koaos1^klpoplkjg",                 false,                 "[6.2] Πρέπει να τελειώνει με ψηφίο" },
-                { "12",               "Georgethe8o@#$9",                  true,                  "Έγκυρος κωδικός πρόσβασης" },
-                { "13",               "Vasilisatha8no#6",                 true,                  "Έγκυρος κωδικός πρόσβασης" },
-                { "14",               "Omar_@Alhaz123",                   true,                  "Έγκυρος κωδικός πρόσβασης" },
-                {"PasswordError_2",   "Pao131908~123",                    true,                  "[3.4] Να περιέχει τουλάχιστον 1 ειδικό σύμβολο"}
+                { "1",                "Ako2",                             false,                 moreThan12Chars },
+                { "2",                "Akkakbfpaoqweh!@#1224hhff1",       false,                 lessThan24Chars },
+                { "3",                "!@#$%^&**&^%$#@!",                 false,                 oneUpper + oneLower + oneDigit + oneSymbol},
+                { "4",                "george@12#po12" ,                  false,                 oneUpper },
+                { "5",                "OMARGYPAS2!@13",                   false,                 oneLower },
+                { "6",                "Ath@n@siouvasil",                  false,                 oneDigit },
+                { "7",                "George2001theo13",                 false,                 oneSymbol },
+                { "8",                "George!@#13 hf" ,                  false,                 noWhitespaces },
+                { "9",                "Γιωργοςπαδα@2024",                 false,                 onlyLatin },
+                { "10",               "omara#Alhaz2001",                  false,                 startsWithUpper },
+                { "11",               "Koaos1^klpoplkjg",                 false,                 endsWithDigit },
+                { "12",               "Georgethe8o@#$9",                  true,                  validPassword },
+                { "13",               "Vasilisatha8no#6",                 true,                  validPassword },
+                { "14",               "Omar_@Alhaz123",                   true,                  validPassword },
+                {"PasswordError_2",   "Pao131908~123",                    true,                  oneSymbol }
             };
 
 
@@ -139,6 +162,13 @@ namespace HRLibUnitTest
         [TestMethod]
         public void TestMethodEncryptPassword() 
         {
+            // Παραδοχές υλοποίησης
+            string invalidPassword = " Άκυρος κωδικός πρόσβασης";
+            string validPassword = " Έγκυρος κωδικός πρόσβασης";
+            string correctEncryption = " Σωστή κρυπτογράφηση";
+            string asciiTable = " [2] Πρέπει να χρησιμοποιηθεί το αλφάβητο ASCII";
+            string shifter5 = " [3] Πρέπει η ολίσθηση να είναι κατά 5 θέσεις";
+
             // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
             HRLib.Personnel per = new HRLib.Personnel();
 
