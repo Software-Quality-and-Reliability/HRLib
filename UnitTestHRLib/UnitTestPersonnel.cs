@@ -163,11 +163,9 @@ namespace HRLibUnitTest
         public void TestMethodEncryptPassword() 
         {
             // Παραδοχές υλοποίησης
-            string invalidPassword = " Άκυρος κωδικός πρόσβασης";
+            string invalidPassword = " [1] Ο κωδικός πρέπει να είναι έγκυρος σύμφωνα με τις παραδοχές υλοποίησης της ValidPassword()";
             string validPassword = " Έγκυρος κωδικός πρόσβασης";
-            string correctEncryption = " Σωστή κρυπτογράφηση";
-            string asciiTable = " [2] Πρέπει να χρησιμοποιηθεί το αλφάβητο ASCII";
-            string shifter5 = " [3] Πρέπει η ολίσθηση να είναι κατά 5 θέσεις";
+            string validEncryption = " Σωστή κρυπτογράφηση";
 
             // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
             HRLib.Personnel per = new HRLib.Personnel();
@@ -175,18 +173,20 @@ namespace HRLibUnitTest
             // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
             object[,] testcases =
             {
-            //  { id,                   "Κωδικός",                         εκτιμώμενη τιμή                  "Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου"}
+            //  { id,                   "Κωδικός",                         εκτιμώμενη τιμή                  "Παραδοχή υλοποίησης" }
             //                                                       επιστροφής της EncryptPassword()
-                { "1",                  "Omar_@Alhaz123",                  "TrfwdEFqmf678",                  "Λανθασμένη κρυπτογράφηση" },
-                { "2",                  "theodosis123",                          null,                       "[1] Ο κωδικός πρέπει να είναι έγκυρος σύμφωνα με τις παραδοχές υλοποίησης της ValidPassword()" },
-                { "3",                  "Tigrhs_@16723",                   "YnlwmxdE6;<78",                  "Λανθασμένη κρυπτογράφηση" },
-                { "4",                  "G.Theo_@13223",                   "L3YmjtdE68778",                  "Λανθασμένη κρυπτογράφηση" },
-                { "5",                  "Makh$_@18923",                    "Rfpm)dE6=>78",                   "Λανθασμένη κρυπτογράφηση" },
-                { "6",                  "Tango_@12093",                    "YfsltdE675>8",                   "Λανθασμένη κρυπτογράφηση" },
-                { "7",                  "Lanaras_@16723",                  "QfsfwfxdE6;<78",                 "Λανθασμένη κρυπτογράφηση" },
-                { "8",                  "omar24323",                             null,                       "[1] Ο κωδικός πρέπει να είναι έγκυρος σύμφωνα με τις παραδοχές υλοποίησης της ValidPassword()" },
-                { "9",                  "villys12345",                           null,                       "[1] Ο κωδικός πρέπει να είναι έγκυρος σύμφωνα με τις παραδοχές υλοποίησης της ValidPassword()" },
-                { "10",                 "George_!12525",                   "Ljtwljd&67:7:",                  "Λανθασμένη κρυπτογράφηση" }
+                { "1",                  "omar24323",                             null,                       invalidPassword },
+                { "2",                  "villys12345",                           null,                       invalidPassword },
+                { "3",                  "theodosis123",                          null,                       invalidPassword },
+                { "4",                  "Om",                                    null,                       invalidPassword },
+                { "5",                  "Tigrhs_sdfdssdfsdsdfsdf@16723",         null,                       invalidPassword },
+                { "6",                  "Τρούσσας_123",                          null,                       invalidPassword },
+                { "7",                  "G.Theo_@13223",                    "L3YmjtdE68778",                 validPassword + validEncryption },
+                { "8",                  "Makh$_@18923",                     "Rfpm)dE6=>78",                  validPassword + validEncryption },
+                { "9",                  "Tango_@12093",                     "YfsltdE675>8",                  validPassword + validEncryption },
+                { "10",                 "Lanaras_@16723",                   "QfsfwfxdE6;<78",                validPassword + validEncryption },
+                { "11",                 "George_!12525",                    "Ljtwljd&67:7:",                 validPassword + validEncryption },
+                { "12",                 "Krouska_123456",                   "Pwtzxpfd6789:;",                validPassword + validEncryption }
             };
 
 
@@ -234,43 +234,64 @@ namespace HRLibUnitTest
         [TestMethod]
         public void TestMethodCheckPhone() 
         {
+            // Παραδοχές υλοποίησης
+            string onlyDigits = " [1] Να περιέχει μόνο αριθμούς";
+            string digits10 = " [2] Οι αριθμοί να είναι ακριβώς 10";
+            string startsWith2HomePhone = " [3] Να ξεκινάει σε 2 αν πρόκειται για σταθερό";
+            string belongsToZone = " [3.1] Να ανήκει σε ζώνη";
+            string validHomePhone = "Έγκυρο σταθερό τηλέφωνο";
+            string zone1 = " με ζώνη την Μητροπολιτική Περιοχή Αθήνας - Πειραιά";
+            string zone2 = " με ζώνη την Ανατολική Στερεά Ελλάδα, Αττική, Νησιά Αιγαίου";
+            string zone3 = " με ζώνη την Κεντρική Μακεδονία";
+            string zone4 = " με ζώνη την Θεσσαλία, Δυτική Μακεδονία";
+            string zone5 = " με ζώνη την Θράκη, Ανατολική Μακεδονία";
+            string zone6 = " με ζώνη την Ήπειρο, Δυτική Στερεά Ελλάδα, Δυτική Πελοπόννησο, Ιόνια Νησιά";
+            string zone7 = " με ζώνη την Ανατολική Πελοπόννησο, Κύθηρα";
+            string zone8 = " με ζώνη την Κρήτη";
+            string startsWith69MobilePhone = " [4] Να ξεκινάει σε 69 αν πρόκειται για κινητό";
+            string belongsToMobileDataComp = " [4.1] Να ανήκει σε εταιρία κινητής τηλεφωνίας";
+            string validMobilePhone = " Έγκυρο κινητό τηλέφωνο";
+            string nova = " με εταιρία κινητής τηλεφωνίας τη Nova";
+            string cosmote = " με εταιρία κινητής τηλεφωνίας τη Cosmote";
+            string vodafone = " με εταιρία κινητής τηλεφωνίας τη Vodafone";
+
             // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
             HRLib.Personnel per = new HRLib.Personnel();
 
             // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
             object[,] testcases =
             {
-             // { id,                       "Αριθμός Τηλεφώνου",        εκτιμώμενη τιμή επιστροφής           εκτιμώμενη τιμή επιστροφής                              "Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου"}
+             // { id,                       "Αριθμός Τηλεφώνου",        εκτιμώμενη τιμή επιστροφής           εκτιμώμενη τιμή επιστροφής                           "Παραδοχή υλοποίησης" }
              //                                                        της CheckPhone() στην TypePhone     της CheckPhone() στην InfoPhone   
-                { "1",                      "210-124567",                        -1,                                 null,                                         "[1] Να περιέχει μόνο αριθμούς" },
-                { "2",                      "690A49898c",                        -1,                                 null,                                         "[1] Να περιέχει μόνο αριθμούς" },
-                { "3",                      "22314",                             -1,                                 null,                                         "[2] Οι αριθμοί να είναι ακριβώς 10" },
-                { "4",                      "69312",                             -1,                                 null,                                         "[2] Οι αριθμοί να είναι ακριβώς 10" },
-                { "5",                      "23444444444444",                    -1,                                 null,                                         "[2] Οι αριθμοί να είναι ακριβώς 10" },
-                { "6",                      "69988888888888",                    -1,                                 null,                                         "[2] Οι αριθμοί να είναι ακριβώς 10" },
-                { "7",                      "140124567",                         -1,                                 null,                                         "[3] Να ξεκινάει σε 21 αν πρόκειται για σταθερό" },
-                { "8",                      "2001010101",                        -1,                                 null,                                         "[3.1] Να ανήκει σε ζώνη" },
-                { "9",                      "2101010101",                         0,                "Metropolitan Area of Athens - Piraeus",                       "Έγκυρο σταθερό τηλέφωνο με ζώνη την Μητροπολιτική Περιοχή Αθήνας - Πειραιά" },
-                { "10",                     "2201010101",                         0,             "Eastern Central Greece, Attica, Aegean Islands",                 "Έγκυρο σταθερό τηλέφωνο με ζώνη την Ανατολική Στερεά Ελλάδα, Αττική, Νησιά Αιγαίου" },
-                { "11",                     "2301010101",                         0,                            "Central Macedonia",                               "Έγκυρο σταθερό τηλέφωνο με ζώνη την Κεντρική Μακεδονία" },
-                { "12",                     "2401010101",                         0,                        "Thessaly, Western Macedonia",                         "Έγκυρο σταθερό τηλέφωνο με ζώνη την Θεσσαλία, Δυτική Μακεδονία" },
-                { "13",                     "2501010101",                         0,                            "Thrace, Eastern Macedonia",                       "Έγκυρο σταθερό τηλέφωνο με ζώνη την Θράκη, Ανατολική Μακεδονία" },
-                { "14",                     "2601010101",                         0,       "Epirus, Western Central Greece, Western Peloponnese, Ionian Islands",  "Έγκυρο σταθερό τηλέφωνο με ζώνη την Ήπειρο, Δυτική Στερεά Ελλάδα, Δυτική Πελοπόννησο, Ιόνια Νησιά" },
-                { "15",                     "2701010101",                         0,                        "Eastern Peloponnese, Kythera",                        "Έγκυρο σταθερό τηλέφωνο με ζώνη την Ανατολική Πελοπόννησο, Κύθηρα" },
-                { "16",                     "2801010101",                         0,                                "Crete",                                       "Έγκυρο σταθερό τηλέφωνο με ζώνη την Κρήτη" },
-                { "17",                     "2901010101",                        -1,                                  null,                                        "[3.1] Να ανήκει σε ζώνη" },
-                { "18",                     "5971476763",                        -1,                                  null,                                        "[4] Να ξεκινάει σε 69 αν πρόκειται για κινητό" },
-                { "19",                     "6900101010",                         1,                                 "Nova",                                       "Έγκυρο κινητό τηλέφωνο με εταιρία κινητής τηλεφωνίας τη Nova"},
-                { "20",                     "6910101010",                        -1,                                  null,                                        "[4.1] Να ανήκει σε εταιρία κινητής τηλεφωνίας" },
-                { "21",                     "6920101010",                        -1,                                  null,                                        "[4.1] Να ανήκει σε εταιρία κινητής τηλεφωνίας" },
-                { "22",                     "6930101010",                         1,                                 "Nova",                                       "Έγκυρο κινητό τηλέφωνο με εταιρία κινητής τηλεφωνίας τη Nova"},
-                { "23",                     "6940101010",                         1,                                "Vodafone",                                    "Έγκυρο κινητό τηλέφωνο με εταιρία κινητής τηλεφωνίας τη Vodafone"},
-                { "24",                     "6950101010",                         1,                                "Vodafone",                                    "Έγκυρο κινητό τηλέφωνο με εταιρία κινητής τηλεφωνίας τη Vodafone"},
-                { "25",                     "6960101010",                        -1,                                  null,                                        "[4.1] Να ανήκει σε εταιρία κινητής τηλεφωνίας" },
-                { "26",                     "6970101010",                         1,                                "Cosmote",                                     "Έγκυρο κινητό τηλέφωνο με εταιρία κινητής τηλεφωνίας τη Cosmote"},
-                { "27",                     "6980101010",                         1,                                "Cosmote",                                     "Έγκυρο κινητό τηλέφωνο με εταιρία κινητής τηλεφωνίας τη Cosmote"},
-                { "28",                     "6990101010",                         1,                                 "Nova",                                       "Έγκυρο κινητό τηλέφωνο με εταιρία κινητής τηλεφωνίας τη Nova"},
-                { "PhoneError_3",           "210 28 12 967",                      0,                     "Metropolitan Area of Athens - Piraeus",                  "[1] Να περιέχει μόνο αριθμούς" }
+                { "1",                      "210-124567",                        -1,                                 null,                                         onlyDigits },
+                { "2",                      "690A49898c",                        -1,                                 null,                                         onlyDigits },
+                { "3",                      "22314",                             -1,                                 null,                                         digits10 },
+                { "4",                      "69312",                             -1,                                 null,                                         digits10 },
+                { "5",                      "23444444444444",                    -1,                                 null,                                         digits10 },
+                { "6",                      "69988888888888",                    -1,                                 null,                                         digits10 },
+                { "7",                      "140124567",                         -1,                                 null,                                         startsWith2HomePhone },
+                { "8",                      "2001010101",                        -1,                                 null,                                         belongsToZone },
+                { "9",                      "2101010101",                         0,                "Metropolitan Area of Athens - Piraeus",                       validHomePhone + zone1 },
+                { "10",                     "2201010101",                         0,             "Eastern Central Greece, Attica, Aegean Islands",                 validHomePhone + zone2 },
+                { "11",                     "2301010101",                         0,                            "Central Macedonia",                               validHomePhone + zone3 },
+                { "12",                     "2401010101",                         0,                        "Thessaly, Western Macedonia",                         validHomePhone + zone4 },
+                { "13",                     "2501010101",                         0,                            "Thrace, Eastern Macedonia",                       validHomePhone + zone5 },
+                { "14",                     "2601010101",                         0,       "Epirus, Western Central Greece, Western Peloponnese, Ionian Islands",  validHomePhone + zone6 },
+                { "15",                     "2701010101",                         0,                        "Eastern Peloponnese, Kythera",                        validHomePhone + zone7 },
+                { "16",                     "2801010101",                         0,                                "Crete",                                       validHomePhone + zone8 },
+                { "17",                     "2901010101",                        -1,                                  null,                                        belongsToZone },
+                { "18",                     "5971476763",                        -1,                                  null,                                        startsWith69MobilePhone },
+                { "19",                     "6900101010",                         1,                                 "Nova",                                       validMobilePhone + nova },
+                { "20",                     "6910101010",                        -1,                                  null,                                        belongsToMobileDataComp },
+                { "21",                     "6920101010",                        -1,                                  null,                                        belongsToMobileDataComp },
+                { "22",                     "6930101010",                         1,                                 "Nova",                                       validMobilePhone + nova },
+                { "23",                     "6940101010",                         1,                                "Vodafone",                                    validMobilePhone + vodafone },
+                { "24",                     "6950101010",                         1,                                "Vodafone",                                    validMobilePhone + vodafone },
+                { "25",                     "6960101010",                        -1,                                  null,                                        belongsToMobileDataComp },
+                { "26",                     "6970101010",                         1,                                "Cosmote",                                     validMobilePhone + cosmote },
+                { "27",                     "6980101010",                         1,                                "Cosmote",                                     validMobilePhone + cosmote },
+                { "28",                     "6990101010",                         1,                                 "Nova",                                       validMobilePhone + nova },
+                { "PhoneError_3",           "210 28 12 967",                      0,                     "Metropolitan Area of Athens - Piraeus",                  onlyDigits }
             };
 
             // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
@@ -317,6 +338,12 @@ namespace HRLibUnitTest
         [TestMethod]
         public void TestMethodInfoEmployee() 
         {
+            // Παραδοχές υλοποίησης
+            string ageBetween18And70 = " [1] Η ηλικία πρέπει να είναι από 18-70 χρονών";
+            string olderThan18ForHiring = " [2] Η ημερομηνία πρόσληψης πρέπει να είναι από την ημερομηνία γέννησης μεταγενέστερα κατά 18 χρόνια εώς την τρέχουσα ημερομηνία";
+            string validAge = " Έγκυρη ηλικία : ";
+            string validXpYears = " Έγκυρα χρόνια προϋπηρεσίας : ";
+
             // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
             HRLib.Personnel per = new HRLib.Personnel();
 
@@ -345,27 +372,27 @@ namespace HRLibUnitTest
             // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
             object[,] testcases =
             {
-             // { id,                  "Υπάλληλος",            εκτιμώμενη τιμή επιστροφής,          εκτιμώμενη τιμή επιστροφής,                     "Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου"}
+             // { id,                  "Υπάλληλος",            εκτιμώμενη τιμή επιστροφής,          εκτιμώμενη τιμή επιστροφής,                     "Παραδοχή υλοποίησης" }
              //                                                της InfoEmployee() στην Age     της InfoEmployee() στην YearsOfExperience              
-                { "1",                   empl1,                          22,                                     1,                                 "Ο υπάλληλος είναι 22 χρόνων και έχει 1 χρόνο προϋπηρεσίας"},
-                { "2",                   empl2,                          38,                                    13,                                 "Ο υπάλληλος είναι 38 χρόνων και έχει 13 χρόνια προϋπηρεσίας"},
-                { "3",                   empl3,                          24,                                     3,                                 "Ο υπάλληλος είναι 24 χρόνων και έχει 3 χρόνια προϋπηρεσίας"},
-                { "4",                   empl4,                          33,                                     8,                                 "Ο υπάλληλος είναι 33 χρόνων και έχει 8 χρόνια προϋπηρεσίας"},
-                { "5",                   empl5,                          24,                                     3,                                 "Ο υπάλληλος είναι 24 χρόνων και έχει 3 χρόνια προϋπηρεσίας"},
-                { "6",                   empl6,                          24,                                     3,                                 "Ο υπάλληλος είναι 24 χρόνων και έχει 3 χρόνια προϋπηρεσίας"},
-                { "7",                   empl7,                          23,                                     4,                                 "Ο υπάλληλος είναι 23 χρόνων και έχει 4 χρόνια προϋπηρεσίας"},
-                { "8",                   empl8,                          23,                                     4,                                 "Ο υπάλληλος είναι 23 χρόνων και έχει 4 χρόνια προϋπηρεσίας"},
-                { "9",                   empl9,                          23,                                     2,                                 "Ο υπάλληλος είναι 23 χρόνων και έχει 2 χρόνια προϋπηρεσίας"},
-                { "10",                  empl10,                         22,                                     1,                                 "Ο υπάλληλος είναι 22 χρόνων και έχει 1 χρόνο προϋπηρεσίας"},
-                { "11",                  empl11,                         26,                                     0,                                 "Ο υπάλληλος είναι 26 χρόνων και είναι στον 1ο χρόνο προϋπηρεσίας"},
-                { "12",                  empl12,                         25,                                     4,                                 "Ο υπάλληλος είναι 25 χρόνων και έχει 4 χρόνια προϋπηρεσίας"},
-                { "13",                  empl13,                         -1,                                    53,                                 "[1] Η ηλικία πρέπει να είναι από 18-70 χρονών" },
-                { "14",                  empl14,                         -1,                                    -1,                                 "[2] Η ημερομηνία πρόσληψης πρέπει να είναι από την ημερομηνία γέννησης μεταγενέστερα κατά 18 χρόνια εώς την τρέχουσα ημερομηνία" },
-                { "15",                  empl15,                         33,                                     9,                                 "Ο υπάλληλος είναι 33 χρόνων και έχει 9 χρόνια προϋπηρεσίας" },
-                { "16",                  empl16,                         24,                                     5,                                 "Ο υπάλληλος είναι 24 χρόνων και έχει 5 χρόνια προϋπηρεσίας" },
-                { "17",                  empl17,                         24,                                     4,                                 "Ο υπάλληλος είναι 24 χρόνων και έχει 4 χρόνια προϋπηρεσίας" },
-                { "AgeError_4",          emplfault1,                     70,                                    47,                                 "[1] Η ηλικία πρέπει να είναι από 18-70 χρονών"},
-                { "YearsOfXpError_5",    emplfault2,                     18,                                     0,                                 "[2] Η ημερομηνία πρόσληψης πρέπει να είναι από την ημερομηνία γέννησης μεταγενέστερα κατά 18 χρόνια εώς την τρέχουσα ημερομηνία"}
+                { "1",                   empl1,                          22,                                     1,                                 validAge + "22" + validXpYears + "1" },
+                { "2",                   empl2,                          38,                                    13,                                 validAge + "38" + validXpYears + "13" },
+                { "3",                   empl3,                          24,                                     3,                                 validAge + "24" + validXpYears + "3" },
+                { "4",                   empl4,                          33,                                     8,                                 validAge + "33" + validXpYears + "8" },
+                { "5",                   empl5,                          24,                                     3,                                 validAge + "24" + validXpYears + "3" },
+                { "6",                   empl6,                          24,                                     3,                                 validAge + "24" + validXpYears + "3" },
+                { "7",                   empl7,                          23,                                     4,                                 validAge + "23" + validXpYears + "4" },
+                { "8",                   empl8,                          23,                                     4,                                 validAge + "23" + validXpYears + "4" },
+                { "9",                   empl9,                          23,                                     2,                                 validAge + "23" + validXpYears + "2" },
+                { "10",                  empl10,                         22,                                     1,                                 validAge + "22" + validXpYears + "1" },
+                { "11",                  empl11,                         26,                                     0,                                 validAge + "26" + validXpYears + "0" },
+                { "12",                  empl12,                         25,                                     4,                                 validAge + "25" + validXpYears + "4" },
+                { "13",                  empl13,                         -1,                                    53,                                 ageBetween18And70 },
+                { "14",                  empl14,                         -1,                                    -1,                                 olderThan18ForHiring },
+                { "15",                  empl15,                         33,                                     9,                                 validAge + "33" + validXpYears + "9" },
+                { "16",                  empl16,                         24,                                     5,                                 validAge + "24" + validXpYears + "5" },
+                { "17",                  empl17,                         24,                                     4,                                 validAge + "24" + validXpYears + "4" },
+                { "AgeError_4",          emplfault1,                     70,                                    47,                                 ageBetween18And70 },
+                { "YearsOfXpError_5",    emplfault2,                     18,                                     0,                                 olderThan18ForHiring }
 
             };
 

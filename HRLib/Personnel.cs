@@ -177,8 +177,6 @@ namespace HRLib
        /*   Παραδοχές υλοποίησης:
         *  
         *   [1] Ο κωδικός πρέπει να είναι έγκυρος σύμφωνα με τις παραδοχές υλοποίησης της ValidPassword()
-        *   [2] Πρέπει να χρησιμοποιηθεί το αλφάβητο ASCII
-        *   [3] Πρέπει η ολίσθηση να είναι κατά 5 θέσεις
         *  
         */
         public void EncryptPassword(string Password, ref string EncryptedPW) 
@@ -188,9 +186,8 @@ namespace HRLib
             // ----- [1] Ο κωδικός πρέπει να είναι έγκυρος σύμφωνα με τις παραδοχές της ValidPassword -----
             if (isValidPassword)
             {
-                // ----- [2] Πρέπει να χρησιμοποιηθεί το αλφάβητο ASCII -----
+                // ----- Έγκυρος κωδικός πρόσβασης -----
                 int alphabetSize = 128;
-                // ----- [3] Πρέπει η ολίσθηση να είναι κατά 5 θέσεις -----
                 int shift = 5;
 
                 foreach (char character in Password)
