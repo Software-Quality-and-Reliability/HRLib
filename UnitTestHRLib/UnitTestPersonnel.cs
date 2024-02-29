@@ -228,7 +228,6 @@ namespace HRLibUnitTest
             // Στην περίπτωση που κάποιο Test Case απέτυχε, πέταξε exception.
             if (failed)
                 Assert.Fail();
-
         }
         
 
@@ -438,7 +437,6 @@ namespace HRLibUnitTest
             // Στην περίπτωση που κάποιο Test Case απέτυχε, πέταξε exception.
             if (failed)
                 Assert.Fail();
-
         }
 
         [TestMethod]
@@ -577,8 +575,6 @@ namespace HRLibUnitTest
             // Στην περίπτωση που κάποιο Test Case απέτυχε, πέταξε exception.
             if (failed)
                 Assert.Fail();
-
         }
-
     }
 }
