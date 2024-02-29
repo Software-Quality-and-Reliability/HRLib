@@ -289,7 +289,7 @@ namespace HRLibUnitTest
                 { "26",                     "6970101010",                         1,                                "Cosmote",                                     validMobilePhone + cosmote },
                 { "27",                     "6980101010",                         1,                                "Cosmote",                                     validMobilePhone + cosmote },
                 { "28",                     "6990101010",                         1,                                 "Nova",                                       validMobilePhone + nova },
-                { "PhoneError_4",           "210 28 12 967",                      0,                     "Metropolitan Area of Athens - Piraeus",                  onlyDigits }
+                { "PhoneError_3",           "210 28 12 967",                      0,                     "Metropolitan Area of Athens - Piraeus",                  onlyDigits }
             };
 
             // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
@@ -389,8 +389,8 @@ namespace HRLibUnitTest
                 { "15",                  empl15,                         33,                                     9,                                 validAge + "33" + validXpYears + "9" },
                 { "16",                  empl16,                         24,                                     5,                                 validAge + "24" + validXpYears + "5" },
                 { "17",                  empl17,                         24,                                     4,                                 validAge + "24" + validXpYears + "4" },
-                { "AgeError_5",          emplfault1,                     70,                                    47,                                 ageBetween18And70 },
-                { "YearsOfXpError_6",    emplfault2,                     18,                                     0,                                 youngerThan18ForHiring }
+                { "AgeError_4",          emplfault1,                     70,                                    47,                                 ageBetween18And70 },
+                { "YearsOfXpError_5",    emplfault2,                     18,                                     0,                                 youngerThan18ForHiring }
 
             };
 
