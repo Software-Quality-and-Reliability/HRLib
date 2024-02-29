@@ -384,7 +384,7 @@ namespace HRLibUnitTest
                 { "8",                   empl8,                          23,                                     4,                                 validAge + "23" + validXpYears + "4" },
                 { "9",                   empl9,                          23,                                     2,                                 validAge + "23" + validXpYears + "2" },
                 { "10",                  empl10,                         22,                                     1,                                 validAge + "22" + validXpYears + "1" },
-                { "11",                  empl11,                         26,                                     0,                                 validAge + "26" + validXpYears + "0" },
+                { "11",                  empl11,                         27,                                     0,                                 validAge + "26" + validXpYears + "0" },
                 { "12",                  empl12,                         25,                                     4,                                 validAge + "25" + validXpYears + "4" },
                 { "13",                  empl13,                         -1,                                    53,                                 ageBetween18And70 },
                 { "14",                  empl14,                         -1,                                    -1,                                 olderThan18ForHiring },
@@ -443,6 +443,9 @@ namespace HRLibUnitTest
         [TestMethod]
         public void TestMethodLiveInAthens() 
         {
+            // Παραδοχές υλοποίησης
+            string numAthensEmps = " Υπάλληλοι που κατοικούν στην Αθήνα : ";
+
             // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
             HRLib.Personnel per = new HRLib.Personnel();
 
@@ -529,15 +532,15 @@ namespace HRLibUnitTest
             // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
             object[,] testcases =
             {
-             // { id,               "Λίστα Υπαλλήλων",    εκτιμώμενη τιμή επιστροφής,           "Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου"}
+             // { id,               "Λίστα Υπαλλήλων",    εκτιμώμενη τιμή επιστροφής,           "Παραδοχή υλοποίησης"}
             //                                                της LiveInAthens()              
-                { "1",                  empls1,                        0,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 0" },
-                { "2",                  empls2,                        5,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 5" },
-                { "3",                  empls3,                        3,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 3" },
-                { "4",                  empls4,                        4,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 4" },
-                { "5",                  empls5,                       11,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 11" },
-                { "6",                  empls6,                        2,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 2" },
-                { "7",                  empls7,                        1,                       "Υπάλληλοι που κατοικούν στην Αθήνα : 1" }
+                { "1",                  empls1,                        0,                       numAthensEmps + "0/3" },
+                { "2",                  empls2,                        5,                       numAthensEmps + "5/7" },
+                { "3",                  empls3,                        3,                       numAthensEmps + "3/8" },
+                { "4",                  empls4,                        4,                       numAthensEmps + "3/9" },
+                { "5",                  empls5,                       11,                       numAthensEmps + "11/11" },
+                { "6",                  empls6,                        2,                       numAthensEmps + "3/7" },
+                { "7",                  empls7,                        1,                       numAthensEmps + "1/5" }
 
             };
 

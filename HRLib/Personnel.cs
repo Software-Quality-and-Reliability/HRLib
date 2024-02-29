@@ -351,8 +351,8 @@ namespace HRLib
 
             firstYear = DateTime.Today.Year - 70;
             lastYear = DateTime.Today.Year - 18;
-            DateTime firstBirthday = new DateTime(firstYear, DateTime.Today.Month, DateTime.Today.Day); 
-            DateTime lastBirthday = new DateTime(lastYear, DateTime.Today.Month, DateTime.Today.Day);   
+            DateTime firstBirthday = new DateTime(firstYear, 01, 01); 
+            DateTime lastBirthday = new DateTime(lastYear, 12, 31);   
             DateTime firstHiringDate = EmplX.Birthday.AddYears(18);  
             DateTime lastHiringDate = DateTime.Today;
 
@@ -410,9 +410,10 @@ namespace HRLib
 
                 // ----- [1] Το σταθερό τηλέφωνο πρέπει να ξεκινάει με "21" για τους κατοίκους της Αθήνας -----
                 this.CheckPhone(emp.HomePhone, ref TypePhone, ref InfoPhone);
-                // ----- [1.1] Οι πληροφορίες τηλεφώνου πρέπει να είναι "Μητροπολιτική Περιοχή Αθήνας - Πειραιά" για τους κατοίκους της Αθήνας -----
-                if (InfoPhone.Equals("Metropolitan Area of Athens - Piraeus"))
-                    countAthens++;
+                if (TypePhone == 0)
+                    // ----- [1.1] Οι πληροφορίες τηλεφώνου πρέπει να είναι "Μητροπολιτική Περιοχή Αθήνας - Πειραιά" για τους κατοίκους της Αθήνας -----
+                    if (InfoPhone.Equals("Metropolitan Area of Athens - Piraeus"))
+                        countAthens++;
             }
 
             return countAthens;
