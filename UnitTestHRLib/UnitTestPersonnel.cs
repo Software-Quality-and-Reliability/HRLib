@@ -29,8 +29,8 @@ namespace HRLibUnitTest
             {
             //  { id,               "Ονοματεπώνυμο",                 εκτιμώμενη τιμή            "Παραδοχή υλοποίησης"}
             //                                                    επιστροφής της ValidName()                      
-                { "1",              "VasilisAthanasiou",                  false,                firstnameAndSurname },
-                { "2",              "George Theo Xaris",                  false,                firstnameAndSurname },
+                { "1",              "Vasilis",                            false,                firstnameAndSurname },
+                { "2",              "Theoxaris",                          false,                firstnameAndSurname },
                 { "3",              "Om Alhaz",                           false,                moreThan3Chars },
                 { "4",              "Vasilis At",                         false,                moreThan3Chars },
                 { "5",              "Georgeeeeeeeeeee Theoxaris",         false,                lessThan15Chars },
@@ -166,6 +166,7 @@ namespace HRLibUnitTest
             string invalidPassword = " [1] Ο κωδικός πρέπει να είναι έγκυρος σύμφωνα με τις παραδοχές υλοποίησης της ValidPassword()";
             string validPassword = " Έγκυρος κωδικός πρόσβασης";
             string validEncryption = " Σωστή κρυπτογράφηση";
+            string invalidEncryption = " Λανθασμένη κρυπτογράφηση";
 
             // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
             HRLib.Personnel per = new HRLib.Personnel();
@@ -186,7 +187,8 @@ namespace HRLibUnitTest
                 { "9",                  "Tango_@12093",                     "YfsltdE675>8",                  validPassword + validEncryption },
                 { "10",                 "Lanaras_@16723",                   "QfsfwfxdE6;<78",                validPassword + validEncryption },
                 { "11",                 "George_!12525",                    "Ljtwljd&67:7:",                 validPassword + validEncryption },
-                { "12",                 "Krouska_123456",                   "Pwtzxpfd6789:;",                validPassword + validEncryption }
+                { "12",                 "Krouska_123456",                   "Pwtzxpfd6789:;",                validPassword + validEncryption },
+                { "EncryptionError_3",  "Uniwaaaa_@_12345",                 "Zsnbffff_@_12345",              validPassword + invalidEncryption }
             };
 
 
@@ -291,7 +293,7 @@ namespace HRLibUnitTest
                 { "26",                     "6970101010",                         1,                                "Cosmote",                                     validMobilePhone + cosmote },
                 { "27",                     "6980101010",                         1,                                "Cosmote",                                     validMobilePhone + cosmote },
                 { "28",                     "6990101010",                         1,                                 "Nova",                                       validMobilePhone + nova },
-                { "PhoneError_3",           "210 28 12 967",                      0,                     "Metropolitan Area of Athens - Piraeus",                  onlyDigits }
+                { "PhoneError_4",           "210 28 12 967",                      0,                     "Metropolitan Area of Athens - Piraeus",                  onlyDigits }
             };
 
             // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
@@ -340,7 +342,7 @@ namespace HRLibUnitTest
         {
             // Παραδοχές υλοποίησης
             string ageBetween18And70 = " [1] Η ηλικία πρέπει να είναι από 18-70 χρονών";
-            string olderThan18ForHiring = " [2] Η ημερομηνία πρόσληψης πρέπει να είναι από την ημερομηνία γέννησης μεταγενέστερα κατά 18 χρόνια εώς την τρέχουσα ημερομηνία";
+            string youngerThan18ForHiring = " [2] Η ημερομηνία πρόσληψης πρέπει να είναι από την ημερομηνία γέννησης μεταγενέστερα κατά 18 χρόνια εώς την τρέχουσα ημερομηνία";
             string validAge = " Έγκυρη ηλικία : ";
             string validXpYears = " Έγκυρα χρόνια προϋπηρεσίας : ";
 
@@ -387,12 +389,12 @@ namespace HRLibUnitTest
                 { "11",                  empl11,                         27,                                     0,                                 validAge + "26" + validXpYears + "0" },
                 { "12",                  empl12,                         25,                                     4,                                 validAge + "25" + validXpYears + "4" },
                 { "13",                  empl13,                         -1,                                    53,                                 ageBetween18And70 },
-                { "14",                  empl14,                         -1,                                    -1,                                 olderThan18ForHiring },
+                { "14",                  empl14,                         -1,                                    -1,                                 youngerThan18ForHiring },
                 { "15",                  empl15,                         33,                                     9,                                 validAge + "33" + validXpYears + "9" },
                 { "16",                  empl16,                         24,                                     5,                                 validAge + "24" + validXpYears + "5" },
                 { "17",                  empl17,                         24,                                     4,                                 validAge + "24" + validXpYears + "4" },
-                { "AgeError_4",          emplfault1,                     70,                                    47,                                 ageBetween18And70 },
-                { "YearsOfXpError_5",    emplfault2,                     18,                                     0,                                 olderThan18ForHiring }
+                { "AgeError_5",          emplfault1,                     70,                                    47,                                 ageBetween18And70 },
+                { "YearsOfXpError_6",    emplfault2,                     18,                                     0,                                 youngerThan18ForHiring }
 
             };
 
