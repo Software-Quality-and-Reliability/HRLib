@@ -155,7 +155,6 @@ namespace HRLibUnitTest
             // Στην περίπτωση που κάποιο Test Case απέτυχε, πέταξε exception.
             if (failed)
                 Assert.Fail();
-
         }
     
 
