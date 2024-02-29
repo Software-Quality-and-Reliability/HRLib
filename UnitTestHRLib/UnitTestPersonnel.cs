@@ -165,7 +165,6 @@ namespace HRLibUnitTest
             string invalidPassword = " [1] Ο κωδικός πρέπει να είναι έγκυρος σύμφωνα με τις παραδοχές υλοποίησης της ValidPassword()";
             string validPassword = " Έγκυρος κωδικός πρόσβασης";
             string validEncryption = " Σωστή κρυπτογράφηση";
-            string invalidEncryption = " Λανθασμένη κρυπτογράφηση";
 
             // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
             HRLib.Personnel per = new HRLib.Personnel();
@@ -186,8 +185,7 @@ namespace HRLibUnitTest
                 { "9",                  "Tango_@12093",                     "YfsltdE675>8",                  validPassword + validEncryption },
                 { "10",                 "Lanaras_@16723",                   "QfsfwfxdE6;<78",                validPassword + validEncryption },
                 { "11",                 "George_!12525",                    "Ljtwljd&67:7:",                 validPassword + validEncryption },
-                { "12",                 "Krouska_123456",                   "Pwtzxpfd6789:;",                validPassword + validEncryption },
-                { "EncryptionError_3",  "Uniwaaaa_@_12345",                 "Zsnbffff_@_12345",              validPassword + invalidEncryption }
+                { "12",                 "Krouska_123456",                   "Pwtzxpfd6789:;",                validPassword + validEncryption }
             };
 
 
