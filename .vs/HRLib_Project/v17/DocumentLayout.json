@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\REPOS\\\u03A0\u039F\u0399\u039F\u03A4\u0397\u03A4\u0391\\HRLib\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AD0E56D0-6A68-4515-9AAE-9C36DD1F4DF1}|HRLib\\HRLib.csproj|f:\\repos\\\u03C0\u03BF\u03B9\u03BF\u03C4\u03B7\u03C4\u03B1\\hrlib\\hrlib\\personnel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD0E56D0-6A68-4515-9AAE-9C36DD1F4DF1}|HRLib\\HRLib.csproj|solutionrelative:hrlib\\personnel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36E44FA5-0C07-4779-B151-A9AF23EC9F30}|UnitTestHRLib\\UnitTestHRLib.csproj|f:\\repos\\\u03C0\u03BF\u03B9\u03BF\u03C4\u03B7\u03C4\u03B1\\hrlib\\unittesthrlib\\unittestpersonnel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36E44FA5-0C07-4779-B151-A9AF23EC9F30}|UnitTestHRLib\\UnitTestHRLib.csproj|solutionrelative:unittesthrlib\\unittestpersonnel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Personnel.cs",
+              "DocumentMoniker": "F:\\REPOS\\\u03A0\u039F\u0399\u039F\u03A4\u0397\u03A4\u0391\\HRLib\\HRLib\\Personnel.cs",
+              "RelativeDocumentMoniker": "HRLib\\Personnel.cs",
+              "ToolTip": "F:\\REPOS\\\u03A0\u039F\u0399\u039F\u03A4\u0397\u03A4\u0391\\HRLib\\HRLib\\Personnel.cs",
+              "RelativeToolTip": "HRLib\\Personnel.cs",
+              "ViewState": "AQIAAPsAAAAAAAAAAAAowI0AAABIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-18T12:55:17.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UnitTestPersonnel.cs",
+              "DocumentMoniker": "F:\\REPOS\\\u03A0\u039F\u0399\u039F\u03A4\u0397\u03A4\u0391\\HRLib\\UnitTestHRLib\\UnitTestPersonnel.cs",
+              "RelativeDocumentMoniker": "UnitTestHRLib\\UnitTestPersonnel.cs",
+              "ToolTip": "F:\\REPOS\\\u03A0\u039F\u0399\u039F\u03A4\u0397\u03A4\u0391\\HRLib\\UnitTestHRLib\\UnitTestPersonnel.cs",
+              "RelativeToolTip": "UnitTestHRLib\\UnitTestPersonnel.cs",
+              "ViewState": "AQIAAIoAAAAAAAAAAAAAABQAAABMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-18T12:49:02.324Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

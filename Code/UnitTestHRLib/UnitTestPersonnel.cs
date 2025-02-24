@@ -11,24 +11,25 @@ namespace HRLibUnitTest
         [TestMethod]
         public void TestMethodValidName() 
         {
-            // Παραδοχές υλοποίησης
-            string firstnameAndSurname = " [1] Να υπάρχει ο χαρακτήρας κενό ' ' ακριβώς μία φορά";
-            string moreThan3Chars = " [2.1] Το πλήθος των χαρακτήρων πρέπει να είναι τουλάχιστον 3";
-            string lessThan15Chars = " [2.2] Το πλήθος των χαρακτήρων πρέπει να είναι το πολύ 15";
-            string onlyLetters = " [2.3] Πρέπει να περιέχει μόνο γράμματα";
-            string firstLetterUpper = " [2.4] Το 1ο γράμμα πρέπει να είναι κεφαλαίο";
-            string restLettersLower = " [2.5] Τα γράμματα εκτός από το 1ο, πρέπει να είναι πεζά";
-            string onlyLatin = " [2.6] Τα γράμματα πρέπει να είναι όλα λατινικά";
-            string validName = " Έγκυρο ονοματεπώνυμο";
+			// Implementation Assumptions
+			string firstnameAndSurname = " [1] There must be exactly one space character ' '";
+			string moreThan3Chars = " [2.1] The number of characters must be at least 3";
+			string lessThan15Chars = " [2.2] The number of characters must be at most 15";
+			string onlyLetters = " [2.3] It must contain only letters";
+			string firstLetterUpper = " [2.4] The first letter must be uppercase";
+			string restLettersLower = " [2.5] All letters except the first must be lowercase";
+			string onlyLatin = " [2.6] All letters must be Latin";
+			string validName = " Valid full name";
 
-            // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
-            HRLib.Personnel per = new HRLib.Personnel();
+			// Create an instance of the Personnel class from HRLib.dll that we want to test
+			HRLib.Personnel per = new HRLib.Personnel();
 
-            // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
+			// Create Test Cases
+
             object[,] testcases =
             {
-            //  { id,               "Ονοματεπώνυμο",                 εκτιμώμενη τιμή            "Παραδοχή υλοποίησης"}
-            //                                                    επιστροφής της ValidName()                      
+            //  { id,               "Full name",                    estimated value           "Implementation Assumption"}
+            //                                                    return of ValidName()                      
                 { "1",              "Vasilis",                            false,                firstnameAndSurname },
                 { "2",              "Theoxaris",                          false,                firstnameAndSurname },
                 { "3",              "Om Alhaz",                           false,                moreThan3Chars },
@@ -49,63 +50,65 @@ namespace HRLibUnitTest
                 { "NameError_1",    "Vasileios Evangelos Athanasiou",      true,                firstnameAndSurname }
             };
 
-            // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
-            int i = 0;
-            bool failed = false;
+            // Initialize test case index pointer
+			int i = 0;
+			bool failed = false;
 
-            // Προσπέλαση και εκτέλεση περιπτώσεων ελέγχου
-            for (i = 0; i < testcases.GetLength(0); i++)
-            // Για κάθε περίπτωση ελέγχου (Test Case), δηλαδή για κάθε γραμμή i του πίνακα testcases
-            {
-                try
-                {
-                    // Καλούμε την Assert.AreEqual δίνοντας ως παραμέτρους τα στοιχεία της περίπτωσης ελέγχου,
-                    // δηλαδή τα αντίστοιχα στοιχεία της γραμμής i του πίνακα testcases
-                    string Name = (string)testcases[i, 1];
-                    bool expectedValue = (bool)testcases[i, 2];  // Η τιμή που περιμένω να επιστρέψει η μέθοδος ValidName() για την ημερομηνία i
-                    bool actualValue = per.ValidName(Name);      // Η τιμή που επιστρέφει η μέθοδος ValidName() για την ημερομηνία i
-                    Assert.AreEqual(expectedValue, actualValue);
-                }
-                catch (Exception e)
-                {
-                    // Απέτυχε το Test Case
-                    failed = true;
-                    // Καταγράφουμε το Test Case που απέτυχε
-                    Console.WriteLine("Αποτυχημένο Test Case: {0} \n \t Παραδοχή: {1} \n \t Εξαίρεση: {2} ",
-                                             (string)testcases[i, 0], (string)testcases[i, 3],                                        e.Message);
-                    //                        id,                      Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου, Μήνυμα του exception 
-                }
-            }
+			// Iterate through and execute test cases
+			for (i = 0; i < testcases.GetLength(0); i++)
+			// For each test case, i.e., for each row i in the testcases array
+			{
+				try
+				{
+					// Call Assert.AreEqual by passing the elements of the test case,
+					// i.e., the corresponding elements of row i in the testcases array.
+					string Name = (string)testcases[i, 1];
+					bool expectedValue = (bool)testcases[i, 2];  // The expected value returned by ValidName() for test case i
+					bool actualValue = per.ValidName(Name);      // The actual value returned by ValidName() for test case i
+					Assert.AreEqual(expectedValue, actualValue);
+				}
+				catch (Exception e)
+				{
+					// The test case failed.
+					failed = true;
+					// Log the failed test case.
+					Console.WriteLine("Failed Test Case: {0} \n \t Assumption: {1} \n \t Exception: {2} ",
+										 (string)testcases[i, 0], (string)testcases[i, 3], e.Message);
+					//                         id,       Implementation assumption violated or valid test message, Exception message 
+				}
+			}
 
-            // Στην περίπτωση που κάποιο Test Case απέτυχε, πέταξε exception
-            if (failed)
-                Assert.Fail();
+			// If any test case failed, throw an exception.
+			if (failed)
+				Assert.Fail();
+
         }
 
         [TestMethod]
         public void TestMethodValidPassword() 
         {
-            // Παραδοχές υλοποίησης
-            string moreThan12Chars = " [1] Το πλήθος των χαρακτήρων πρέπει να είναι τουλάχιστον 12";
-            string lessThan24Chars = " [2] Το πλήθος των χαρακτήρων πρέπει να είναι το πολύ 24";
-            string oneUpper = " [3.1] Να περιέχει τουλάχιστον 1 κεφαλαίο γράμμα";
-            string oneLower = " [3.2] Να περιέχει τουλάχιστον 1 πεζό γράμμα";
-            string oneDigit = " [3.3] Να περιέχει τουλάχιστον 1 ψηφίο";
-            string oneSymbol = " [3.4] Να περιέχει τουλάχιστον 1 ειδικό σύμβολο";
-            string noWhitespaces = " [4] Να μην περιέχει χαρακτήρες διαφυγής";
-            string onlyLatin = " [5] Τα γράμματα πρέπει να είναι λατινικοί χαρακτήρες";
-            string startsWithUpper = " [6.1] Πρέπει να ξεκινάει από κεφαλαίο γράμμα";
-            string endsWithDigit = " [6.2] Πρέπει να τελειώνει με ψηφίο";
-            string validPassword = " Έγκυρος κωδικός πρόσβασης";
+            // Implementation Assumptions
+			string moreThan12Chars = " [1] The number of characters must be at least 12";
+			string lessThan24Chars = " [2] The number of characters must be at most 24";
+			string oneUpper = " [3.1] Must contain at least 1 uppercase letter";
+			string oneLower = " [3.2] Must contain at least 1 lowercase letter";
+			string oneDigit = " [3.3] Must contain at least 1 digit";
+			string oneSymbol = " [3.4] Must contain at least 1 special symbol";
+			string noWhitespaces = " [4] Must not contain whitespace characters";
+			string onlyLatin = " [5] All letters must be Latin characters";
+			string startsWithUpper = " [6.1] Must start with an uppercase letter";
+			string endsWithDigit = " [6.2] Must end with a digit";
+			string validPassword = " Valid password";
 
-            // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
-            HRLib.Personnel per = new HRLib.Personnel();
+			// Create an instance of the Personnel class from HRLib.dll that we want to test
+			HRLib.Personnel per = new HRLib.Personnel();
 
-            // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
+			// Create Test Cases
+
             object[,] testcases =
             { 
-            //  { id,                 "Κωδικός",                      εκτιμώμενη τιμή            "Παραδοχή υλοποίησης"}
-            //                                                  επιστροφής της ValidPassword()
+            //  { id,                 "Password",                      estimated value           "Implementation Assumption"}
+            //                                                     return of ValidPassword()
                 { "1",                "Ako2",                             false,                 moreThan12Chars },
                 { "2",                "Akkakbfpaoqweh!@#1224hhff1",       false,                 lessThan24Chars },
                 { "3",                "!@#$%^&**&^%$#@!",                 false,                 oneUpper + oneLower + oneDigit + oneSymbol},
@@ -124,56 +127,58 @@ namespace HRLibUnitTest
             };
 
 
-            // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
-            int i = 0;
-            bool failed = false;
+            // Initialize test case index pointer
+			int i = 0;
+			bool failed = false;
 
-            // Προσπέλαση και εκτέλεση περιπτώσεων ελέγχου
-            for (i = 0; i < testcases.GetLength(0); i++)
-            // Για κάθε περίπτωση ελέγχου (Test Case), δηλαδή για κάθε γραμμή i του πίνακα testcases
-            {
-                try
-                {
-                    // Καλούμε την Assert.AreEqual δίνοντας ως παραμέτρους τα στοιχεία της περίπτωσης ελέγχου,
-                    // δηλαδή τα αντίστοιχα στοιχεία της γραμμής i του πίνακα testcases
-                    string Password = (string)testcases[i, 1];
-                    bool expectedValue = (bool)testcases[i, 2];     // Η τιμή που περιμένω να επιστρέψει η μέθοδος ValidPassword() για την ημερομηνία i
-                    bool actualValue = per.ValidPassword(Password); // Η τιμή που επιστρέφει η μέθοδος ValidPassword() για την ημερομηνία i
-                    Assert.AreEqual(expectedValue, actualValue);
-                }
-                catch (Exception e)
-                {
-                    // Απέτυχε το Test Case
-                    failed = true;
-                    // Καταγράφουμε το Test Case που απέτυχε
-                    Console.WriteLine("Αποτυχημένο Test Case: {0} \n \t Παραδοχή: {1} \n \t Εξαίρεση: {2} ",
-                                             (string)testcases[i, 0], (string)testcases[i, 3],                                         e.Message);
-                    //                        id,                      Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου,  Μήνυμα του exception 
-                }
-            }
+			// Iterate through and execute test cases
+			for (i = 0; i < testcases.GetLength(0); i++)
+			// For each test case, i.e., for each row i in the testcases array
+			{
+				try
+				{
+					// Call Assert.AreEqual by passing the test case elements,
+					// that is, the corresponding elements of row i in the testcases array.
+					string Password = (string)testcases[i, 1];
+					bool expectedValue = (bool)testcases[i, 2];  // The value expected to be returned by ValidPassword() for test case i
+					bool actualValue = per.ValidPassword(Password); // The value returned by ValidPassword() for test case i
+					Assert.AreEqual(expectedValue, actualValue);
+				}
+				catch (Exception e)
+				{
+					// The test case failed.
+					failed = true;
+					// Log the failed test case
+					Console.WriteLine("Failed Test Case: {0} \n \t Assumption: {1} \n \t Exception: {2} ",
+										 (string)testcases[i, 0], (string)testcases[i, 3], e.Message);
+					//                        id,    violated implementation assumption or valid test message, Exception message
+				}
+			}
 
-            // Στην περίπτωση που κάποιο Test Case απέτυχε, πέταξε exception.
-            if (failed)
-                Assert.Fail();
+			// If any test case failed, throw an exception.
+			if (failed)
+				Assert.Fail();
+
         }
     
 
         [TestMethod]
         public void TestMethodEncryptPassword() 
         {
-            // Παραδοχές υλοποίησης
-            string invalidPassword = " [1] Ο κωδικός πρέπει να είναι έγκυρος σύμφωνα με τις παραδοχές υλοποίησης της ValidPassword()";
-            string validPassword = " Έγκυρος κωδικός πρόσβασης";
-            string validEncryption = " Σωστή κρυπτογράφηση";
+            // Implementation Assumptions
+			string invalidPassword = " [1] The password must be valid according to the implementation assumptions of ValidPassword()";
+			string validPassword = " Valid password";
+			string validEncryption = " Correct encryption";
 
-            // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
-            HRLib.Personnel per = new HRLib.Personnel();
+			// Create an instance of the Personnel class from HRLib.dll that we want to test
+			HRLib.Personnel per = new HRLib.Personnel();
 
-            // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
+			// Create Test Cases
+
             object[,] testcases =
             {
-            //  { id,                   "Κωδικός",                         εκτιμώμενη τιμή                  "Παραδοχή υλοποίησης" }
-            //                                                       επιστροφής της EncryptPassword()
+            //  { id,                   "Password",                         estimated value                  "Implementation Assumption" }
+            //                                                          return of EncryptPassword()
                 { "1",                  "omar24323",                             null,                       invalidPassword },
                 { "2",                  "villys12345",                           null,                       invalidPassword },
                 { "3",                  "theodosis123",                          null,                       invalidPassword },
@@ -189,78 +194,79 @@ namespace HRLibUnitTest
             };
 
 
-            // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
-            int i = 0;
-            bool failed = false;
+            // Initialize test case index pointer
+			int i = 0;
+			bool failed = false;
 
-            // Προσπέλαση και εκτέλεση περιπτώσεων ελέγχου
-            for (i = 0; i < testcases.GetLength(0); i++)
-            // Για κάθε περίπτωση ελέγχου (Test Case), δηλαδή για κάθε γραμμή i του πίνακα testcases
-            {
-                try
-                {
-                    string TestcasePW = (string)testcases[i, 1];       // Ο κωδικός του testcase i 
-                    string ExpectedEnPW = (string)testcases[i, 2];     // Ο κρυπτογραφημένος κωδικός του testcase i που περιμένω να επιστρέψει η EncryptPassword() 
-                   
+			// Iterate through and execute test cases
+			for (i = 0; i < testcases.GetLength(0); i++)
+			// For each test case (i.e., for each row i in the testcases array)
+			{
+				try
+				{
+					string TestcasePW = (string)testcases[i, 1];       // The password of test case i
+					string ExpectedEnPW = (string)testcases[i, 2];       // The encrypted password expected to be returned by EncryptPassword() for test case i
 
-                    // Δήλωση και αρχικοποίηση ref μεταβλητών μεθόδου
-                    string ActualEnPW = "";
+					// Declare and initialize the ref variable for the method
+					string ActualEnPW = "";
 
-                    per.EncryptPassword(TestcasePW, ref ActualEnPW);
+					per.EncryptPassword(TestcasePW, ref ActualEnPW);
 
-                    // Καλούμε την Assert.AreEqual δίνοντας ως παραμέτρους τα στοιχεία της περίπτωσης ελέγχου,
-                    // δηλαδή τα αντίστοιχα στοιχεία της γραμμής i του πίνακα testcases
-                    Assert.AreEqual(ExpectedEnPW, ActualEnPW);
-                }
-                catch (Exception e)
-                {
-                    // Απέτυχε το Test Case
-                    failed = true;
-                    // Καταγράφουμε το Test Case που απέτυχε
-                    Console.WriteLine("Αποτυχημένο Test Case: {0} \n \t Παραδοχή: {1} \n \t Εξαίρεση: {2} ",
-                                             (string)testcases[i, 0], (string)testcases[i, 3],                                        e.Message);
-                    //                       id,                       Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου, Μήνυμα του exception 
-                }
-            }
+					// Call Assert.AreEqual by passing the test case elements,
+					// i.e., the corresponding elements of row i in the testcases array.
+					Assert.AreEqual(ExpectedEnPW, ActualEnPW);
+				}
+				catch (Exception e)
+				{
+					// The test case failed.
+					failed = true;
+					// Log the failed test case.
+					Console.WriteLine("Failed Test Case: {0} \n \t Assumption: {1} \n \t Exception: {2} ",
+										 (string)testcases[i, 0], (string)testcases[i, 3], e.Message);
+					//                        id, violated implementation assumption or valid test message, Exception message 
+				}
+			}
 
-            // Στην περίπτωση που κάποιο Test Case απέτυχε, πέταξε exception.
-            if (failed)
-                Assert.Fail();
+			// If any test case failed, throw an exception.
+			if (failed)
+				Assert.Fail();
+
         }
         
 
         [TestMethod]
         public void TestMethodCheckPhone() 
         {
-            // Παραδοχές υλοποίησης
-            string onlyDigits = " [1] Να περιέχει μόνο αριθμούς";
-            string digits10 = " [2] Οι αριθμοί να είναι ακριβώς 10";
-            string startsWith2HomePhone = " [3] Να ξεκινάει σε 2 αν πρόκειται για σταθερό";
-            string belongsToZone = " [3.1] Να ανήκει σε ζώνη";
-            string validHomePhone = "Έγκυρο σταθερό τηλέφωνο";
-            string zone1 = " με ζώνη την Μητροπολιτική Περιοχή Αθήνας - Πειραιά";
-            string zone2 = " με ζώνη την Ανατολική Στερεά Ελλάδα, Αττική, Νησιά Αιγαίου";
-            string zone3 = " με ζώνη την Κεντρική Μακεδονία";
-            string zone4 = " με ζώνη την Θεσσαλία, Δυτική Μακεδονία";
-            string zone5 = " με ζώνη την Θράκη, Ανατολική Μακεδονία";
-            string zone6 = " με ζώνη την Ήπειρο, Δυτική Στερεά Ελλάδα, Δυτική Πελοπόννησο, Ιόνια Νησιά";
-            string zone7 = " με ζώνη την Ανατολική Πελοπόννησο, Κύθηρα";
-            string zone8 = " με ζώνη την Κρήτη";
-            string startsWith69MobilePhone = " [4] Να ξεκινάει σε 69 αν πρόκειται για κινητό";
-            string belongsToMobileDataComp = " [4.1] Να ανήκει σε εταιρία κινητής τηλεφωνίας";
-            string validMobilePhone = " Έγκυρο κινητό τηλέφωνο";
-            string nova = " με εταιρία κινητής τηλεφωνίας τη Nova";
-            string cosmote = " με εταιρία κινητής τηλεφωνίας τη Cosmote";
-            string vodafone = " με εταιρία κινητής τηλεφωνίας τη Vodafone";
+            // Implementation Assumptions
+			string onlyDigits = " [1] It must contain only digits";
+			string digits10 = " [2] The number must be exactly 10";
+			string startsWith2HomePhone = " [3] It must start with 2 if it is a landline";
+			string belongsToZone = " [3.1] It must belong to an area code";
+			string validHomePhone = "Valid landline phone";
+			string zone1 = " with area: Metropolitan Area of Athens - Piraeus";
+			string zone2 = " with area: Eastern Central Greece, Attica, Aegean Islands";
+			string zone3 = " with area: Central Macedonia";
+			string zone4 = " with area: Thessaly, Western Macedonia";
+			string zone5 = " with area: Thrace, Eastern Macedonia";
+			string zone6 = " with area: Epirus, Western Central Greece, Western Peloponnese, Ionian Islands";
+			string zone7 = " with area: Eastern Peloponnese, Kythera";
+			string zone8 = " with area: Crete";
+			string startsWith69MobilePhone = " [4] It must start with 69 if it is a mobile phone";
+			string belongsToMobileDataComp = " [4.1] It must belong to a mobile phone company";
+			string validMobilePhone = "Valid mobile phone";
+			string nova = " with mobile company Nova";
+			string cosmote = " with mobile company Cosmote";
+			string vodafone = " with mobile company Vodafone";
 
-            // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
-            HRLib.Personnel per = new HRLib.Personnel();
+			// Create an instance of the Personnel class from HRLib.dll that we want to test
+			HRLib.Personnel per = new HRLib.Personnel();
 
-            // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
+			// Create Test Cases
+
             object[,] testcases =
             {
-             // { id,                       "Αριθμός Τηλεφώνου",        εκτιμώμενη τιμή επιστροφής           εκτιμώμενη τιμή επιστροφής                           "Παραδοχή υλοποίησης" }
-             //                                                        της CheckPhone() στην TypePhone     της CheckPhone() στην InfoPhone   
+             // { id,                       "Phone Number",                  estimated value                      estimated value                            "Implementation assumption" }
+             //                                                        return of CheckPhone() in TypePhone   return of CheckPhone() in InfoPhone   
                 { "1",                      "210-124567",                        -1,                                 null,                                         onlyDigits },
                 { "2",                      "690A49898c",                        -1,                                 null,                                         onlyDigits },
                 { "3",                      "22314",                             -1,                                 null,                                         digits10 },
@@ -292,60 +298,62 @@ namespace HRLibUnitTest
                 { "PhoneError_3",           "210 28 12 967",                      0,                     "Metropolitan Area of Athens - Piraeus",                  onlyDigits }
             };
 
-            // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
-            int i = 0;
-            bool failed = false;
+			// Initialize test case index pointer
+			int i = 0;
+			bool failed = false;
 
-            // Προσπέλαση και εκτέλεση περιπτώσεων ελέγχου
-            for (i = 0; i < testcases.GetLength(0); i++)
-            // Για κάθε περίπτωση ελέγχου (Test Case), δηλαδή για κάθε γραμμή i του πίνακα testcases
-            {
-                try
-                {
-                    string TestcasePhone = (string)testcases[i, 1];       // Το τηλέφωνο του testcase i 
-                    int ExpectedTypePhone = (int)testcases[i, 2];         // Ο τύπος τηλεφώνου του testcase i που περιμένω να επιστρέψει η CheckPhone() 
-                    string ExpectedInfoPhone = (string)testcases[i, 3];   // Οι πληροφορίες τηλεφώνου του testcase i που περιμένω να επιστρέψει η CheckPhone()
+			// Iterate through and execute test cases
+			for (i = 0; i < testcases.GetLength(0); i++)
+			// For each test case, i.e., for each row i in the testcases array
+			{
+				try
+				{
+					string TestcasePhone = (string)testcases[i, 1];       // The phone number for test case i
+					int ExpectedTypePhone = (int)testcases[i, 2];           // The expected phone type for test case i as returned by CheckPhone()
+					string ExpectedInfoPhone = (string)testcases[i, 3];       // The expected phone information for test case i as returned by CheckPhone()
 
-                    // Δήλωση και αρχικοποίηση ref μεταβλητών μεθόδου
-                    int ActualTypePhone = 100;
-                    string ActualInfoPhone = "";
+					// Declare and initialize method ref variables
+					int ActualTypePhone = 100;
+					string ActualInfoPhone = "";
 
-                    per.CheckPhone(TestcasePhone, ref ActualTypePhone, ref ActualInfoPhone);
+					per.CheckPhone(TestcasePhone, ref ActualTypePhone, ref ActualInfoPhone);
 
-                    // Καλούμε την Assert.AreEqual δίνοντας ως παραμέτρους τα στοιχεία της περίπτωσης ελέγχου,
-                    // δηλαδή τα αντίστοιχα στοιχεία της γραμμής i του πίνακα testcases
-                    Assert.AreEqual(ExpectedTypePhone, ActualTypePhone);
-                    Assert.AreEqual(ExpectedInfoPhone, ActualInfoPhone);
-                }
-                catch (Exception e)
-                {
-                    // Απέτυχε το Test Case
-                    failed = true;
-                    // Καταγράφουμε το Test Case που απέτυχε
-                    Console.WriteLine("Αποτυχημένο Test Case: {0} \n \t Παραδοχή: {1} \n \t Εξαίρεση: {2} ",
-                                             (string)testcases[i, 0], (string)testcases[i, 4],                                        e.Message);
-                    //                        id,                      Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου, Μήνυμα του exception 
-                }
-            }
+					// Call Assert.AreEqual by passing the test case elements,
+					// i.e., the corresponding elements of row i in the testcases array.
+					Assert.AreEqual(ExpectedTypePhone, ActualTypePhone);
+					Assert.AreEqual(ExpectedInfoPhone, ActualInfoPhone);
+				}
+				catch (Exception e)
+				{
+					// The test case failed.
+					failed = true;
+					// Log the failed test case.
+					Console.WriteLine("Failed Test Case: {0} \n \t Assumption: {1} \n \t Exception: {2} ",
+										 (string)testcases[i, 0], (string)testcases[i, 4], e.Message);
+					//                        id, violated implementation assumption or valid test message, Exception message
+				}
+			}
 
-            // Στην περίπτωση που κάποιο Test Case απέτυχε, πέταξε exception.
-            if (failed)
-                Assert.Fail();
+			// If any test case failed, throw an exception.
+			if (failed)
+				Assert.Fail();
+
         }
 
         [TestMethod]
         public void TestMethodInfoEmployee() 
         {
-            // Παραδοχές υλοποίησης
-            string ageBetween18And70 = " [1] Η ηλικία πρέπει να είναι από 18-70 χρονών";
-            string youngerThan18ForHiring = " [2] Η ημερομηνία πρόσληψης πρέπει να είναι από την ημερομηνία γέννησης μεταγενέστερα κατά 18 χρόνια εώς την τρέχουσα ημερομηνία";
-            string validAge = " Έγκυρη ηλικία : ";
-            string validXpYears = " Έγκυρα χρόνια προϋπηρεσίας : ";
+            // Implementation Assumptions
+			string ageBetween18And70 = " [1] The age must be between 18 and 70 years";
+			string youngerThan18ForHiring = " [2] The hiring date must be from the birthday plus 18 years to the current date";
+			string validAge = " Valid age: ";
+			string validXpYears = " Valid years of experience: ";
 
-            // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
+			// Create an instance of the Personnel class from HRLib.dll that we want to test
+
             HRLib.Personnel per = new HRLib.Personnel();
 
-            //                            "Ονοματεπώνυμο",          "Σταθερό Τηλέφωνο",        "Κινητό Τηλέφωνο",         "Ημερομηνία Γέννησης",           "Ημερομηνία Πρόσληψης
+            //                            "Full Name",              "Fixed Telephone",           "Mobile Phone",         "Birthday",                           "Hire Date"
             Employee empl1 = new Employee("George Theocharis",         "2102322751",              "6998843565",         new DateTime(2001, 08, 23),      new DateTime(2022, 05, 08));
             Employee empl2 = new Employee("Panagiotis Petropoulos",    "2102887987",              "6975522693",         new DateTime(1985, 04, 03),      new DateTime(2010, 06, 15));
             Employee empl3 = new Employee("Vasilis Athanasiou",        "2201010101",              "6980101010",         new DateTime(1999, 07, 15),      new DateTime(2020, 08, 15));
@@ -367,11 +375,11 @@ namespace HRLibUnitTest
             Employee emplfault2 = new Employee("Dimitris Siametis",    "2104588989",              "6999999999",         new DateTime(2006, 01, 02),      new DateTime(2024, 01, 01));
 
 
-            // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
+            // Create Test Cases
             object[,] testcases =
             {
-             // { id,                  "Υπάλληλος",            εκτιμώμενη τιμή επιστροφής,          εκτιμώμενη τιμή επιστροφής,                     "Παραδοχή υλοποίησης" }
-             //                                                της InfoEmployee() στην Age     της InfoEmployee() στην YearsOfExperience              
+             // { id,                  "Employee",            estimated value                                estimated value return                    "Implementation Assumption" }
+             //                                                return of InfoEmployee() at Age     of InfoEmployee() in YearsOfExperience              
                 { "1",                   empl1,                          22,                                     1,                                 validAge + "22" + validXpYears + "1" },
                 { "2",                   empl2,                          38,                                    13,                                 validAge + "38" + validXpYears + "13" },
                 { "3",                   empl3,                          24,                                     3,                                 validAge + "24" + validXpYears + "3" },
@@ -394,68 +402,70 @@ namespace HRLibUnitTest
 
             };
 
-            // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
-            int i = 0;
-            bool failed = false;
+			// Initialize test case index pointer (Test Cases)
+			int i = 0;
+			bool failed = false;
 
-            // Προσπέλαση και εκτέλεση περιπτώσεων ελέγχου
-            for (i = 0; i < testcases.GetLength(0); i++)
-            // Για κάθε περίπτωση ελέγχου (Test Case), δηλαδή για κάθε γραμμή i του πίνακα testcases
-            {
-                try
-                {
-                    Employee TestcaseEmployee = (Employee)testcases[i, 1];       // Ο υπάλληλος του testcase i 
-                    int ExpectedAge = (int)testcases[i, 2];                      // Η ηλικία του υπαλλήλου του testcase i που περιμένω να επιστρέψει η InfoEmployee() 
-                    int ExpectedYearsOfExperience = (int)testcases[i, 3];        // Τα χρόνια υπηρεσίας του υπαλλήλου του testcase i που περιμένω να επιστρέψει η InfoEmployee()
+			// Iterate through and execute test cases
+			for (i = 0; i < testcases.GetLength(0); i++)
+			// For each test case, i.e., for each row i in the testcases array
+			{
+				try
+				{
+					Employee TestcaseEmployee = (Employee)testcases[i, 1];       // The employee for test case i
+					int ExpectedAge = (int)testcases[i, 2];                         // The expected age for test case i returned by InfoEmployee()
+					int ExpectedYearsOfExperience = (int)testcases[i, 3];           // The expected years of service for test case i returned by InfoEmployee()
 
-                    // Δήλωση και αρχικοποίηση ref μεταβλητών μεθόδου
-                    int ActualAge = 0;
-                    int ActualYearsOfExperience = 100;
-                    
-                    // Κλήση της InfoEmployee με χρήση ref για να επιστραφούν οι τιμές ActualAge και ActualYearsOfExperience
-                    // καθώς και η μορφοποίηση της ημερομηνίας FormattedDate
-                    per.InfoEmployee(TestcaseEmployee, ref ActualAge, ref ActualYearsOfExperience);
+					// Declare and initialize method ref variables
+					int ActualAge = 0;
+					int ActualYearsOfExperience = 100;
+								
+					// Call InfoEmployee using ref to return the values ActualAge and ActualYearsOfExperience
+					// along with any necessary date formatting
+					per.InfoEmployee(TestcaseEmployee, ref ActualAge, ref ActualYearsOfExperience);
 
-                    // Καλούμε την Assert.AreEqual δίνοντας ως παραμέτρους τα στοιχεία της περίπτωσης ελέγχου,
-                    // δηλαδή τα αντίστοιχα στοιχεία της γραμμής i του πίνακα testcases
-                    Assert.AreEqual(ExpectedAge, ActualAge);
-                    Assert.AreEqual(ExpectedYearsOfExperience, ActualYearsOfExperience);
-                }
-                catch (Exception e)
-                {
-                    // Απέτυχε το Test Case
-                    failed = true;
-                    // Καταγράφουμε το Test Case που απέτυχε
-                    Console.WriteLine("Αποτυχημένο Test Case: {0} \n \t Παραδοχή: {1} \n \t Εξαίρεση: {2} ",
-                                             (string)testcases[i, 0], (string)testcases[i, 4],                                        e.Message);
-                    //                       id,                       Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου, Μήνυμα του exception 
-                }
-            }
+					// Call Assert.AreEqual, passing the elements of the test case,
+					// i.e., the corresponding elements of row i in the testcases array
+					Assert.AreEqual(ExpectedAge, ActualAge);
+					Assert.AreEqual(ExpectedYearsOfExperience, ActualYearsOfExperience);
+				}
+				catch (Exception e)
+				{
+					// The test case failed
+					failed = true;
+					// Log the failed test case
+					Console.WriteLine("Failed Test Case: {0} \n \t Assumption: {1} \n \t Exception: {2} ",
+										 (string)testcases[i, 0], (string)testcases[i, 4], e.Message);
+					//                        id, implementation assumption violated or valid test message, exception message
+				}
+			}
 
-            // Στην περίπτωση που κάποιο Test Case απέτυχε, πέταξε exception.
-            if (failed)
-                Assert.Fail();
+			// If any test case failed, throw an exception.
+			if (failed)
+				Assert.Fail();
+
         }
 
         [TestMethod]
         public void TestMethodLiveInAthens() 
         {
-            // Παραδοχές υλοποίησης
-            string numAthensEmps = " Υπάλληλοι που κατοικούν στην Αθήνα : ";
+            // Implementation Assumptions
+			string numAthensEmps = "Employees residing in Athens: ";
 
-            // Δημιουργία ενός αντικειμένου της κλάσης Personnel του HRLib.dll που θέλουμε να τεστάρουμε
-            HRLib.Personnel per = new HRLib.Personnel();
+			// Create an instance of the Personnel class from HRLib.dll that we want to test
+			HRLib.Personnel per = new HRLib.Personnel();
+
 
             Employee[] empls1 = new Employee[]
             {
-                //           "Ονοματεπώνυμο",     "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",       "Ημερομηνία Γέννησης",                 "Ημερομηνία Πρόσληψης"
+                //           "Full Name",         "Fixed Telephone",     "Mobile Phone",             "Birthday",                             "Hire Date"
                 new Employee("George Theoxaris",    "2202625345",        "6971345456",          new DateTime(2001, 08, 23),           new DateTime(2023, 07, 03)),
                 new Employee("Vasilis Athanasiou",  "2302324901",        "6981314145",          new DateTime(2001, 03, 19),           new DateTime(2024, 01, 02)),
                 new Employee("Omar Alhaz",          "2401234681",        "6945678789",          new DateTime(2001, 03, 24),           new DateTime(2023, 12, 20))
             };
             Employee[] empls2 = new Employee[]
             {
-                //           "Ονοματεπώνυμο",     "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",       "Ημερομηνία Γέννησης",                 "Ημερομηνία Πρόσληψης
+                //           "Full Name",         "Fixed Telephone",     "Mobile Phone",             "Birthday",                             "Hire Date"
                 new Employee("Tom Hanks",           "2102625345",         "6971345456",        new DateTime(1959, 07, 09),           new DateTime(1989, 06, 09)),
                 new Employee("Leonardo DiCaprio",   "2102324901",         "6981314145",        new DateTime(1974, 11, 11),           new DateTime(1995, 03, 15)),
                 new Employee("Meryl Streep",        "2801234681",         "6945678789",        new DateTime(1955, 06, 22),           new DateTime(1975, 05, 05)),
@@ -466,7 +476,7 @@ namespace HRLibUnitTest
             };
             Employee[] empls3 = new Employee[]
             {
-                //           "Ονοματεπώνυμο",     "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",       "Ημερομηνία Γέννησης",                 "Ημερομηνία Πρόσληψης
+                //           "Full Name",         "Fixed Telephone",     "Mobile Phone",             "Birthday",                             "Hire Date"
                 new Employee("Brad Pitt",           "2702625345",        "6971345456",        new DateTime(1963, 12, 18),            new DateTime(1987, 05, 20)),
                 new Employee("Jennifer Aniston",    "2602324901",        "6981314145",        new DateTime(1969, 02, 11),            new DateTime(1992, 07, 15)),
                 new Employee("Tom Cruise",          "2801234681",        "6945678789",        new DateTime(1962, 07, 03),            new DateTime(1981, 10, 10)),
@@ -478,7 +488,7 @@ namespace HRLibUnitTest
             };
             Employee[] empls4 = new Employee[]
             {
-                //           "Ονοματεπώνυμο",             "Σταθερό Τηλέφωνο",  "Κινητό Τηλέφωνο",             "Ημερομηνία Γέννησης",                  "Ημερομηνία Πρόσληψης"
+               //           "Full Name",         "Fixed Telephone",     "Mobile Phone",             "Birthday",                             "Hire Date"
                 new Employee("George Theoxaris",           "2102625345",          "6971345456",             new DateTime(2001, 08, 23),              new DateTime(2023, 07, 03)),
                 new Employee("Vasilis Athanasiou",         "2102324901",          "6981314145",             new DateTime(2001, 03, 19),              new DateTime(2024, 01, 02)),
                 new Employee("Omar Alhaz",                 "2801234681",          "6945678789",             new DateTime(2001, 03, 24),              new DateTime(2023, 12, 20)),
@@ -491,7 +501,7 @@ namespace HRLibUnitTest
             };
             Employee[] empls5 = new Employee[]
             {
-                //           "Ονοματεπώνυμο",            "Σταθερό Τηλέφωνο",    "Κινητό Τηλέφωνο",            "Ημερομηνία Γέννησης",                  "Ημερομηνία Πρόσληψης"
+                //           "Full Name",         "Fixed Telephone",     "Mobile Phone",             "Birthday",                             "Hire Date"
                 new Employee("Bartlomiej Dragowski",       "2145678901",          "6905678901",             new DateTime(1997, 08, 19),              new DateTime(2024, 01, 19)),
                 new Employee("Tin Jedvaj",                 "2156789012",          "6935678901",             new DateTime(1995, 11, 28),              new DateTime(2023, 07, 14)),
                 new Employee("Filip Mladenovic",           "2167890123",          "6995678901",             new DateTime(1991, 08, 15),              new DateTime(2023, 07, 01)),
@@ -506,7 +516,7 @@ namespace HRLibUnitTest
             };
             Employee[] empls6 = new Employee[]
             {
-                //           "Ονοματεπώνυμο",             "Σταθερό Τηλέφωνο",    "Κινητό Τηλέφωνο",            "Ημερομηνία Γέννησης",                "Ημερομηνία Πρόσληψης"
+                //           "Full Name",         "Fixed Telephone",     "Mobile Phone",             "Birthday",                             "Hire Date"
                 new Employee("George Theoxaris",           "2102625345",          "6971345456",             new DateTime(2001, 08, 23),              new DateTime(2023, 07, 03)),
                 new Employee("Vasilis Athanasiou",         "2402324901",          "6981314145",             new DateTime(2001, 03, 19),              new DateTime(2024, 01, 02)),
                 new Employee("Omar Alhaz",                 "2501234681",          "6945678789",             new DateTime(2001, 03, 24),              new DateTime(2023, 12, 20)),
@@ -517,7 +527,7 @@ namespace HRLibUnitTest
             };
             Employee[] empls7 = new Employee[]
             {
-                //           "Ονοματεπώνυμο",           "Σταθερό Τηλέφωνο",     "Κινητό Τηλέφωνο",             "Ημερομηνία Γέννησης",                  "Ημερομηνία Πρόσληψης"
+               //           "Full Name",         "Fixed Telephone",     "Mobile Phone",             "Birthday",                             "Hire Date"
                 new Employee("Despina Vandi",             "2201234567",          "6931234567",               new DateTime(1964, 07, 22),              new DateTime(1998, 10, 01)),
                 new Employee("Sakis Rouvas",              "2102345678",          "6942345678",               new DateTime(1972, 01, 05),              new DateTime(1990, 05, 15)),
                 new Employee("Kostas Martakis",           "2703456789",          "6953456789",               new DateTime(1974, 09, 14),              new DateTime(2000, 12, 30)),
@@ -526,11 +536,11 @@ namespace HRLibUnitTest
             };
 
 
-            // Δημιουργία Περιπτώσεων Ελέγχου (Test Cases)
+            // Create Test Cases
             object[,] testcases =
             {
-             // { id,               "Λίστα Υπαλλήλων",    εκτιμώμενη τιμή επιστροφής,           "Παραδοχή υλοποίησης"}
-            //                                                της LiveInAthens()              
+             // { id,               "List of Employees",    estimated value return,           "Implementation Assumption"}
+            //                                                of LiveInAthens()              
                 { "1",                  empls1,                        0,                       numAthensEmps + "0/3" },
                 { "2",                  empls2,                        5,                       numAthensEmps + "5/7" },
                 { "3",                  empls3,                        3,                       numAthensEmps + "3/8" },
@@ -541,38 +551,39 @@ namespace HRLibUnitTest
 
             };
 
-            // Αρχικοποίηση δείκτη περιπτώσεων ελέγχου (Test Cases)
-            int i = 0;
-            bool failed = false;
+            // Initialize test case index pointer (Test Cases)
+			int i = 0;
+			bool failed = false;
 
-            // Προσπέλαση και εκτέλεση περιπτώσεων ελέγχου
-            for (i = 0; i < testcases.GetLength(0); i++)
-            // Για κάθε περίπτωση ελέγχου (Test Case), δηλαδή για κάθε γραμμή i του πίνακα testcases
-            {
-                try
-                {
-                    Employee[] TestcaseEmpls = (Employee[])testcases[i, 1];          // Η λίστα των υπαλλήλων του testcase i 
-                    int ExpectedAthensHabitants = (int)testcases[i, 2];              // Οι κάτοικοι Αθήνας του testcase i που περιμένω να επιστρέψει η LiveInAthens() 
-                    int ActualAthensHabitants = per.LiveinAthens(TestcaseEmpls);     // Οι κάτοικοι Αθήνας του testcase i που επιστρέφει η LiveInAthens() 
+			// Iterate through and execute test cases
+			for (i = 0; i < testcases.GetLength(0); i++)
+			// For each test case (i.e., for each row i in the testcases array)
+			{
+				try
+				{
+					Employee[] TestcaseEmpls = (Employee[])testcases[i, 1];          // The list of employees for test case i
+					int ExpectedAthensHabitants = (int)testcases[i, 2];              // The expected number of Athens residents for test case i, as returned by LiveinAthens()
+					int ActualAthensHabitants = per.LiveinAthens(TestcaseEmpls);       // The actual number of Athens residents for test case i returned by LiveinAthens()
 
-                    // Καλούμε την Assert.AreEqual δίνοντας ως παραμέτρους τα στοιχεία της περίπτωσης ελέγχου,
-                    // δηλαδή τα αντίστοιχα στοιχεία της γραμμής i του πίνακα testcases
-                    Assert.AreEqual(ExpectedAthensHabitants, ActualAthensHabitants);
-                }
-                catch (Exception e)
-                {
-                    // Απέτυχε το Test Case
-                    failed = true;
-                    // Καταγράφουμε το Test Case που απέτυχε
-                    Console.WriteLine("Αποτυχημένο Test Case: {0} \n \t Παραδοχή: {1} \n \t Εξαίρεση: {2} ",
-                                             (string)testcases[i, 0], (string)testcases[i, 3],                                        e.Message);
-                    //                       id,                       Παραδοχή υλοποίησης που παραβιάζεται ή μήνυμα έγκυρου ελέγχου, Μήνυμα του exception 
-                }
-            }
+					// Call Assert.AreEqual by passing the test case elements,
+					// i.e., the corresponding elements of row i in the testcases array.
+					Assert.AreEqual(ExpectedAthensHabitants, ActualAthensHabitants);
+				}
+				catch (Exception e)
+				{
+					// The test case failed
+					failed = true;
+					// Log the failed test case
+					Console.WriteLine("Failed Test Case: {0} \n \t Assumption: {1} \n \t Exception: {2} ",
+										 (string)testcases[i, 0], (string)testcases[i, 3], e.Message);
+					//                        id, implementation assumption violated or valid test message, exception message 
+				}
+			}
 
-            // Στην περίπτωση που κάποιο Test Case απέτυχε, πέταξε exception.
-            if (failed)
-                Assert.Fail();
+			// If any test case failed, throw an exception.
+			if (failed)
+				Assert.Fail();
+
         }
     }
 }
